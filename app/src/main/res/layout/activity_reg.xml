@@ -36,21 +36,69 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="@color/white"
+        android:text="У меня уже есть аккаунт"
+        android:textAllCaps="false"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+    <FrameLayout
+        android:id="@+id/edit3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rectangle_3"
+        android:ems="10"
+        android:hint="Ф.И.О"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit2">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/rectangle_3"
+            android:ems="10"
+            android:hint="Город проживания"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></EditText>
+    </FrameLayout>
+
     <FrameLayout
         android:id="@+id/edit1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="36dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/rectangle_3"
         android:ems="10"
         android:hint="Ф.И.О"
-        android:layout_marginTop="20dp"
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/some_id">
 
@@ -72,90 +120,32 @@
             app:layout_constraintTop_toTopOf="parent"></EditText>
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/edit2"
+    <CheckBox
+        android:id="@+id/checkBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/rectangle_3"
-        android:ems="10"
-        android:layout_marginTop="20dp"
-        android:hint="Ф.И.О"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/black"
+        android:layout_marginTop="64dp"
+        android:text="Принимаю политику сервиса"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit1">
+        app:layout_constraintTop_toBottomOf="@+id/edit5" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/rectangle_3"
-            android:ems="10"
-            android:textColorHint="@color/black"
-            android:hint="Номер телефона"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.157"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></EditText>
-    </FrameLayout>
-    <FrameLayout
-        android:id="@+id/edit3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/rectangle_3"
-        android:ems="10"
-        android:layout_marginTop="20dp"
-        android:hint="Ф.И.О"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit2">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@drawable/rectangle_3"
-            android:ems="10"
-            android:hint="Город проживания"
-            android:textColorHint="@color/black"
-            android:inputType="textPersonName"
-            android:text=""
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.157"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></EditText>
-    </FrameLayout>
     <FrameLayout
         android:id="@+id/edit4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/rectangle_3"
         android:ems="10"
-        android:layout_marginTop="20dp"
         android:hint="Ф.И.О"
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit3">
 
@@ -167,10 +157,45 @@
             android:background="@drawable/rectangle_3"
             android:ems="10"
             android:hint="Пароль"
-            android:textColorHint="@color/black"
             android:inputType="textPersonName"
             android:text=""
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.157"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></EditText>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/edit2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rectangle_3"
+        android:ems="10"
+        android:hint="Ф.И.О"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit1">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/rectangle_3"
+            android:ems="10"
+            android:hint="Номер телефона"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.157"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +207,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/rectangle_3"
         android:ems="10"
@@ -190,7 +215,6 @@
         android:inputType="textPersonName"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit4">
 
@@ -212,48 +236,21 @@
             app:layout_constraintTop_toTopOf="parent"></EditText>
     </FrameLayout>
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginLeft="30dp"
-        android:text="Принимаю политику сервиса"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit5" />
-
     <Button
         android:id="@+id/button5"
         android:layout_width="match_parent"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
         android:layout_height="47dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="30dp"
         android:backgroundTint="@color/white"
-        android:textSize="17dp"
-        android:textAllCaps="false"
         android:text="Зарегистрироваться"
+        android:textAllCaps="false"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="300dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="16dp"
-        android:text="У меня уже есть аккаунт"
-        android:textSize="17dp"
-        android:backgroundTint="@color/white"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <TextView
         android:id="@+id/textView"

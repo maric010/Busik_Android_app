@@ -16,4 +16,8 @@ public class reg extends AppCompatActivity {
     public void back(View view) {
         finish();
     }
+
+    public void check_on_passenger(View view) {
+        View passenger = findViewById(R.id.passenger_check)
+    }
 }

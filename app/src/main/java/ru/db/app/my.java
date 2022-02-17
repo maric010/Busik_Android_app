@@ -1,15 +1,10 @@
 package ru.db.app;
 
-import android.util.Log;
+import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.UnsupportedEncodingException;
@@ -17,7 +12,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class my {
+    static SharedPreferences settings;
     static String name,phone,email,id,country,status;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -43,7 +41,7 @@ public class my {
         return convertToHex(sha1hash);
     }
 
-    static String reg(String name,String password,String phone,String mail,String country,String city,
+    static void reg(String name,String password,String phone,String mail,String city,
                boolean is_admin,boolean is_carrier,boolean is_passenger,boolean auth_google,boolean auth_facebook,
                boolean auth_telegram,int facebook_id,int telegram_id,int google_id){
         try {
@@ -51,8 +49,6 @@ public class my {
             new_user.put("name",name);
             new_user.put("password",SHA1(SHA1(password)));
             new_user.put("phone",phone);
-            new_user.put("e-mail",mail);
-            new_user.put("country",country);
             new_user.put("city",city);
             if(is_admin)
                 new_user.put("is_admin",true);
@@ -63,37 +59,23 @@ public class my {
             if(auth_facebook)
                 new_user.put("facebook_id",facebook_id);
             if(auth_google)
+            {
+                new_user.put("e-mail",mail);
                 new_user.put("google_id",google_id);
+            }
+
             if(auth_telegram)
-                new_user.put("telegram_id",0);
+                new_user.put("telegram_id",telegram_id);
             DocumentReference user = my.db.collection("users").document();
             user.set(new_user);
-            return user.getId();
-
+            final String PREF_id = "id";
+            SharedPreferences.Editor prefEditor = settings.edit();
+            prefEditor.putString(PREF_id,user.getId().toString());
+            prefEditor.apply();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return "";
-    }
-
-    private void getListItems(String phone) {
-        DocumentReference docRef = db.collection("cities").document("SF");
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        document.getData();
-                    } else {
-                        // Not found
-                    }
-                } else {
-                    // Can'nt find
-                }
-            }
-        });
     }
 }

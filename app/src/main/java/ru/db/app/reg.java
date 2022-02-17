@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class reg extends AppCompatActivity {
-
+Boolean is_carrier = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class reg extends AppCompatActivity {
     }
 
     public void check_on_passenger(View view) {
+        is_carrier=false;
         TextView passenger_text = findViewById(R.id.passenger_textview);
         passenger_text.setTextColor(Color.BLACK);
         View passenger = findViewById(R.id.passenger_check);
@@ -30,6 +32,7 @@ public class reg extends AppCompatActivity {
         carrier_text.setTextColor(Color.GRAY);
     }
     public void check_on_carrier(View view) {
+        is_carrier=true;
         TextView passenger_text = findViewById(R.id.passenger_textview);
         passenger_text.setTextColor(Color.GRAY);
         View passenger = findViewById(R.id.passenger_check);
@@ -38,5 +41,14 @@ public class reg extends AppCompatActivity {
         carrier.setVisibility(View.VISIBLE);
         TextView carrier_text = findViewById(R.id.carrier_textview);
         carrier_text.setTextColor(Color.BLACK);
+    }
+
+    public void reg_onclick(View view) {
+        String name = ((EditText)findViewById(R.id.name)).getText().toString();
+        String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
+        String city = ((EditText)findViewById(R.id.city)).getText().toString();
+        String password = ((EditText)findViewById(R.id.password)).getText().toString();
+        my.reg(name,password,phone,"",city,false,is_carrier,!is_carrier,false,false,false,0,0,0);
+        finish();
     }
 }

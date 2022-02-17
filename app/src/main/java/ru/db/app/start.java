@@ -3,51 +3,43 @@ package ru.db.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class start extends AppCompatActivity {
+    SharedPreferences settings;
+    SharedPreferences.Editor prefEditor;
+    private static final String PREFS_FILE = "Account";
+    private static final String PREF_id = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        my.dborders.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                //System.out.println(previousChildName);
-                System.out.println(snapshot.child("adress_start").getValue());
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
+        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
 
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+
+
+
         HashMap<String,String> t=new HashMap<>();
-        t.put("adress_start","msk");
+        t.put("adress_start","msk0");
         t.put("adress_stop","spb");
         t.put("cost","500");
         t.put("cost_baggage","100");
@@ -55,7 +47,52 @@ public class start extends AppCompatActivity {
         t.put("date_start","Mon");
         t.put("date_stop","Thu");
         t.put("status","wait");
-        my.dborders.push().setValue(t);
+        //my.dborders.push().setValue(t);
+        //String id = my.reg("Марик","test","79967855023","smaricpb@gmail.com","Россия","Спб",false,
+          //      false,true,false,false,false,0,0,0);
+        //System.out.println(id);
+        String id = settings.getString(PREF_id,"");
+        id = "gqxbnYBJI9mijfK1yOpA";
+        if(!id.equalsIgnoreCase("")){
+            DocumentReference docRef = my.db.collection("users").document(id);
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Map<String, Object> doc = document.getData();
+                            my.name = (String) doc.get("name");
+                            my.country=(String)doc.get("country");
+                            my.email= (String)doc.get("e-mail");
+                            my.phone=(String)doc.get("phone");
+                            if(doc.get("is_carrier")!=null)
+                            {
+                                if(((Boolean) doc.get("is_carrier")))
+                                    my.status="Перевозчик";
+                            }
+                            else if(doc.get("is_passenger")!=null){
+                                if(((Boolean) doc.get("is_passenger")))
+                                    my.status="Пасажир";
+                            }
+                            else if(doc.get("is_admin")!=null){
+                                if(((Boolean) doc.get("is_admin")))
+                                    my.status="Администратор";
+                            }
+                            else
+
+                            System.out.println(my.name);
+                        }
+                        else{
+                          //auth
+                        }
+                    } else {
+
+                    }
+                }
+            });
+        }
 
     }
+
 }

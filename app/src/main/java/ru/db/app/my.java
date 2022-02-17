@@ -16,7 +16,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class my {
     static SharedPreferences settings;
-    static String name,phone,email,id,country,status;
+    static String name,phone,email,id,city,status;
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference dborders = database.getReference("рейсы");
@@ -70,7 +70,7 @@ public class my {
             user.set(new_user);
             final String PREF_id = "id";
             SharedPreferences.Editor prefEditor = settings.edit();
-            prefEditor.putString(PREF_id,user.getId().toString());
+            prefEditor.putString(PREF_id,user.getId());
             prefEditor.apply();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

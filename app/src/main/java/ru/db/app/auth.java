@@ -18,4 +18,9 @@ public class auth extends AppCompatActivity {
         Intent intent = new Intent(auth.this, reg.class);
         startActivity(intent);
     }
+
+    public void auth_onClick(View view) {
+        Intent intent = new Intent(auth.this, auth_main.class);
+        startActivity(intent);
+    }
 }

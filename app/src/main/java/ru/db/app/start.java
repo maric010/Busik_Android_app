@@ -9,14 +9,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -49,6 +52,7 @@ public class start extends AppCompatActivity {
         //System.out.println(id);
         String id = settings.getString(PREF_id,"");
         //id = "gqxbnYBJI9mijfK1yOpA";
+
         if(!id.equalsIgnoreCase("")){
             DocumentReference docRef = my.db.collection("users").document(id);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -59,7 +63,7 @@ public class start extends AppCompatActivity {
                         if (document.exists()) {
                             Map<String, Object> doc = document.getData();
                             my.name = (String) doc.get("name");
-                            my.country=(String)doc.get("country");
+                            my.city=(String)doc.get("city");
                             my.email= (String)doc.get("e-mail");
                             my.phone=(String)doc.get("phone");
                             if(doc.get("is_carrier")!=null)
@@ -94,6 +98,51 @@ public class start extends AppCompatActivity {
             finish();
         }
 
+
+
+/*
+        CollectionReference docRef = my.db.collection("users");
+        try {
+            docRef.whereEqualTo("phone", "79967855023").whereEqualTo("password",my.SHA1(my.SHA1("test"))).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                    if(queryDocumentSnapshots.getDocuments().size()>0){
+                        DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
+                        final String PREF_id = "id";
+                        SharedPreferences.Editor prefEditor = settings.edit();
+                        prefEditor.putString(PREF_id,user.getId());
+                        prefEditor.apply();
+                        my.name=user.get("name").toString();
+                        my.phone=user.get("phone").toString();
+                        my.city=user.get("city").toString();
+                        if(user.get("is_carrier")!=null)
+                        {
+                            if(((Boolean) user.get("is_carrier")))
+                                my.status="Перевозчик";
+                        }
+                        else if(user.get("is_passenger")!=null){
+                            if(((Boolean) user.get("is_passenger")))
+                                my.status="Пасажир";
+                        }
+                        else if(user.get("is_admin")!=null){
+                            if(((Boolean) user.get("is_admin")))
+                                my.status="Администратор";
+                        }
+                        System.out.println("NAME "+my.name);
+                    }
+                    else {
+                        System.out.println("Неправильный логин или пароль");
+                    }
+
+                }
+            });
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+         */
     }
 
 }

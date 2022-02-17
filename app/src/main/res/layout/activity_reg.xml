@@ -261,4 +261,15 @@
         android:text="Назад"
         app:layout_constraintStart_toEndOf="@+id/vector_3"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Как пассажир"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_id" />
 </androidx.constraintlayout.widget.ConstraintLayout>

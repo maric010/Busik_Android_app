@@ -3,6 +3,8 @@ package ru.db.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -32,12 +34,6 @@ public class start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-
-
-
-
-
-
         HashMap<String,String> t=new HashMap<>();
         t.put("adress_start","msk0");
         t.put("adress_stop","spb");
@@ -52,7 +48,7 @@ public class start extends AppCompatActivity {
           //      false,true,false,false,false,0,0,0);
         //System.out.println(id);
         String id = settings.getString(PREF_id,"");
-        id = "gqxbnYBJI9mijfK1yOpA";
+        //id = "gqxbnYBJI9mijfK1yOpA";
         if(!id.equalsIgnoreCase("")){
             DocumentReference docRef = my.db.collection("users").document(id);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -91,6 +87,11 @@ public class start extends AppCompatActivity {
                     }
                 }
             });
+        }
+        else{
+            Intent intent = new Intent(start.this, auth.class);
+            startActivity(intent);
+            finish();
         }
 
     }

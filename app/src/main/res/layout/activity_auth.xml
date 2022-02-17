@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5E5E5"
     tools:context=".auth">
 <View
     android:id="@+id/ellipse_7"
@@ -85,7 +86,6 @@
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
         android:backgroundTint="@color/white"
-        android:onClick=""
         android:text="Авторизоваться"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +100,7 @@
         android:backgroundTint="@color/white"
         android:text="Создать новый аккаунт"
         android:layout_marginTop="18dp"
+        android:onClick="reg_onclick"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

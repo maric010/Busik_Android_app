@@ -100,49 +100,10 @@ public class start extends AppCompatActivity {
 
 
 
-/*
-        CollectionReference docRef = my.db.collection("users");
-        try {
-            docRef.whereEqualTo("phone", "79967855023").whereEqualTo("password",my.SHA1(my.SHA1("test"))).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    if(queryDocumentSnapshots.getDocuments().size()>0){
-                        DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
-                        final String PREF_id = "id";
-                        SharedPreferences.Editor prefEditor = settings.edit();
-                        prefEditor.putString(PREF_id,user.getId());
-                        prefEditor.apply();
-                        my.name=user.get("name").toString();
-                        my.phone=user.get("phone").toString();
-                        my.city=user.get("city").toString();
-                        if(user.get("is_carrier")!=null)
-                        {
-                            if(((Boolean) user.get("is_carrier")))
-                                my.status="Перевозчик";
-                        }
-                        else if(user.get("is_passenger")!=null){
-                            if(((Boolean) user.get("is_passenger")))
-                                my.status="Пасажир";
-                        }
-                        else if(user.get("is_admin")!=null){
-                            if(((Boolean) user.get("is_admin")))
-                                my.status="Администратор";
-                        }
-                        System.out.println("NAME "+my.name);
-                    }
-                    else {
-                        System.out.println("Неправильный логин или пароль");
-                    }
 
-                }
-            });
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
 
-         */
+
+
     }
 
 }

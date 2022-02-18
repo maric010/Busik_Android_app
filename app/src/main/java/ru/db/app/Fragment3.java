@@ -24,7 +24,7 @@ public class Fragment3 extends Fragment {
     View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.auth_reg, container, false);
+        root = inflater.inflate(R.layout.activity_auth, container, false);
         return root;
     }
 }

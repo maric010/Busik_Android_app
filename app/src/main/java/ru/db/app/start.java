@@ -85,6 +85,9 @@ public class start extends AppCompatActivity {
                         }
                         else{
                           //auth
+                            Intent intent = new Intent(start.this, auth.class);
+                            startActivity(intent);
+                            finish();
                         }
                     } else {
 

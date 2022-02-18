@@ -34,24 +34,32 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rectangle_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     <EditText
         android:id="@+id/city"
-        android:layout_width="350dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="140dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@drawable/rectangle_3"
         android:ems="10"
-        android:hint="  Откуда"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="Откуда"
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></EditText>
+        android:textColorHint="@color/black"/>
 
-
+    </FrameLayout>
 
     <EditText
         android:id="@+id/city2"
@@ -101,7 +109,6 @@
 
 
     <EditText
-        android:id="@+id/city5"
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginTop="368dp"
@@ -148,7 +155,6 @@
 
 
     <EditText
-        android:id="@+id/city5"
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginTop="476dp"
@@ -165,7 +171,6 @@
         app:layout_constraintTop_toTopOf="parent"></EditText>
 
     <EditText
-        android:id="@+id/city5"
         android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_marginTop="476dp"
@@ -182,7 +187,6 @@
         app:layout_constraintTop_toTopOf="parent"></EditText>
 
     <Button
-        android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_marginLeft="30dp"

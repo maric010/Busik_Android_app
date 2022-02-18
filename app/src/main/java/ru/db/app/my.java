@@ -2,9 +2,12 @@ package ru.db.app;
 
 import android.content.SharedPreferences;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.UnsupportedEncodingException;
@@ -13,6 +16,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 import static android.content.Context.MODE_PRIVATE;
+
+import androidx.annotation.NonNull;
 
 public class my {
     static SharedPreferences settings;
@@ -78,4 +83,24 @@ public class my {
             e.printStackTrace();
         }
     }
+
+    private void getListItems(String phone) {
+        DocumentReference docRef = db.collection("phone").document(phone);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        document.getData();
+                    } else {
+                        // Not found
+                    }
+                } else {
+                    // Can'nt find
+                }
+            }
+        });
+    }
+
 }

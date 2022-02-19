@@ -79,9 +79,10 @@ public class start extends AppCompatActivity {
                                 if(((Boolean) doc.get("is_admin")))
                                     my.status="Администратор";
                             }
-                            else
-
                             System.out.println(my.name);
+                            Intent intent = new Intent(start.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                         else{
                           //auth

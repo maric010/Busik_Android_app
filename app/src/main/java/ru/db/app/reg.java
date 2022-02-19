@@ -15,6 +15,7 @@ Boolean is_carrier = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
+
         if(!my.name.equals("")){
             ((FrameLayout)findViewById(R.id.edit4)).setVisibility(View.INVISIBLE);
             ((FrameLayout)findViewById(R.id.edit5)).setVisibility(View.INVISIBLE);

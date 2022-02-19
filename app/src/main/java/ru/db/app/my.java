@@ -21,7 +21,8 @@ import androidx.annotation.NonNull;
 
 public class my {
     static SharedPreferences settings;
-    static String name,phone,email,id,city,status;
+    static String name="",phone,email,id,city,status;
+
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference dborders = database.getReference("рейсы");

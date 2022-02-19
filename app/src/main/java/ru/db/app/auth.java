@@ -57,7 +57,7 @@ public class auth extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-fb();
+//fb();
 
     }
 void fb(){

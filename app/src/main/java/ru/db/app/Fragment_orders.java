@@ -24,7 +24,13 @@ public class Fragment_orders extends Fragment {
     View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.activity_auth, container, false);
+        root = inflater.inflate(R.layout.activity_orders, container, false);
+
+        LinearLayout gl = new LinearLayout(root.getContext());
+        gl.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams gllayoutParams = new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.MATCH_PARENT, 200);
+gllayoutParams.setMargins(20,20,20,0);
         return root;
     }
 }

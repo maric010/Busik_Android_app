@@ -68,18 +68,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
         android:background="#cccccc"
         android:orientation="vertical"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_gravity="top"
             android:orientation="horizontal"
             >
 
@@ -90,8 +87,6 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 >
-
-                <!--  дата поезда  -->
                 <TextView
                     android:id="@+id/startDate"
                     android:layout_width="wrap_content"
@@ -99,8 +94,7 @@
                     android:text="Пн. 12:00"
                     android:textColor="#4D4D4D"
                     android:textSize="18dp"
-                    android:layout_marginBottom="3dp"
-                    />
+                    android:layout_marginBottom="3dp" />
 
                 <TextView
                     android:id="@+id/stopDate"
@@ -234,7 +228,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Станослав"
+                    android:text="Станислав"
                     android:textSize="21dp"
                     android:textColor="@color/black"
                     />

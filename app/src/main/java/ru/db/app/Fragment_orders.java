@@ -26,16 +26,29 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class Fragment_orders extends Fragment {
     View root;
+    LinearLayout scrollView;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders, container, false);
+        scrollView = root.findViewById(R.id.scroll_orders);
 
+        add_order();
+        add_order();
+        add_order();
+        add_order();
+        add_order();
+        add_order();
+        add_order();
+
+        return root;
+    }
+    void add_order(){
         LinearLayout gl = new LinearLayout(root.getContext());
         gl.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams gllayoutParams = new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.MATCH_PARENT, 200);
-gllayoutParams.setMargins(20,20,20,0);
-gl.setLayoutParams(gllayoutParams);
+                (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        gllayoutParams.setMargins(20,20,20,10);
+        gl.setLayoutParams(gllayoutParams);
         LinearLayout linearLayout1 = new LinearLayout(root.getContext());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams l1params = new LinearLayout.LayoutParams
@@ -132,7 +145,7 @@ gl.setLayoutParams(gllayoutParams);
         linearLayout1.addView(summa);
 
         arrow = new ImageView(root.getContext());
-        arrowp.setMargins(45,0,5,0);
+        arrowp.setMargins(25,0,5,0);
         arrow.setImageResource(R.drawable.suitcase);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
@@ -156,23 +169,76 @@ gl.setLayoutParams(gllayoutParams);
 
         linearLayout1 = new LinearLayout(root.getContext());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
-        l1params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100);
+        l1params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
         linearLayout1.setLayoutParams(l1params);
 
         gl.addView(linearLayout1);
 
         arrow = new ImageView(root.getContext());
-        arrowp.setMargins(20,10,5,0);
+        arrowp = new LinearLayout.LayoutParams
+                (80, ViewGroup.LayoutParams.MATCH_PARENT);
+        arrowp.setMargins(20,0,10,0);
         arrow.setImageResource(R.drawable.ellipse_2);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
 
+        linearLayout2 = new LinearLayout(root.getContext());
+        linearLayout2.setOrientation(LinearLayout.VERTICAL);
+        l2params = new LinearLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        linearLayout2.setLayoutParams(l2params);
+
+        summa = new TextView(root.getContext());
+        summa.setText("Станислав");
+        summa.setTextSize(22);
+        summa.setLayoutParams(summap);
+        linearLayout2.addView(summa);
+
+        linearLayout3 = new LinearLayout(root.getContext());
+        linearLayout3.setOrientation(LinearLayout.HORIZONTAL);
+        l3params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        linearLayout3.setLayoutParams(l3params);
+
+        arrow = new ImageView(root.getContext());
+        arrowp = new LinearLayout.LayoutParams
+                (20, ViewGroup.LayoutParams.MATCH_PARENT);
+        arrowp.setMargins(0,0,5,0);
+        arrow.setImageResource(R.drawable.star);
+        arrow.setLayoutParams(arrowp);
+        linearLayout3.addView(arrow);
+
+        summa = new TextView(root.getContext());
+        summa.setText("5.0");
+        summa.setTextSize(20);
+        summa.setLayoutParams(summap);
+        linearLayout3.addView(summa);
+
+        linearLayout2.addView(linearLayout3);
+        linearLayout1.addView(linearLayout2);
 
 
-            gl.setBackgroundColor(Color.WHITE);
-        ScrollView scrollView = root.findViewById(R.id.scroll_orders);
+        linearLayout3 = new LinearLayout(root.getContext());
+        linearLayout3.setOrientation(LinearLayout.VERTICAL);
+        l3params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        linearLayout3.setLayoutParams(l3params);
+
+        summa = new TextView(root.getContext());
+        summa.setText("В ожидание");
+        summa.setTextSize(18);
+        summa.setBackgroundColor(Color.GRAY);
+        summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        summap.setMargins(0,45,40,10);
+        summap.gravity = Gravity.END;
+        summa.setLayoutParams(summap);
+        linearLayout3.addView(summa);
+
+        linearLayout1.addView(linearLayout3);
+
+
+        gl.setBackgroundColor(Color.WHITE);
+
         scrollView.addView(gl);
-
-        return root;
     }
 }

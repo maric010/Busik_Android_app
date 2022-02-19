@@ -48,6 +48,7 @@ public class auth extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.setApplicationId("468922064606903");
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_auth);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -56,10 +57,49 @@ public class auth extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-//fb();
+fb();
 
     }
+void fb(){
+    mCallbackManager = CallbackManager.Factory.create();
+    LoginButton loginButton = findViewById(R.id.button_sign_in);
+    loginButton.setReadPermissions("public_profile");
+    loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            // App code
+        }
 
+        @Override
+        public void onCancel() {
+            // App code
+        }
+
+        @Override
+        public void onError(FacebookException exception) {
+            // App code
+        }
+    });
+    /*
+    loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            Log.d(TAG, "facebook:onSuccess:" + loginResult);
+            handleFacebookAccessToken(loginResult.getAccessToken());
+        }
+
+        @Override
+        public void onCancel() {
+            Log.d(TAG, "facebook:onCancel");
+        }
+
+        @Override
+        public void onError(FacebookException error) {
+            Log.d(TAG, "facebook:onError", error);
+        }
+    });
+*/
+    }
     public void reg_onclick(View view) {
         Intent intent = new Intent(auth.this, reg.class);
         startActivity(intent);
@@ -74,7 +114,8 @@ public class auth extends AppCompatActivity {
     public void fbLogin(View view)
     {
         // Before Edit:
-         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("user_photos", "email", "public_profile", "user_posts" , "AccessToken"));
+
+         //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
 
 
         //LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("user_photos", "email", "public_profile", "user_posts"));
@@ -103,6 +144,7 @@ public class auth extends AppCompatActivity {
                     }
                 });
         */
+
     }
     private void handleFacebookAccessToken(AccessToken token) {
         Log.d(TAG, "handleFacebookAccessToken:" + token);

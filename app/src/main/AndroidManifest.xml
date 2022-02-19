@@ -31,5 +31,5 @@
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
     </application>
-
+    <meta-data android:name="ru.db.app/com.facebook.sdk.ApplicationId" android:value="468922064606903"/>
 </manifest>

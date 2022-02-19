@@ -98,4 +98,8 @@ public class auth_main extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void back(View view) {
+        finish();
+    }
 }

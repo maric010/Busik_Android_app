@@ -208,7 +208,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ellipse_2"
+                app:srcCompat="@drawable/ellipse_3"
                 tools:ignore="VectorDrawableCompat"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
@@ -262,10 +262,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:layout_marginTop="45dp"
+                    android:backgroundTint="#8f8c8c"
                     android:layout_marginRight="10dp"
-                    android:background="#8f8c8c"
+                    android:background="@drawable/border"
                     android:layout_gravity="end"
-                    android:text="В ожидание"
+                    android:text="  В ожидании  "
                     android:textSize="18dp" />
             </LinearLayout>
 

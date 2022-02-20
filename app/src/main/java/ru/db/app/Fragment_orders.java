@@ -30,8 +30,23 @@ public class Fragment_orders extends Fragment {
     String odate="";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_orders, container, false);
+        if(my.status.equalsIgnoreCase("Пасажир")){
+            root = inflater.inflate(R.layout.fragment_orders, container, false);
+        }
+        else{
+            root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
+        }
+
         scrollView = root.findViewById(R.id.scroll_orders);
+        if(my.name.equalsIgnoreCase("")){
+            LinearLayout my_trips_layout = root.findViewById(R.id.my_trips_layout);
+            my_trips_layout.setVisibility(View.GONE);
+            LinearLayout all_trips_layout = root.findViewById(R.id.all_trips_layout);
+            all_trips_layout.setVisibility(View.GONE);
+            LinearLayout visitor = root.findViewById(R.id.visitor);
+            visitor.setVisibility(View.VISIBLE);
+        }
+
         for(int i=0;i<10;i++){
             add_order("Пн. 12:00","Вт. 19:00","Киев, Украина","Варшава, Польша","25"
                     ,"25","Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
@@ -240,7 +255,7 @@ public class Fragment_orders extends Fragment {
         linearLayout3.setLayoutParams(l3params);
 
         summa = new TextView(root.getContext());
-        summa.setText(order_status);
+        summa.setText("  "+order_status+"  ");
         summa.setTextSize(18);
         summa.setBackgroundColor(Color.GRAY);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

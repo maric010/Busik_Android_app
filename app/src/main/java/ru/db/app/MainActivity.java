@@ -31,7 +31,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        switch_fragment(new Fragment_orders());
+        if(!my.status.equalsIgnoreCase("Пасажир"))
+            switch_fragment(new Fragment_orders());
+        else
+            switch_fragment(new Fragment_orders_carrier());
 /*
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragment_orders_onClick(View view) {
-        switch_fragment(new Fragment_orders());
+        if(!my.status.equalsIgnoreCase("Пасажир"))
+            switch_fragment(new Fragment_orders());
+        else
+            switch_fragment(new Fragment_orders_carrier());
     }
 }

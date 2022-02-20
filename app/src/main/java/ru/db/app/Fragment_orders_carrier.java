@@ -2,7 +2,6 @@ package ru.db.app;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -24,34 +22,22 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Fragment_orders extends Fragment {
+public class Fragment_orders_carrier extends Fragment {
     View root;
     LinearLayout scrollView;
     String odate="";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_orders, container, false);
-
-
+        root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
-        if(my.name.equalsIgnoreCase("")){
-            LinearLayout my_trips_layout = root.findViewById(R.id.my_trips_layout);
-            my_trips_layout.setVisibility(View.GONE);
-            LinearLayout all_trips_layout = root.findViewById(R.id.all_trips_layout);
-            all_trips_layout.setVisibility(View.GONE);
-            LinearLayout visitor = root.findViewById(R.id.visitor);
-            visitor.setVisibility(View.VISIBLE);
-        }
 
-        for(int i=0;i<10;i++){
-            add_order("Пн. 12:00","Вт. 19:00","Киев, Украина","Варшава, Польша","25"
-                    ,"25","Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
-        }
+        add_carrier_order("Ср. 18:00","Вт. 09:00","Варшава, Польша","Киев, Украина","35"
+                ,"5","В ожидании","Пн 13.12 (сегодня)");
+
         return root;
     }
-    void add_order(String order_start_date,String order_stop_date,String order_otkuda,
-                   String order_kuda,String cel_summ,String gruz_kg_sum,String order_owner,
-                   String order_owner_rate,String order_status,String order_date){
+    void add_carrier_order(String order_start_date,String order_stop_date,String order_otkuda,
+                           String order_kuda,String cel_summ,String gruz_kg_sum,String order_status,String order_date){
         TextView summa;
         LinearLayout.LayoutParams summap;
         if(!order_date.equals(odate)){
@@ -193,77 +179,27 @@ public class Fragment_orders extends Fragment {
 
         linearLayout1 = new LinearLayout(root.getContext());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
-        l1params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        l1params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        l1params.setMargins(20,30,0,40);
 
         linearLayout1.setLayoutParams(l1params);
 
-        gl.addView(linearLayout1);
 
-        arrow = new ImageView(root.getContext());
-        arrowp = new LinearLayout.LayoutParams
-                (80, ViewGroup.LayoutParams.MATCH_PARENT);
-        arrowp.setMargins(20,0,10,0);
-        arrow.setImageResource(R.drawable.ellipse_2);
-        arrow.setLayoutParams(arrowp);
-        linearLayout1.addView(arrow);
-
-        linearLayout2 = new LinearLayout(root.getContext());
-        linearLayout2.setOrientation(LinearLayout.VERTICAL);
-        l2params = new LinearLayout.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        linearLayout2.setLayoutParams(l2params);
-
-        summa = new TextView(root.getContext());
-        summa.setText(order_owner);
-        summa.setTextSize(22);
-        summa.setLayoutParams(summap);
-        linearLayout2.addView(summa);
-
-        linearLayout3 = new LinearLayout(root.getContext());
-        linearLayout3.setOrientation(LinearLayout.HORIZONTAL);
-        l3params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        linearLayout3.setLayoutParams(l3params);
-
-        arrow = new ImageView(root.getContext());
-        arrowp = new LinearLayout.LayoutParams
-                (20, ViewGroup.LayoutParams.MATCH_PARENT);
-        arrowp.setMargins(0,0,5,0);
-        arrow.setImageResource(R.drawable.star);
-        arrow.setLayoutParams(arrowp);
-        linearLayout3.addView(arrow);
-
-        summa = new TextView(root.getContext());
-        summa.setText(order_owner_rate);
-        summa.setTextSize(20);
-        summa.setLayoutParams(summap);
-        linearLayout3.addView(summa);
-
-        linearLayout2.addView(linearLayout3);
-        linearLayout1.addView(linearLayout2);
-
-
-        linearLayout3 = new LinearLayout(root.getContext());
-        linearLayout3.setOrientation(LinearLayout.VERTICAL);
-        l3params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-        linearLayout3.setLayoutParams(l3params);
 
         summa = new TextView(root.getContext());
         summa.setText("  "+order_status+"  ");
         summa.setTextSize(18);
-        summa.setBackgroundColor(Color.GRAY);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        summap.setMargins(0,45,40,10);
-        summap.gravity = Gravity.END;
+
+        //summap.gravity = Gravity.END;
         summa.setLayoutParams(summap);
-        linearLayout3.addView(summa);
 
-        linearLayout1.addView(linearLayout3);
-
+        linearLayout1.addView(summa);
+        linearLayout1.setBackgroundResource(R.drawable.border2);
+        gl.addView(linearLayout1);
 
         gl.setBackgroundResource(R.drawable.border);
 
         scrollView.addView(gl);
     }
-
 }

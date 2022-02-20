@@ -20,11 +20,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Fragment2 extends Fragment {
+public class Fragment_message extends Fragment {
     View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.activity_auth_main, container, false);
+        root = inflater.inflate(R.layout.fragment_message, container, false);
         return root;
     }
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.JsonReader;
+import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.snackbar.Snackbar;
@@ -52,5 +53,13 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.nav_host_fragment, fragment);
         ft.commit();
+    }
+
+    public void fragment_message_onClick(View view) {
+        switch_fragment(new Fragment_message());
+    }
+
+    public void fragment_orders_onClick(View view) {
+        switch_fragment(new Fragment_orders());
     }
 }

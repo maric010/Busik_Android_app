@@ -27,21 +27,37 @@ import androidx.fragment.app.FragmentTransaction;
 public class Fragment_orders extends Fragment {
     View root;
     LinearLayout scrollView;
+    String odate="";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
         for(int i=0;i<10;i++){
             add_order("Пн. 12:00","Вт. 19:00","Киев, Украина","Варшава, Польша","25"
-                    ,"25","Станислав","5.0","В ожидании");
+                    ,"25","Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
         }
         add_order("Ср. 18:00","Вт. 09:00","Варшава, Польша","Киев, Украина","35"
-                ,"5","Челик","4.5","В ожидании");
+                ,"5","Челик","4.5","В ожидании","Пн 13.12 (сегодня)");
         return root;
     }
     void add_order(String order_start_date,String order_stop_date,String order_otkuda,
                    String order_kuda,String cel_summ,String gruz_kg_sum,String order_owner,
-                   String order_owner_rate,String order_status){
+                   String order_owner_rate,String order_status,String order_date){
+        TextView summa;
+        LinearLayout.LayoutParams summap;
+        if(!order_date.equals(odate)){
+            odate=order_date;
+            summa = new TextView(root.getContext());
+            summap = new LinearLayout.LayoutParams
+                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            summap.gravity = Gravity.CENTER;
+            summap.setMargins(0,10,0,10);
+            summa.setText(order_date);
+            summa.setTextSize(20);
+            summa.setLayoutParams(summap);
+            scrollView.addView(summa);
+        }
+
         LinearLayout gl = new LinearLayout(root.getContext());
         gl.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams gllayoutParams = new LinearLayout.LayoutParams
@@ -128,8 +144,8 @@ public class Fragment_orders extends Fragment {
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
 
-        TextView summa = new TextView(root.getContext());
-        LinearLayout.LayoutParams summap = new LinearLayout.LayoutParams
+        summa = new TextView(root.getContext());
+        summap = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         summa.setText("€ "+cel_summ+" ");
         summa.setTextSize(24);
@@ -236,7 +252,7 @@ public class Fragment_orders extends Fragment {
         linearLayout1.addView(linearLayout3);
 
 
-        gl.setBackgroundColor(Color.WHITE);
+        gl.setBackgroundResource(R.drawable.border);
 
         scrollView.addView(gl);
     }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <TextView
@@ -33,7 +34,7 @@
 
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Станислав Павлович"
@@ -44,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -53,10 +54,10 @@
         android:textColor="#000000"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/ellipse_1"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/status" />
 
     <TextView
-        android:id="@+id/editText"
+        android:id="@+id/status"
         android:layout_width="105dp"
         android:layout_height="24dp"
         android:layout_marginEnd="16dp"
@@ -73,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.579"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/name"></TextView>
 
     <Button
         android:id="@+id/button8"
@@ -92,7 +93,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/city"></Button>
 
 
     <Button

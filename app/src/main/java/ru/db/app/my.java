@@ -98,17 +98,6 @@ public class my {
             new_order.put("is_gruz",is_gruz);
             dborders.push().setValue(new_order);
     }
-    static void logout(){
-        final String PREF_id = "id";
-        SharedPreferences.Editor prefEditor = settings.edit();
-        prefEditor.putString(PREF_id,"");
-        prefEditor.apply();
-        id="";
-        name="";
-        phone="";
-        city="";
-        status="";
-    }
 
 
     private void getListItems(String phone) {

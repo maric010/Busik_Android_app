@@ -73,66 +73,46 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <Button
         android:id="@+id/my_trips_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:backgroundTint="#C4C4C4"
+        android:text="Активные"
+        android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@id/all_trips_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+    </Button>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  Мои поездки  "
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/some_id" />
-
-        <View
-            android:id="@+id/my_trips"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:visibility="gone"
-            android:backgroundTint="#C4C4C4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center"
-            android:background="@drawable/rectangle_4" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/all_trips_layout"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:backgroundTint="#C4C4C4"
+        android:text="Добавить"
+        android:textAllCaps="false"
+        android:onClick="activity_add_order"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    <Button
+        android:id="@+id/all_trips_layout"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border2"
+        android:backgroundTint="#80C4C4C4"
         android:orientation="vertical"
+        android:text="Архив"
+        android:textAllCaps="false"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/my_trips_layout"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  Все поездки  "
-            android:textColor="@color/black"
-            android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/some_id" />
-
-        <View
-            android:id="@+id/all_trips"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:backgroundTint="#C4C4C4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center"
-            android:background="@drawable/rectangle_4" />
-    </LinearLayout>
+    </Button>
 
 
     <TextView

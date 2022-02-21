@@ -84,6 +84,32 @@ public class my {
             e.printStackTrace();
         }
     }
+    static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
+            HashMap<String,Object> new_order=new HashMap<>();
+            new_order.put("otkuda",otkuda);
+            new_order.put("kuda",kuda);
+            new_order.put("start_date",start_date);
+            new_order.put("stop_date",stop_date);
+            new_order.put("description",description);
+            new_order.put("is_passenger",is_passenger);
+            new_order.put("passenger_cost",passenger_cost);
+            new_order.put("gruz_cost",gruz_cost);
+            new_order.put("is_gruz",is_gruz);
+            dborders.push().setValue(new_order);
+    }
+    static void logout(){
+        final String PREF_id = "id";
+        SharedPreferences.Editor prefEditor = settings.edit();
+        prefEditor.putString(PREF_id,"");
+        prefEditor.apply();
+        id="";
+        name="";
+        phone="";
+        city="";
+        status="";
+    }
+
 
     private void getListItems(String phone) {
         DocumentReference docRef = db.collection("phone").document(phone);

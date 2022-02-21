@@ -7,6 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.View;
@@ -67,5 +68,18 @@ public class MainActivity extends AppCompatActivity {
             switch_fragment(new Fragment_orders());
         else
             switch_fragment(new Fragment_orders_carrier());
+    }
+
+    public void activity_add_order(View view) {
+        Intent intent = new Intent(MainActivity.this, add_order.class);
+        startActivity(intent);
+    }
+
+    public void logout_onClick(View view) {
+        my.logout();
+        Intent intent = new Intent(MainActivity.this, auth.class);
+        startActivity(intent);
+        finish();
+
     }
 }

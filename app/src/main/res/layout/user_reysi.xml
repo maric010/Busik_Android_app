@@ -46,18 +46,7 @@
         tools:layout_editor_absoluteY="101dp"
         tools:text="Пн. 13 Декабря" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Поездка на 100 %. время выезда как \n указано!!! на вопросы касающихся \n поездки, звоните после того как вы \n забронируйте место."
-        android:textSize="18"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
+
 
     <TextView
         android:layout_width="117dp"
@@ -225,16 +214,18 @@
         android:textSize="16dp"
         tools:layout_editor_absoluteX="44dp"
         tools:layout_editor_absoluteY="267dp" />
-
     <LinearLayout
         android:layout_width="389dp"
-        android:layout_height="84dp"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="355dp">
-
+    <LinearLayout
+        android:layout_width="389dp"
+        android:layout_height="84dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="50dp"
@@ -284,5 +275,17 @@
 
 
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поездка на 100 %. время выезда как \n указано!!! на вопросы касающихся \n поездки, звоните после того как вы \n забронируйте место."
+        android:textSize="18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.723" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

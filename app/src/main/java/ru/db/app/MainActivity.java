@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.View;
@@ -27,12 +28,14 @@ import org.json.JSONArray;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-
+    SharedPreferences settings;
+    private static final String PREFS_FILE = "Account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(!my.status.equalsIgnoreCase("Пасажир"))
+        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+        if(my.status.equalsIgnoreCase("Пасажир"))
             switch_fragment(new Fragment_orders());
         else
             switch_fragment(new Fragment_orders_carrier());
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragment_orders_onClick(View view) {
-        if(!my.status.equalsIgnoreCase("Пасажир"))
+        if(my.status.equalsIgnoreCase("Пасажир"))
             switch_fragment(new Fragment_orders());
         else
             switch_fragment(new Fragment_orders_carrier());
@@ -76,10 +79,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout_onClick(View view) {
-        my.logout();
+        final String PREF_id = "id";
+        SharedPreferences.Editor prefEditor = settings.edit();
+        prefEditor.putString(PREF_id,"");
+        prefEditor.apply();
+        my.id="";
+        my.name="";
+        my.phone="";
+        my.city="";
+        my.status="";
         Intent intent = new Intent(MainActivity.this, auth.class);
         startActivity(intent);
         finish();
 
+    }
+
+    public void cabinet_onClick(View view) {
+        switch_fragment(new Fragment_cabinet());
     }
 }

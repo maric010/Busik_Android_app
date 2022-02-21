@@ -46,7 +46,18 @@
         tools:layout_editor_absoluteY="101dp"
         tools:text="Пн. 13 Декабря" />
 
-
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Поездка на 100 %. время выезда как \n указано!!! на вопросы касающихся \n поездки, звоните после того как вы \n забронируйте место."
+        android:textSize="18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.723" />
 
     <TextView
         android:layout_width="117dp"
@@ -130,6 +141,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="383dp"
         android:layout_height="29dp"
         android:orientation="horizontal"
@@ -214,36 +226,34 @@
         android:textSize="16dp"
         tools:layout_editor_absoluteX="44dp"
         tools:layout_editor_absoluteY="267dp" />
+
     <LinearLayout
-        android:layout_width="389dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="355dp">
-    <LinearLayout
-        android:layout_width="389dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
         android:layout_height="84dp"
-        android:orientation="horizontal">
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             app:srcCompat="@drawable/ellipse_3"
             tools:ignore="VectorDrawableCompat" />
 
         <LinearLayout
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="146dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Владимир"
                 android:textColor="@color/black"
@@ -262,7 +272,7 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4,0 (320 отзывов)"
                     android:textSize="16dp" />
@@ -272,20 +282,16 @@
         </LinearLayout>
 
 
-
-
     </LinearLayout>
+
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Поездка на 100 %. время выезда как \n указано!!! на вопросы касающихся \n поездки, звоните после того как вы \n забронируйте место."
-        android:textSize="18"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="инфо >"
+        android:layout_marginRight="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

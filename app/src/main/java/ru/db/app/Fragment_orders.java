@@ -269,7 +269,12 @@ public class Fragment_orders extends Fragment {
 
 
         gl.setBackgroundResource(R.drawable.border);
-
+        gl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.th.switch_fragment(new Fragment_reys());
+            }
+        });
         scrollView.addView(gl);
     }
 

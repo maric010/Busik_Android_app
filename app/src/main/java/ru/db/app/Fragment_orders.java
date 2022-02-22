@@ -24,10 +24,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fragment_orders extends Fragment {
-    View root;
-    LinearLayout scrollView;
-    String odate="";
+    static View root;
+    static LinearLayout scrollView;
+    static String odate="";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders, container, false);
@@ -43,13 +46,15 @@ public class Fragment_orders extends Fragment {
             visitor.setVisibility(View.VISIBLE);
         }
 
-        for(int i=0;i<10;i++){
-            add_order("Пн. 12:00","Вт. 19:00","Киев, Украина","Варшава, Польша","25"
-                    ,"25","Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
+        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+            HashMap h = entry.getValue();
+            add_order(h.get("start_date").toString(),h.get("stop_date").toString(),h.get("otkuda").toString(),
+                    h.get("kuda").toString(),h.get("passenger_cost").toString()
+                    ,h.get("gruz_cost").toString(),"Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
         }
         return root;
     }
-    void add_order(String order_start_date,String order_stop_date,String order_otkuda,
+    static void add_order(String order_start_date,String order_stop_date,String order_otkuda,
                    String order_kuda,String cel_summ,String gruz_kg_sum,String order_owner,
                    String order_owner_rate,String order_status,String order_date){
         TextView summa;
@@ -76,7 +81,7 @@ public class Fragment_orders extends Fragment {
         LinearLayout linearLayout1 = new LinearLayout(root.getContext());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams l1params = new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.MATCH_PARENT, 120);
+                (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         linearLayout1.setLayoutParams(l1params);
 
         LinearLayout linearLayout2 = new LinearLayout(root.getContext());
@@ -248,15 +253,17 @@ public class Fragment_orders extends Fragment {
 
         linearLayout3.setLayoutParams(l3params);
 
+
         summa = new TextView(root.getContext());
-        summa.setText("  "+order_status+"  ");
+        summa.setText("   "+order_status+"   ");
         summa.setTextSize(18);
-        summa.setBackgroundColor(Color.GRAY);
+        summa.setBackgroundResource(R.drawable.border2);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         summap.setMargins(0,45,40,10);
         summap.gravity = Gravity.END;
         summa.setLayoutParams(summap);
         linearLayout3.addView(summa);
+
 
         linearLayout1.addView(linearLayout3);
 

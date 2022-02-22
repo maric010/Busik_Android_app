@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Поездка на 100 %. время выезда как \n указано!!! на вопросы касающихся \n поездки, звоните после того как вы \n забронируйте место."
-        android:textSize="18"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"

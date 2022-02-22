@@ -29,6 +29,7 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     SharedPreferences settings;
+
     private static final String PREFS_FILE = "Account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +40,9 @@ public class MainActivity extends AppCompatActivity {
             switch_fragment(new Fragment_orders());
         else
             switch_fragment(new Fragment_orders_carrier());
-/*
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println("CHAHNGED");
-                String value = snapshot.getValue(String.class);
-                System.out.println("VALUE "+value);
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                System.out.println("ONCANCELLED");
-            }
-        });
 
- */
+
     }
     void switch_fragment(Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

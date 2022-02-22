@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">app</string>
+    <string name="app_name">Busik</string>
     <string name="busik">Busik</string>
     <string name="some_id">рейсы</string>
 </resources>

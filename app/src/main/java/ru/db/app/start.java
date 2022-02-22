@@ -1,12 +1,15 @@
 package ru.db.app;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,25 +35,57 @@ public class start extends AppCompatActivity {
     private static final String PREFS_FILE = "Account";
     private static final String PREF_id = "id";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        my.settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-        HashMap<String,String> t=new HashMap<>();
-        t.put("adress_start","msk0");
-        t.put("adress_stop","spb");
-        t.put("cost","500");
-        t.put("cost_baggage","100");
-        t.put("description","data");
-        t.put("date_start","Mon");
-        t.put("date_stop","Thu");
-        t.put("status","wait");
-        //my.dborders.push().setValue(t);
-        //String id = my.reg("Марик","test","79967855023","smaricpb@gmail.com","Россия","Спб",false,
-          //      false,true,false,false,false,0,0,0);
-        //System.out.println(id);
         String id = settings.getString(PREF_id,"");
+
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+
+                HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
+                my.Orders.put(dataSnapshot.getKey(),h);
+                if(Fragment_orders.root!=null){
+                    Fragment_orders.add_order(h.get("start_date").toString(),h.get("stop_date").toString(),
+                            h.get("otkuda").toString(),
+                            h.get("kuda").toString(),h.get("passenger_cost").toString()
+                            ,h.get("gruz_cost").toString(),"Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
+                }
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
+                System.out.println(doc.get("description"));
+                my.Orders.replace(dataSnapshot.getKey(),doc);
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
+                System.out.println(doc.get("description"));
+                my.Orders.remove(dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        my.dborders.addChildEventListener(childEventListener);
+
+
         //id = "gqxbnYBJI9mijfK1yOpA";
 
         if(!id.equalsIgnoreCase("")){
@@ -79,9 +114,10 @@ public class start extends AppCompatActivity {
                                 if(((Boolean) doc.get("is_admin")))
                                     my.status="Администратор";
                             }
-                            else
-
                             System.out.println(my.name);
+                            Intent intent = new Intent(start.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                         else{
                           //auth

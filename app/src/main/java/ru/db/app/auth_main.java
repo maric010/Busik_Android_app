@@ -2,6 +2,7 @@ package ru.db.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -85,6 +86,9 @@ public class auth_main extends AppCompatActivity {
                                 my.status="Администратор";
                         }
                         System.out.println("NAME "+my.name);
+                        Intent intent = new Intent(auth_main.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                     else {
                         System.out.println("Неправильный логин или пароль");
@@ -97,5 +101,9 @@ public class auth_main extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+    }
+
+    public void back(View view) {
+        finish();
     }
 }

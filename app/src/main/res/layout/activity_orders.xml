@@ -68,18 +68,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_margin="20dp"
-        android:background="#cccccc"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/border"
+        android:backgroundTint="#C8C4C4"
         android:orientation="vertical"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_gravity="top"
             android:orientation="horizontal"
             >
 
@@ -90,17 +88,13 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 >
-
-                <!--  дата поезда  -->
                 <TextView
-                    android:id="@+id/startDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Пн. 12:00"
                     android:textColor="#4D4D4D"
                     android:textSize="18dp"
-                    android:layout_marginBottom="3dp"
-                    />
+                    android:layout_marginBottom="3dp" />
 
                 <TextView
                     android:id="@+id/stopDate"
@@ -128,7 +122,6 @@
 
                 <!--  Адрессы проезда  -->
                 <TextView
-                    android:id="@+id/startAdress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Киев, Украина"
@@ -157,7 +150,6 @@
 
             <!--  Сумма на количество человек  -->
             <ImageView
-                android:id="@+id/people"
                 android:layout_width="25dp"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/people"
@@ -214,10 +206,9 @@
 
 
             <ImageView
-                android:id="@+id/imageView4"
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ellipse_2"
+                app:srcCompat="@drawable/ellipse_3"
                 tools:ignore="VectorDrawableCompat"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
@@ -234,7 +225,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Станослав"
+                    android:text="Станислав"
                     android:textSize="21dp"
                     android:textColor="@color/black"
                     />
@@ -246,11 +237,9 @@
                     >
 
                     <ImageView
-                        android:id="@+id/imageView4"
                         android:layout_width="20dp"
                         android:layout_height="match_parent"
                         app:srcCompat="@drawable/star"
-                        tools:ignore="DuplicateIds"
                         android:layout_marginRight="5dp"
                         />
 
@@ -264,16 +253,23 @@
             </LinearLayout>
 
             <!-- status -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="35dp"
-                android:background="#8f8c8c"
-                android:textAlignment="center"
-                android:padding="6dp"
-                android:text="В ожидание"
-                android:textSize="18dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_marginTop="45dp"
+                    android:backgroundTint="#8f8c8c"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/border"
+                    android:layout_gravity="end"
+                    android:text="  В ожидании  "
+                    android:textSize="18dp" />
+            </LinearLayout>
+
 
         </LinearLayout>
 

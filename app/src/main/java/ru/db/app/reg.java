@@ -2,6 +2,7 @@ package ru.db.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ Boolean is_carrier = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
+
         if(!my.name.equals("")){
             ((FrameLayout)findViewById(R.id.edit4)).setVisibility(View.INVISIBLE);
             ((FrameLayout)findViewById(R.id.edit5)).setVisibility(View.INVISIBLE);
@@ -54,7 +56,14 @@ Boolean is_carrier = false;
         String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
         String city = ((EditText)findViewById(R.id.city)).getText().toString();
         String password = ((EditText)findViewById(R.id.password)).getText().toString();
-        my.reg(name,password,phone,"",city,false,is_carrier,!is_carrier,false,false,false,0,0,0);
+        my.reg(name,password,phone,city,false,is_carrier,!is_carrier);
+        my.name=name;
+        my.phone=phone;
+        my.city=city;
+        Intent intent = new Intent(reg.this, MainActivity.class);
+        startActivity(intent);
+        if(auth.th!=null)
+            auth.th.finish();
         finish();
     }
 }

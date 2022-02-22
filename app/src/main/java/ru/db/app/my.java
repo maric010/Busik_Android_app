@@ -21,10 +21,16 @@ import androidx.annotation.NonNull;
 
 public class my {
     static SharedPreferences settings;
-    static String name,phone,email,id,city,status;
+    static String name="",phone,email="",id,city,status,google_id,telegram_id,facebook_id;
+    static Boolean auth_google=false;
+    static Boolean auth_facebook=false;
+    static Boolean auth_telegram=false;
+
+    private static final String PREFS_FILE = "Account";
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference dborders = database.getReference("рейсы");
+    static HashMap<String, HashMap> Orders = new HashMap<String, HashMap>();
 
     private static String convertToHex(byte[] data) {
         StringBuilder buf = new StringBuilder();
@@ -46,13 +52,12 @@ public class my {
         return convertToHex(sha1hash);
     }
 
-    static void reg(String name,String password,String phone,String mail,String city,
-               boolean is_admin,boolean is_carrier,boolean is_passenger,boolean auth_google,boolean auth_facebook,
-               boolean auth_telegram,int facebook_id,int telegram_id,int google_id){
+    static void reg(String name,String password,String phone,String city,
+               boolean is_admin,boolean is_carrier,boolean is_passenger){
         try {
             HashMap<String,Object> new_user=new HashMap<>();
             new_user.put("name",name);
-            new_user.put("password",SHA1(SHA1(password)));
+
             new_user.put("phone",phone);
             new_user.put("city",city);
             if(is_admin)
@@ -61,21 +66,37 @@ public class my {
                 new_user.put("is_carrier",true);
             if(is_passenger)
                 new_user.put("is_passenger",true);
-            if(auth_facebook)
-                new_user.put("facebook_id",facebook_id);
+
             if(auth_google)
             {
-                new_user.put("e-mail",mail);
+                new_user.put("e-mail",email);
                 new_user.put("google_id",google_id);
             }
+            else if(auth_facebook)
+                new_user.put("facebook_id",facebook_id);
+            else
+                new_user.put("password",SHA1(SHA1(password)));
 
             if(auth_telegram)
                 new_user.put("telegram_id",telegram_id);
             DocumentReference user = my.db.collection("users").document();
             user.set(new_user);
+            my.id = user.getId();
+
+            if(is_carrier)
+            {
+                my.status="Перевозчик";
+            }
+            else if(is_passenger){
+                my.status="Пасажир";
+            }
+            else if(is_admin){
+                my.status="Администратор";
+            }
+
             final String PREF_id = "id";
             SharedPreferences.Editor prefEditor = settings.edit();
-            prefEditor.putString(PREF_id,user.getId());
+            prefEditor.putString(PREF_id,my.id);
             prefEditor.apply();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -83,24 +104,21 @@ public class my {
             e.printStackTrace();
         }
     }
-
-    private void getListItems(String phone) {
-        DocumentReference docRef = db.collection("phone").document(phone);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        document.getData();
-                    } else {
-                        // Not found
-                    }
-                } else {
-                    // Can'nt find
-                }
-            }
-        });
+    static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
+            HashMap<String,Object> new_order=new HashMap<>();
+            new_order.put("otkuda",otkuda);
+            new_order.put("kuda",kuda);
+            new_order.put("start_date",start_date);
+            new_order.put("stop_date",stop_date);
+            new_order.put("description",description);
+            new_order.put("is_passenger",is_passenger);
+            new_order.put("passenger_cost",passenger_cost);
+            new_order.put("gruz_cost",gruz_cost);
+            new_order.put("is_gruz",is_gruz);
+            dborders.push().setValue(new_order);
     }
+
+
 
 }

@@ -20,11 +20,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class Fragment3 extends Fragment {
+public class Fragment_cabinet extends Fragment {
     View root;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.activity_auth, container, false);
+        root = inflater.inflate(R.layout.user_cabinet, container, false);
+        ((TextView)root.findViewById(R.id.name)).setText(my.name);
+        ((TextView)root.findViewById(R.id.status)).setText(my.status);
+        ((TextView)root.findViewById(R.id.city)).setText(my.city);
+        
         return root;
     }
 }

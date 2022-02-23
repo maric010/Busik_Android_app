@@ -51,10 +51,7 @@ public class start extends AppCompatActivity {
                 HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
                 my.Orders.put(dataSnapshot.getKey(),h);
                 if(Fragment_orders.root!=null){
-                    Fragment_orders.add_order(h.get("start_date").toString(),h.get("stop_date").toString(),
-                            h.get("otkuda").toString(),
-                            h.get("kuda").toString(),h.get("passenger_cost").toString()
-                            ,h.get("gruz_cost").toString(),"Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
+                    Fragment_orders.add_order(h);
                 }
                 else if(Fragment_orders_carrier.root!=null){
                     Fragment_orders_carrier.add_carrier_order(h);

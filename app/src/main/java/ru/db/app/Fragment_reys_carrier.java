@@ -28,6 +28,18 @@ public class Fragment_reys_carrier extends Fragment {
 
         TextView week_day_month = root.findViewById(R.id.week_day_month);
         week_day_month.setText(my.current_order.get("start_date").toString());
+        TextView description = root.findViewById(R.id.description);
+        description.setText(my.current_order.get("description").toString());
+        TextView start_country_city = root.findViewById(R.id.start_country_city);
+        start_country_city.setText(my.current_order.get("otkuda").toString());
+        TextView stop_country_city  = root.findViewById(R.id.stop_country_city);
+        stop_country_city.setText(my.current_order.get("kuda").toString());
+        TextView start_week_hour = root.findViewById(R.id.start_week_hour);
+        start_week_hour.setText(my.current_order.get("start_date").toString());
+
+        TextView stop_week_hour = root.findViewById(R.id.stop_week_hour);
+        stop_week_hour.setText(my.current_order.get("stop_date").toString());
+
 
         return root;
     }

@@ -56,6 +56,9 @@ public class start extends AppCompatActivity {
                             h.get("kuda").toString(),h.get("passenger_cost").toString()
                             ,h.get("gruz_cost").toString(),"Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
                 }
+                else if(Fragment_orders_carrier.root!=null){
+                    Fragment_orders_carrier.add_carrier_order(h);
+                }
             }
 
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -97,6 +100,7 @@ public class start extends AppCompatActivity {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
                             Map<String, Object> doc = document.getData();
+                            my.id = document.getId();
                             my.name = (String) doc.get("name");
                             my.city=(String)doc.get("city");
                             my.email= (String)doc.get("e-mail");

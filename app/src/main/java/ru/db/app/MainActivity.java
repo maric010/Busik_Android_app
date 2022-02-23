@@ -104,9 +104,19 @@ public class MainActivity extends AppCompatActivity {
 
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
             HashMap h = entry.getValue();
-            Fragment_orders.add_order(h.get("start_date").toString(),h.get("stop_date").toString(),h.get("otkuda").toString(),
-                    h.get("kuda").toString(),h.get("passenger_cost").toString()
-                    ,h.get("gruz_cost").toString(),"Станислав","5.0","В ожидании","Пн 13.12 (сегодня)");
+            Fragment_orders.add_order(h);
         }
+    }
+
+    public void back_to_orders(View view) {
+        switch_fragment(new Fragment_orders());
+    }
+
+    public void back_to_orders_carrier(View view) {
+        switch_fragment(new Fragment_orders_carrier());
+    }
+
+    public void change_order_onClick(View view) {
+
     }
 }

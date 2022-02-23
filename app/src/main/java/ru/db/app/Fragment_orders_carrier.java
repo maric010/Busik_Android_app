@@ -22,24 +22,30 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fragment_orders_carrier extends Fragment {
-    View root;
-    LinearLayout scrollView;
-    String odate="";
+    static View root;
+    static LinearLayout scrollView;
+    static String odate="";
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
-
-        add_carrier_order("Ср. 18:00","Вт. 09:00","Варшава, Польша","Киев, Украина","35"
-                ,"5","В ожидании","Пн 13.12 (сегодня)");
+        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+            HashMap h = entry.getValue();
+            if(!h.get("owner").toString().equalsIgnoreCase(my.id))
+                continue;
+            add_carrier_order(h);
+        }
 
         return root;
     }
-    void add_carrier_order(String order_start_date,String order_stop_date,String order_otkuda,
-                           String order_kuda,String cel_summ,String gruz_kg_sum,String order_status,String order_date){
+    static void add_carrier_order(HashMap h){
         TextView summa;
         LinearLayout.LayoutParams summap;
+        String order_date = h.get("start_date").toString();
         if(!order_date.equals(odate)){
             odate=order_date;
             summa = new TextView(root.getContext());
@@ -76,7 +82,7 @@ public class Fragment_orders_carrier extends Fragment {
         LinearLayout.LayoutParams starttextviewparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         starttextviewparams.setMargins(0,0,0,3);
-        start_date_textview.setText(order_start_date);
+        start_date_textview.setText(h.get("start_date").toString());
         start_date_textview.setTextSize(18);
         start_date_textview.setLayoutParams(starttextviewparams);
         linearLayout2.addView(start_date_textview);
@@ -84,7 +90,7 @@ public class Fragment_orders_carrier extends Fragment {
         TextView stop_date_textview = new TextView(root.getContext());
         LinearLayout.LayoutParams stoptextviewparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        stop_date_textview.setText(order_stop_date);
+        stop_date_textview.setText(h.get("stop_date").toString());
         stop_date_textview.setTextSize(18);
         stop_date_textview.setLayoutParams(stoptextviewparams);
         linearLayout2.addView(stop_date_textview);
@@ -109,7 +115,7 @@ public class Fragment_orders_carrier extends Fragment {
         LinearLayout.LayoutParams startparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         starttextviewparams.setMargins(0,0,0,3);
-        start_adress_textview.setText(order_otkuda);
+        start_adress_textview.setText(h.get("otkuda").toString());
         start_adress_textview.setTextSize(18);
         start_adress_textview.setLayoutParams(startparams);
         linearLayout3.addView(start_adress_textview);
@@ -117,7 +123,7 @@ public class Fragment_orders_carrier extends Fragment {
         TextView stop_adress_textview = new TextView(root.getContext());
         LinearLayout.LayoutParams stopparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        stop_adress_textview.setText(order_kuda);
+        stop_adress_textview.setText(h.get("kuda").toString());
         stop_adress_textview.setTextSize(18);
         stop_adress_textview.setLayoutParams(stopparams);
         linearLayout3.addView(stop_adress_textview);
@@ -142,7 +148,7 @@ public class Fragment_orders_carrier extends Fragment {
         summa = new TextView(root.getContext());
         summap = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        summa.setText("€ "+cel_summ+" ");
+        summa.setText("€ "+h.get("passenger_cost").toString()+" ");
         summa.setTextSize(24);
         summa.setTypeface(null, Typeface.BOLD);
         summa.setLayoutParams(summap);
@@ -161,7 +167,7 @@ public class Fragment_orders_carrier extends Fragment {
         linearLayout1.addView(arrow);
 
         summa = new TextView(root.getContext());
-        summa.setText("€ "+gruz_kg_sum+" ");
+        summa.setText("€ "+h.get("gruz_cost").toString()+" ");
         summa.setTextSize(24);
         summa.setTypeface(null, Typeface.BOLD);
         summa.setLayoutParams(summap);
@@ -187,7 +193,7 @@ public class Fragment_orders_carrier extends Fragment {
 
 
         summa = new TextView(root.getContext());
-        summa.setText("  "+order_status+"  ");
+        summa.setText("  "+h.get("status").toString()+"  ");
         summa.setTextSize(18);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -199,7 +205,13 @@ public class Fragment_orders_carrier extends Fragment {
         gl.addView(linearLayout1);
 
         gl.setBackgroundResource(R.drawable.border);
-
+        gl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                my.current_order = h;
+                MainActivity.th.switch_fragment(new Fragment_reys_carrier());
+            }
+        });
         scrollView.addView(gl);
     }
 }

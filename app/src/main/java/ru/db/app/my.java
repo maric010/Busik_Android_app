@@ -20,8 +20,10 @@ import static android.content.Context.MODE_PRIVATE;
 import androidx.annotation.NonNull;
 
 public class my {
+    public static HashMap current_order;
     static SharedPreferences settings;
     static String name="",phone,email="",id,city,status,google_id,telegram_id,facebook_id;
+    static float rate=0.0f;
     static Boolean auth_google=false;
     static Boolean auth_facebook=false;
     static Boolean auth_telegram=false;
@@ -105,7 +107,8 @@ public class my {
         }
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
-                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,
+                          String owner_id,float owner_rate,String owner_name){
             HashMap<String,Object> new_order=new HashMap<>();
             new_order.put("otkuda",otkuda);
             new_order.put("kuda",kuda);
@@ -116,7 +119,13 @@ public class my {
             new_order.put("passenger_cost",passenger_cost);
             new_order.put("gruz_cost",gruz_cost);
             new_order.put("is_gruz",is_gruz);
-            dborders.push().setValue(new_order);
+            new_order.put("owner",owner_id);
+            new_order.put("owner_rate",owner_rate);
+            new_order.put("owner_name",owner_name);
+            new_order.put("status","В ожидании");
+
+
+        dborders.push().setValue(new_order);
     }
 
 

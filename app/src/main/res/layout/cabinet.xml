@@ -54,6 +54,8 @@
                 android:layout_height="wrap_content"
                 android:text="Редактирование профиля"
                 android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:visibility="gone"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,12 +64,16 @@
 
             <ImageView
                 android:layout_width="96dp"
+                android:visibility="gone"
                 android:layout_height="84dp"
+                android:layout_gravity="center"
                 android:src="@drawable/ellipse_3" />
 
             <FrameLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rectangle_3"
@@ -96,13 +102,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.157"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></EditText>
+                    app:layout_constraintTop_toTopOf="parent" />
             </FrameLayout>
 
             <FrameLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rectangle_3"
                 android:ems="10"
@@ -126,9 +134,11 @@
             </FrameLayout>
 
             <FrameLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rectangle_3"
                 android:ems="10"
@@ -152,9 +162,11 @@
             </FrameLayout>
 
             <FrameLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rectangle_3"
                 android:ems="10"
@@ -182,6 +194,8 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
                 android:text="Номер возможно поменять только \n через поддержку"
                 android:textSize="16dp"
                 tools:layout_editor_absoluteX="30dp"
@@ -191,6 +205,7 @@
                 android:id="@+id/button6"
                 android:layout_width="300dp"
                 android:layout_height="47dp"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/black"
                 android:text="Сохранить"
@@ -204,7 +219,9 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="Безопасность"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -218,6 +235,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rectangle_3"
                 android:ems="10"
@@ -241,7 +259,159 @@
                     android:textColorHint="#676767" />
 
             </FrameLayout>
-        </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Новый пароль"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="#676767" />
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Повторите новый пароль"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="#676767" />
+
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Привязка соц сетей"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="621dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="Facebook"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="621dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textAllCaps="false"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="30dp"
+                        android:background="@drawable/border"
+                        android:backgroundTint="#C4C4C4"
+                        android:text="    Привязать    "
+                        android:textColor="@color/black"
+                        android:textSize="18dp" />
+                </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="Google"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="621dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textAllCaps="false"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:layout_marginRight="30dp"
+                            android:background="@drawable/border"
+                            android:backgroundTint="#C4C4C4"
+                            android:text="    Отвязать    "
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

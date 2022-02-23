@@ -8,12 +8,12 @@
     tools:context=".auth">
 <View
     android:id="@+id/ellipse_7"
-    android:layout_width="50dp"
-    android:layout_height="50dp"
+    android:layout_width="80dp"
+    android:layout_height="80dp"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
-    android:layout_marginTop="124dp"
-    android:background="@drawable/ellipse_7"
+    android:layout_marginTop="120dp"
+    android:background="@drawable/ic_logo"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.382"
     app:layout_constraintStart_toStartOf="parent"
@@ -21,12 +21,10 @@
 
 <TextView
     android:id="@+id/busik"
-    android:layout_width="60dp"
-    android:layout_height="28dp"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="135dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="145dp"
+    android:textSize="26dp"
     android:gravity="top"
     android:text="@string/busik"
     android:textAppearance="@style/busik"
@@ -82,9 +80,12 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/border"
         android:backgroundTint="@color/white"
         android:text="Авторизоваться"
         android:onClick="auth_onClick"
@@ -96,11 +97,14 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
+        android:background="@drawable/border"
         android:text="Создать новый аккаунт"
         android:layout_marginTop="18dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
         android:onClick="reg_onclick"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"

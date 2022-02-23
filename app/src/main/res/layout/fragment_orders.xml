@@ -79,6 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:orientation="vertical"
+        android:onClick="my"
         app:layout_constraintEnd_toStartOf="@id/all_trips_layout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -109,6 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:onClick="all"
         android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/my_trips_layout"
@@ -136,6 +138,7 @@
 
 
     <TextView
+        android:id="@+id/all_aviable_trips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <ImageView
@@ -13,7 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
-        android:onClick="back"
+        android:onClick="back_to_orders"
         android:src="@drawable/arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,50 +37,52 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
         android:textColor="#000000"
         android:textSize="19sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="101dp"
-        tools:text="Пн. 13 Декабря" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vector_3"
+        android:text="Пн. 13 Декабря" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Поездка на 100 %. время выезда как \n указано!!! на вопросы касающихся \n поездки, звоните после того как вы \n забронируйте место."
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="35dp"
+        android:text="поездка на 100 %. время выезда как \nуказано!!! на вопросы касающихся \nпоездки, звоните после того как вы \nзабронируйте место."
         android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <TextView
         android:layout_width="117dp"
         android:layout_height="25dp"
-        android:layout_gravity="end"
-        android:layout_weight="0"
         android:background="@drawable/border"
         android:backgroundTint="#8f8c8c"
-        android:text="  В ожидании  "
-        android:gravity="center_horizontal|center"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="30dp"
+        android:text="   В ожидании  "
         android:textColor="@color/black"
         android:textSize="16dp"
-        tools:layout_editor_absoluteX="229dp"
-        tools:layout_editor_absoluteY="103dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_id" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="380dp"
         android:layout_height="77dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="167dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -142,11 +145,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="383dp"
-        android:layout_height="29dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="314dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
 
         <!--  Сумма на количество человек  -->
         <ImageView
@@ -196,36 +201,33 @@
 
     </LinearLayout>
 
-    <EditText
+    <Button
         android:id="@+id/editText2"
-        android:layout_width="321dp"
-        android:layout_height="51dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="592dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/rectangle_3"
-        android:ems="10"
-        android:gravity="center_horizontal|center"
-        android:hint="Изменить"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:backgroundTint="#C4C4C4"
+        android:text="Подать заявку"
         android:textSize="16sp"
-        android:textStyle="bold
-"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="40dp"
         android:layout_height="wrap_content"
         android:text="В пути 1 день 7 часов"
         android:textSize="16dp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="266dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -288,9 +290,9 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="30dp"
         android:text="инфо >"
+        android:layout_marginRight="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 

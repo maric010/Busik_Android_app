@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/vector_3"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:onClick="back_to_orders_carrier"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="36dp"
+
+        android:background="@color/white"
+        android:text="  В личный кабинет"
+        android:textAppearance="@style/some_id"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Редактирование профиля"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="95dp" />
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="84dp"
+                android:src="@drawable/ellipse_3" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.68"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/some_id">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint=" Станислав Павлович"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.157"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></EditText>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Киев, Украина"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="pavlo.vich@gmail.com"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="+380501121149"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="#676767" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Номер возможно поменять только \n через поддержку"
+                android:textSize="16dp"
+                tools:layout_editor_absoluteX="30dp"
+                tools:layout_editor_absoluteY="485dp" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="300dp"
+                android:layout_height="47dp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                android:text="Сохранить"
+                android:textAllCaps="false"
+                android:textSize="17dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="546dp" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Безопасность"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="621dp" />
+
+            <FrameLayout
+                android:id="@+id/edit1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rectangle_3"
+                android:ems="10"
+                android:hint="Ф.И.О"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textColor="@color/black">
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Текущий пароль"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textColorHint="#676767" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.material.snackbar.Snackbar;
@@ -26,15 +27,17 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONArray;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     SharedPreferences settings;
-
+    static MainActivity th;
     private static final String PREFS_FILE = "Account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        th=this;
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         if(my.status.equalsIgnoreCase("Пасажир"))
             switch_fragment(new Fragment_orders());
@@ -84,5 +87,36 @@ public class MainActivity extends AppCompatActivity {
 
     public void cabinet_onClick(View view) {
         switch_fragment(new Fragment_cabinet());
+    }
+
+    public void my(View view) {
+        ((View)Fragment_orders.root.findViewById(R.id.my_trips)).setVisibility(View.VISIBLE);
+        ((View)Fragment_orders.root.findViewById(R.id.all_trips)).setVisibility(View.INVISIBLE);
+        ((TextView)Fragment_orders.root.findViewById(R.id.all_aviable_trips)).setVisibility(View.INVISIBLE);
+        Fragment_orders.scrollView.removeAllViewsInLayout();
+    }
+
+    public void all(View view) {
+        ((View)Fragment_orders.root.findViewById(R.id.my_trips)).setVisibility(View.INVISIBLE);
+        ((View)Fragment_orders.root.findViewById(R.id.all_trips)).setVisibility(View.VISIBLE);
+        ((TextView)Fragment_orders.root.findViewById(R.id.all_aviable_trips)).setVisibility(View.VISIBLE);
+
+
+        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+            HashMap h = entry.getValue();
+            Fragment_orders.add_order(h);
+        }
+    }
+
+    public void back_to_orders(View view) {
+        switch_fragment(new Fragment_orders());
+    }
+
+    public void back_to_orders_carrier(View view) {
+        switch_fragment(new Fragment_orders_carrier());
+    }
+
+    public void change_order_onClick(View view) {
+
     }
 }

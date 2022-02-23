@@ -55,7 +55,6 @@
                 android:text="Редактирование профиля"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,28 +63,18 @@
 
             <ImageView
                 android:layout_width="96dp"
-                android:visibility="gone"
                 android:layout_height="84dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/ellipse_3" />
 
             <FrameLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/rectangle_3"
-                android:ems="10"
-                android:hint="Ф.И.О"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.68"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/some_id">
+                android:background="@drawable/rectangle_3">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -98,26 +87,16 @@
                     android:inputType="textPersonName"
                     android:text=""
                     android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.157"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColorHint="@color/black" />
             </FrameLayout>
 
             <FrameLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/rectangle_3"
-                android:ems="10"
-                android:hint="Ф.И.О"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="@color/black">
+                android:background="@drawable/rectangle_3">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -134,18 +113,12 @@
             </FrameLayout>
 
             <FrameLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/rectangle_3"
-                android:ems="10"
-                android:hint="Ф.И.О"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="@color/black">
+                android:background="@drawable/rectangle_3">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -162,18 +135,12 @@
             </FrameLayout>
 
             <FrameLayout
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/rectangle_3"
-                android:ems="10"
-                android:hint="Ф.И.О"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="@color/black">
+                android:background="@drawable/rectangle_3">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -197,9 +164,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
                 android:text="Номер возможно поменять только \n через поддержку"
-                android:textSize="16dp"
-                tools:layout_editor_absoluteX="30dp"
-                tools:layout_editor_absoluteY="485dp" />
+                android:textSize="16dp" />
 
             <Button
                 android:id="@+id/button6"
@@ -210,10 +175,7 @@
                 android:textColor="@color/black"
                 android:text="Сохранить"
                 android:textAllCaps="false"
-                android:textSize="17dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="546dp" />
+                android:textSize="17dp"/>
 
             <TextView
                 android:id="@+id/textView9"
@@ -224,11 +186,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="621dp" />
+                android:textStyle="bold" />
 
             <FrameLayout
                 android:id="@+id/edit1"
@@ -237,12 +195,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/rectangle_3"
-                android:ems="10"
-                android:hint="Ф.И.О"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="@color/black">
+                android:background="@drawable/rectangle_3">
 
                 <EditText
                     android:id="@+id/name"
@@ -322,11 +275,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="621dp" />
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -340,11 +289,7 @@
                     android:layout_marginLeft="30dp"
                     android:text="Facebook"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="621dp" />
+                    android:textSize="18dp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"

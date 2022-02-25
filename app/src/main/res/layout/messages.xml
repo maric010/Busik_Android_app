@@ -74,10 +74,9 @@
                 <Button
                     android:id="@+id/button11"
                     android:layout_width="120dp"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:background="@drawable/rectangle_3"
                     android:onClick="change_order_onClick"
                     android:text="К рейсу"
                     android:textAllCaps="false"
@@ -86,10 +85,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
 
 
         </LinearLayout>

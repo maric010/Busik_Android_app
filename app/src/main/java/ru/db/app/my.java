@@ -84,7 +84,7 @@ public class my {
             DocumentReference user = my.db.collection("users").document();
             user.set(new_user);
             my.id = user.getId();
-
+System.out.println(my.id+";"+user.getId());
             if(is_carrier)
             {
                 my.status="Перевозчик";
@@ -107,8 +107,7 @@ public class my {
         }
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
-                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,
-                          String owner_id,float owner_rate,String owner_name){
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,float owner_rate,String owner_name){
             HashMap<String,Object> new_order=new HashMap<>();
             new_order.put("otkuda",otkuda);
             new_order.put("kuda",kuda);
@@ -119,7 +118,7 @@ public class my {
             new_order.put("passenger_cost",passenger_cost);
             new_order.put("gruz_cost",gruz_cost);
             new_order.put("is_gruz",is_gruz);
-            new_order.put("owner",owner_id);
+            new_order.put("owner",my.id);
             new_order.put("owner_rate",owner_rate);
             new_order.put("owner_name",owner_name);
             new_order.put("status","В ожидании");
@@ -127,7 +126,14 @@ public class my {
 
         dborders.push().setValue(new_order);
     }
+static String[] get_week(){
+    return new String[]{"Вс.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.","Сб."};
+}
 
+    static String[] getMonths() {
+        return new String[]{"января", "февраля", "марта", "апреля", "мая", "июня",
+                "июля", "августа", "сентября", "октября", "ноября", "декабря"};
+    }
 
 
 }

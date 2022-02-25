@@ -1,4 +1,5 @@
 package ru.db.app;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -24,6 +25,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +40,7 @@ public class Fragment_orders extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders, container, false);
-
+odate="";
 
         scrollView = root.findViewById(R.id.scroll_orders);
         if(my.name.equalsIgnoreCase("")){
@@ -53,20 +59,46 @@ public class Fragment_orders extends Fragment {
         return root;
     }
     static void add_order(HashMap h){
+
         TextView summa;
         LinearLayout.LayoutParams summap;
+
         String order_date = h.get("start_date").toString();
-        if(!order_date.equals(odate)){
-            odate=order_date;
-            summa = new TextView(root.getContext());
-            summap = new LinearLayout.LayoutParams
-                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            summap.gravity = Gravity.CENTER;
-            summap.setMargins(0,10,0,10);
-            summa.setText(order_date);
-            summa.setTextSize(20);
-            summa.setLayoutParams(summap);
-            scrollView.addView(summa);
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String dateText = dateFormat.format(new Date());
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date()); //устанавливаем дату, с которой будет производить операции
+        instance.add(Calendar.DAY_OF_MONTH, -1);
+        Date newDate = instance.getTime();
+        String newdateText = dateFormat.format(newDate);
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf.parse(h.get("start_date").toString().split(" ")[0]);
+            c.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar c2 = Calendar.getInstance();
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf2.parse(h.get("stop_date").toString().split(" ")[0]);
+            c2.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        if(dateText.equalsIgnoreCase(order_date.split(" ")[0])){
+            order_date="Сегодня";
+        }
+        else if(newdateText.equalsIgnoreCase(order_date.split(" ")[0])){
+            order_date="Вчера";
         }
 
         LinearLayout gl = new LinearLayout(root.getContext());
@@ -92,7 +124,8 @@ public class Fragment_orders extends Fragment {
         LinearLayout.LayoutParams starttextviewparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         starttextviewparams.setMargins(0,0,0,3);
-        start_date_textview.setText(h.get("start_date").toString());
+
+        start_date_textview.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+" "+h.get("start_date").toString().split(" ")[1]);
         start_date_textview.setTextSize(18);
         start_date_textview.setLayoutParams(starttextviewparams);
         linearLayout2.addView(start_date_textview);
@@ -100,7 +133,7 @@ public class Fragment_orders extends Fragment {
         TextView stop_date_textview = new TextView(root.getContext());
         LinearLayout.LayoutParams stoptextviewparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        stop_date_textview.setText(h.get("stop_date").toString());
+        stop_date_textview.setText(my.get_week()[c2.get(Calendar.DAY_OF_WEEK)-1]+" "+h.get("stop_date").toString().split(" ")[1]);
         stop_date_textview.setTextSize(18);
         stop_date_textview.setLayoutParams(stoptextviewparams);
         linearLayout2.addView(stop_date_textview);
@@ -273,7 +306,20 @@ public class Fragment_orders extends Fragment {
                 my.current_order = h;
             }
         });
-        scrollView.addView(gl);
+        scrollView.addView(gl,0);
+
+        if(!order_date.equals(odate)){
+            odate=order_date;
+            summa = new TextView(root.getContext());
+            summap = new LinearLayout.LayoutParams
+                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            summap.gravity = Gravity.CENTER;
+            summap.setMargins(0,10,0,10);
+            summa.setText(order_date);
+            summa.setTextSize(20);
+            summa.setLayoutParams(summap);
+            scrollView.addView(summa,0);
+        }
     }
 
 }

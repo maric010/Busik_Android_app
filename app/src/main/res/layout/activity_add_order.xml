@@ -110,20 +110,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
+                android:onClick="pick_date"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/rectangle_3">
-
-                <EditText
+                <TextView
                     android:id="@+id/new_order_start_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:textSize="18dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/rectangle_3"
-                    android:ems="10"
-                    android:hint="Сегодня"
-                    android:inputType="textPersonName"
-                    android:text=""
+                    android:text="Сегодня"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 
@@ -134,19 +133,18 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
+                android:onClick="pick_stop_date"
                 android:background="@drawable/rectangle_3">
 
-                <EditText
+                <TextView
                     android:id="@+id/new_order_stop_date"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/rectangle_3"
-                    android:ems="10"
-                    android:hint="Завтра"
-                    android:inputType="textPersonName"
-                    android:text=""
+                    android:textSize="18dp"
+                    android:text="Завтра"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black" />
 

@@ -1,4 +1,5 @@
 package ru.db.app;
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -22,6 +23,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.type.DateTime;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,8 +41,10 @@ public class Fragment_orders_carrier extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
+        odate="";
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
             HashMap h = entry.getValue();
+            System.out.println(h.get("owner")+"|"+my.id);
             if(!h.get("owner").toString().equalsIgnoreCase(my.id))
                 continue;
             add_carrier_order(h);
@@ -42,22 +52,49 @@ public class Fragment_orders_carrier extends Fragment {
 
         return root;
     }
+
     static void add_carrier_order(HashMap h){
         TextView summa;
         LinearLayout.LayoutParams summap;
         String order_date = h.get("start_date").toString();
-        if(!order_date.equals(odate)){
-            odate=order_date;
-            summa = new TextView(root.getContext());
-            summap = new LinearLayout.LayoutParams
-                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            summap.gravity = Gravity.CENTER;
-            summap.setMargins(0,10,0,10);
-            summa.setText(order_date);
-            summa.setTextSize(20);
-            summa.setLayoutParams(summap);
-            scrollView.addView(summa);
+
+
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String dateText = dateFormat.format(new Date());
+        Calendar instance = Calendar.getInstance();
+        instance.setTime(new Date()); //устанавливаем дату, с которой будет производить операции
+        instance.add(Calendar.DAY_OF_MONTH, -1);
+        Date newDate = instance.getTime();
+        String newdateText = dateFormat.format(newDate);
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf.parse(h.get("start_date").toString().split(" ")[0]);
+            c.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+
+        Calendar c2 = Calendar.getInstance();
+
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf2.parse(h.get("stop_date").toString().split(" ")[0]);
+            c2.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if(dateText.equalsIgnoreCase(order_date.split(" ")[0])){
+            order_date="Сегодня";
+        }
+        else if(newdateText.equalsIgnoreCase(order_date.split(" ")[0])){
+            order_date="Вчера";
+        }
+
+
+
 
         LinearLayout gl = new LinearLayout(root.getContext());
         gl.setOrientation(LinearLayout.VERTICAL);
@@ -68,7 +105,7 @@ public class Fragment_orders_carrier extends Fragment {
         LinearLayout linearLayout1 = new LinearLayout(root.getContext());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams l1params = new LinearLayout.LayoutParams
-                (LinearLayout.LayoutParams.MATCH_PARENT, 120);
+                (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         linearLayout1.setLayoutParams(l1params);
 
         LinearLayout linearLayout2 = new LinearLayout(root.getContext());
@@ -212,6 +249,18 @@ public class Fragment_orders_carrier extends Fragment {
                 MainActivity.th.switch_fragment(new Fragment_reys_carrier());
             }
         });
-        scrollView.addView(gl);
+        scrollView.addView(gl,0);
+        if(!order_date.equals(odate)){
+            odate=order_date;
+            summa = new TextView(root.getContext());
+            summap = new LinearLayout.LayoutParams
+                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            summap.gravity = Gravity.CENTER;
+            summap.setMargins(0,10,0,10);
+            summa.setText(order_date);
+            summa.setTextSize(20);
+            summa.setLayoutParams(summap);
+            scrollView.addView(summa,0);
+        }
     }
 }

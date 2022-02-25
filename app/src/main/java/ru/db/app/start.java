@@ -54,7 +54,8 @@ public class start extends AppCompatActivity {
                     Fragment_orders.add_order(h);
                 }
                 else if(Fragment_orders_carrier.root!=null){
-                    Fragment_orders_carrier.add_carrier_order(h);
+                    if(h.get("owner").toString().equalsIgnoreCase(my.id))
+                        Fragment_orders_carrier.add_carrier_order(h);
                 }
             }
 

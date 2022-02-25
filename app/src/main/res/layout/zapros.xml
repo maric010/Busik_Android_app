@@ -56,10 +56,6 @@
             android:textSize="18dp"
             android:textStyle="bold" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
             <TextView
                 android:layout_width="wrap_content"
                 android:textAllCaps="false"
@@ -72,7 +68,7 @@
                 android:text="    В ожидании    "
                 android:textColor="@color/black"
                 android:textSize="16dp" />
-        </FrameLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout8"
@@ -121,7 +117,6 @@
 
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -144,7 +139,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Владимир"
@@ -152,7 +146,6 @@
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+3800661245458"
@@ -160,7 +153,6 @@
                 </LinearLayout>
 
             <Button
-                android:id="@+id/button12"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="110dp"
@@ -184,7 +176,6 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Человек: 2"
@@ -193,7 +184,6 @@
 
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:textColor="@color/black"
@@ -208,7 +198,6 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:id="@+id/button11"
                 android:layout_width="110dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
@@ -219,7 +208,6 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
             <Button
-                android:id="@+id/button11"
                 android:layout_width="120dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
@@ -231,7 +219,6 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
             <Button
-                android:id="@+id/button11"
                 android:layout_width="110dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
@@ -244,7 +231,6 @@
                 android:textSize="15sp" />
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -288,7 +274,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Андрей"
@@ -296,7 +281,6 @@
                     android:textSize="18dp" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="+380611144559"
@@ -326,7 +310,6 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Человек: 1"
@@ -334,7 +317,6 @@
                 android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="50dp"
                 android:textColor="@color/black"
@@ -348,7 +330,6 @@
             android:layout_marginTop="10dp">
 
             <Button
-                android:id="@+id/button11"
                 android:layout_width="110dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="10dp"
@@ -374,9 +355,8 @@
 
     </LinearLayout>
 
-    </LinearLayout>
-    </LinearLayout>
 
-</LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

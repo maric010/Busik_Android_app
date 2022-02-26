@@ -35,6 +35,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Fragment_orders extends Fragment {
     static View root;
     static LinearLayout scrollView;
@@ -236,16 +238,16 @@ odate="";
 
         gl.addView(linearLayout1);
 
-        arrow = new ImageView(root.getContext());
+        CircleImageView avatar = new CircleImageView(root.getContext());
         arrowp = new LinearLayout.LayoutParams
                 (80, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(20,0,10,0);
+        avatar.setLayoutParams(arrowp);
+        linearLayout1.addView(avatar);
         Glide.with(root.getContext())
                 .load(my.gen_avatar(h.get("owner_avatar").toString()))
                 .placeholder(R.drawable.ellipse_2)
-                .into(arrow);
-        arrow.setLayoutParams(arrowp);
-        linearLayout1.addView(arrow);
+                .into(avatar);
 
         linearLayout2 = new LinearLayout(root.getContext());
         linearLayout2.setOrientation(LinearLayout.VERTICAL);

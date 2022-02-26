@@ -79,8 +79,9 @@
                     android:layout_marginBottom="20dp"
                     android:onClick="change_order_onClick"
                     android:text="К рейсу"
+                    android:background="@drawable/button_1"
                     android:textAllCaps="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
 
             </LinearLayout>

@@ -4,8 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Ben/AndroidStudioProjects/app/app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/button_1.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/rectangle_1.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/rectangle_3.xml" value="0.382051282051282" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/rectangle_4.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/active_owner.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/active_reysi.xml" value="0.5" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_add_order.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_auth.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_auth_main.xml" value="0.33" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_main.xml" value="0.371875" />
@@ -14,10 +19,16 @@
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_start.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/auth_reg.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/cabinet.xml" value="0.371875" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/calendar.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_cabinet_edit.xml" value="0.42229367631296894" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_message.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_orders.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_orders_carrier.xml" value="0.22" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_reys.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_reys_carrier.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/messages.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/otkuda.xml" value="0.33" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/owners.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/reys_info.xml" value="0.33" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/reysi.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/search.xml" value="0.33" />

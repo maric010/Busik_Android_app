@@ -172,7 +172,8 @@
                 android:layout_height="47dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/black"
+                android:background="@drawable/button_1"
+                android:textColor="@color/white"
                 android:text="Сохранить"
                 android:textAllCaps="false"
                 android:textSize="17dp"/>
@@ -305,9 +306,9 @@
                         android:layout_gravity="end"
                         android:layout_marginRight="30dp"
                         android:background="@drawable/border"
-                        android:backgroundTint="#C4C4C4"
+                        android:backgroundTint="#f1632a"
                         android:text="    Привязать    "
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="18dp" />
                 </FrameLayout>
                 </LinearLayout>
@@ -344,9 +345,9 @@
                             android:layout_gravity="end"
                             android:layout_marginRight="30dp"
                             android:background="@drawable/border"
-                            android:backgroundTint="#C4C4C4"
+                            android:backgroundTint="#f1632a"
                             android:text="    Отвязать    "
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             android:textSize="18dp" />
                     </FrameLayout>
                 </LinearLayout>

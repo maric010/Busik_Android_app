@@ -77,7 +77,7 @@ public class auth_main extends AppCompatActivity {
                         SharedPreferences.Editor prefEditor = settings.edit();
                         prefEditor.putString(PREF_id,user.getId());
                         prefEditor.apply();
-
+my.id=user.getId();
                         my.name=user.get("name").toString();
                         my.phone=user.get("phone").toString();
                         my.city=user.get("city").toString();

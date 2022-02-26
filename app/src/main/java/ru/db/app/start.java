@@ -108,6 +108,7 @@ public class start extends AppCompatActivity {
                             my.city=(String)doc.get("city");
                             my.email= (String)doc.get("e-mail");
                             my.phone=(String)doc.get("phone");
+                            my.avatar=(String)doc.get("avatar");
                             if(doc.get("is_carrier")!=null)
                             {
                                 if(((Boolean) doc.get("is_carrier")))

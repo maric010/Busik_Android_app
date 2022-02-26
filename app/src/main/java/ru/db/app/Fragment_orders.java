@@ -25,6 +25,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -238,7 +240,10 @@ odate="";
         arrowp = new LinearLayout.LayoutParams
                 (80, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(20,0,10,0);
-        arrow.setImageResource(R.drawable.ellipse_2);
+        Glide.with(root.getContext())
+                .load(my.gen_avatar(h.get("owner_avatar").toString()))
+                .placeholder(R.drawable.ellipse_2)
+                .into(arrow);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
 

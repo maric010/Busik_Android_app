@@ -38,7 +38,7 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Fragment_cabinet_edit extends Fragment {
-    View root;
+    static View root;
     EditText name,phone,city,email;
     static CircleImageView profileImageView;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -71,9 +71,11 @@ public class Fragment_cabinet_edit extends Fragment {
                 user.update("city",my.city);
                 user.update("e-mail",my.email);
 
+
                 if(my.result!=null){
                     StorageReference storageRef = my.fm.getReference();
-                    StorageReference mountainsRef = storageRef.child("avatars/"+my.id+".jpg");
+                    my.avatar=my.id+"_"+(System.currentTimeMillis());
+                    StorageReference mountainsRef = storageRef.child("avatars/"+my.avatar+".jpg");
                     UploadTask uploadTask = mountainsRef.putFile(my.result.getUri());
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -83,6 +85,8 @@ public class Fragment_cabinet_edit extends Fragment {
                     }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            user.update("avatar",my.avatar);
                             progressDialog.cancel();
                             AlertDialog alertDialog = (new AlertDialog.Builder(MainActivity.th)).create();
                             alertDialog.setTitle("Инфо");
@@ -113,11 +117,13 @@ public class Fragment_cabinet_edit extends Fragment {
 
             }
         });
-        //if(my.avatar!=null)
-        //    profileImageView.setImageBitmap(my.avatar);
+
         Glide.with(root.getContext())
-                .load(my.fm.getReferenceFromUrl("gs://test-535c2.appspot.com/avatars/"+my.id+".jpg"))
+                .load(my.gen_avatar(my.avatar))
+                .error(R.drawable.ellipse_1)
+                .placeholder(R.drawable.ellipse_1)
                 .into(profileImageView);
+System.out.println("PZDTS");
         return root;
     }
 

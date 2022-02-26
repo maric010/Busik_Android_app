@@ -37,32 +37,14 @@ public class Fragment_cabinet extends Fragment {
         ((TextView)root.findViewById(R.id.name)).setText(my.name);
         ((TextView)root.findViewById(R.id.status)).setText(my.status);
         ((TextView)root.findViewById(R.id.city)).setText(my.city);
-/*
-        my.fm.getReference().child("avatars/"+my.id+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(root.getContext())
-                        .load(uri)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .into((CircleImageView)root.findViewById(R.id.ellipse_1));
-                System.out.println("uri "+uri.getEncodedPath());
-            }
-        });
-
-
- */
 
         Glide.with(root.getContext())
-                .load(my.fm.getReference().child("avatars/"+my.id))
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                .load(my.gen_avatar(my.avatar))
+                .error(R.drawable.ellipse_1)
+                .placeholder(R.drawable.ellipse_1)
+                .skipMemoryCache(true)
                 .into((CircleImageView)root.findViewById(R.id.ellipse_1));
 
-
-
-
-
-        //if(my.avatar!=null)
-        //    ((CircleImageView)root.findViewById(R.id.ellipse_1)).setImageBitmap(my.avatar);
         return root;
     }
 }

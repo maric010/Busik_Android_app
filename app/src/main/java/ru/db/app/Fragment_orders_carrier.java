@@ -238,6 +238,7 @@ public class Fragment_orders_carrier extends Fragment {
         summa.setLayoutParams(summap);
 
         linearLayout1.addView(summa);
+
         linearLayout1.setBackgroundResource(R.drawable.border2);
         gl.addView(linearLayout1);
 

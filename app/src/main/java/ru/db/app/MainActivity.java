@@ -146,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_image_onClick(View view) {
+        System.out.println("xxx");
         CropImage.activity().setAspectRatio(1,1).start(this);
     }
 
@@ -154,7 +155,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode==RESULT_OK && data!=null){
             my.result = CropImage.getActivityResult(data);
-            Fragment_cabinet_edit.profileImageView.setImageURI(my.result.getUri());
+            System.out.println("PPP1");
+            //Fragment_cabinet_edit.profileImageView.setImageURI(my.result.getUri());
+            System.out.println("PPP2");
+
+
+            Glide.with(Fragment_cabinet_edit.root.getContext())
+                    .load(my.result.getUri())
+                    .error(R.drawable.ellipse_1)
+                    .into(Fragment_cabinet_edit.profileImageView);
+
         }
     }
 

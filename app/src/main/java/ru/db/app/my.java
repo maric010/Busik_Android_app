@@ -37,7 +37,7 @@ public class my {
     static Boolean auth_facebook=false;
     static Boolean auth_telegram=false;
     static CropImage.ActivityResult result;
-    static Bitmap avatar;
+    static String avatar;
 
     private static final String PREFS_FILE = "Account";
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -121,7 +121,7 @@ public class my {
         }
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
-                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,float owner_rate,String owner_name){
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
             HashMap<String,Object> new_order=new HashMap<>();
             new_order.put("otkuda",otkuda);
             new_order.put("kuda",kuda);
@@ -133,9 +133,11 @@ public class my {
             new_order.put("gruz_cost",gruz_cost);
             new_order.put("is_gruz",is_gruz);
             new_order.put("owner",my.id);
-            new_order.put("owner_rate",owner_rate);
-            new_order.put("owner_name",owner_name);
-            new_order.put("status","В ожидании");
+            new_order.put("owner_rate",my.rate);
+            new_order.put("owner_name",my.name);
+            new_order.put("owner_avatar",my.avatar);
+
+        new_order.put("status","В ожидании");
 
 
         dborders.push().setValue(new_order);
@@ -148,23 +150,14 @@ static String[] get_week(){
         return new String[]{"января", "февраля", "марта", "апреля", "мая", "июня",
                 "июля", "августа", "сентября", "октября", "ноября", "декабря"};
     }
- void download_my_avatar(){
 
-    final long ONE_MEGABYTE = 1024 * 1024;
-    my.fm.getReference().child("avatars/"+my.id+".jpg").getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-        @Override
-        public void onSuccess(byte[] bytes) {
-            my.avatar= BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    public static String gen_avatar(String iid) {
+        return  "https://firebasestorage.googleapis.com/v0/b/test-535c2.appspot.com/o/avatars%2F"+iid+".jpg?alt=media";
+    }
 
-        }
-    }).addOnFailureListener(new OnFailureListener() {
-        @Override
-        public void onFailure(@NonNull Exception exception) {
-            // Handle any errors
-        }
-    });
+
 
 }
 
 
-}
+

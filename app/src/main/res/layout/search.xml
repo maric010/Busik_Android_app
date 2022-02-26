@@ -56,8 +56,7 @@
         android:hint="Откуда"
         android:inputType="textPersonName"
         android:text=""
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"/>
+        android:textColor="@color/black"/>
 
     </FrameLayout>
 
@@ -72,7 +71,6 @@
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></EditText>
@@ -88,7 +86,6 @@
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></EditText>
@@ -118,7 +115,6 @@
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +131,6 @@
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toStartOf="parent"
@@ -164,7 +159,6 @@
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
@@ -180,7 +174,6 @@
         android:inputType="textPersonName"
         android:text=""
         android:textColor="@color/black"
-        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.758"
         app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +184,6 @@
         android:layout_height="47dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:backgroundTint="@color/white"
         android:background="@drawable/button_1"
         android:textColor="@color/white"
         android:onClick="reg_onclick"

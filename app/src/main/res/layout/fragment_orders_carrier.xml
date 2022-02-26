@@ -16,7 +16,6 @@
         android:layout_marginLeft="28dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/ellipse_2"
-        android:backgroundTint="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -80,7 +79,6 @@
         android:layout_marginTop="100dp"
         android:background="@drawable/button_1"
         android:textColor="@color/white"
-        android:backgroundTint="#C4C4C4"
         android:text="Активные"
         android:textAllCaps="false"
         app:layout_constraintEnd_toStartOf="@id/all_trips_layout"
@@ -92,7 +90,6 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:background="@drawable/button_1"
-        android:backgroundTint="#C4C4C4"
         android:textColor="@color/white"
         android:text="Добавить"
         android:textAllCaps="false"
@@ -106,7 +103,6 @@
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:background="@drawable/button_1"
-        android:backgroundTint="#80C4C4C4"
         android:textColor="@color/white"
         android:orientation="vertical"
         android:text="Архив"

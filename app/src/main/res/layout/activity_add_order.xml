@@ -75,8 +75,7 @@
                     android:hint="Откуда"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
 
@@ -99,8 +98,7 @@
                     android:hint="Куда"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
 
@@ -123,8 +121,7 @@
                     android:layout_marginTop="5dp"
                     android:background="@drawable/rectangle_3"
                     android:text="Сегодня"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
             <FrameLayout
@@ -145,8 +142,7 @@
                     android:background="@drawable/rectangle_3"
                     android:textSize="18dp"
                     android:text="Завтра"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
 
@@ -170,8 +166,7 @@
                     android:background="@drawable/rectangle_3"
                     android:hint="Описание"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
             <CheckBox
@@ -203,8 +198,7 @@
                     android:hint="Цена за пассажира"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
 
@@ -227,8 +221,7 @@
                     android:hint="Цена за груз"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black" />
 
             </FrameLayout>
 
@@ -247,7 +240,6 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/button_1"
-                android:backgroundTint="@color/white"
                 android:text="Создать"
                 android:onClick="create_order"
                 android:layout_marginBottom="40dp"

@@ -7,11 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.LruCache;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +44,7 @@ public class start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
         my.settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         String id = settings.getString(PREF_id,"");
@@ -116,9 +121,11 @@ public class start extends AppCompatActivity {
                                 if(((Boolean) doc.get("is_admin")))
                                     my.status="Администратор";
                             }
-                            System.out.println(my.name);
+
+                            //my.download_my_avatar();
                             Intent intent = new Intent(start.this, MainActivity.class);
                             startActivity(intent);
+
                             finish();
                         }
                         else{

@@ -7,14 +7,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.JsonReader;
+import android.util.LruCache;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -23,13 +30,20 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import org.json.JSONArray;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    //region cache
+
+    //region cache end
     SharedPreferences settings;
     static MainActivity th;
     private static final String PREFS_FILE = "Account";
@@ -38,12 +52,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         th=this;
+
+
+
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         if(my.status.equalsIgnoreCase("Пасажир"))
             switch_fragment(new Fragment_orders());
         else
             switch_fragment(new Fragment_orders_carrier());
-
 
 
     }
@@ -118,5 +134,31 @@ public class MainActivity extends AppCompatActivity {
 
     public void change_order_onClick(View view) {
 
+    }
+
+    public void profile_edit(View view) {
+        switch_fragment(new Fragment_cabinet_edit());
+    }
+
+    public void profile_edit_save_onClick(View view) {
+
+
+    }
+
+    public void set_image_onClick(View view) {
+        CropImage.activity().setAspectRatio(1,1).start(this);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode==RESULT_OK && data!=null){
+            my.result = CropImage.getActivityResult(data);
+            Fragment_cabinet_edit.profileImageView.setImageURI(my.result.getUri());
+        }
+    }
+
+    public void back_to_cabinet(View view) {
+        switch_fragment(new Fragment_cabinet());
     }
 }

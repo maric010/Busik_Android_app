@@ -2,6 +2,9 @@ package ru.db.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -21,12 +24,14 @@ import java.security.NoSuchAlgorithmException;
 public class auth_main extends AppCompatActivity {
     SharedPreferences settings;
     Boolean is_carrier=false;
+    static auth_main th;
     private static final String PREFS_FILE = "Account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_main);
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+        th=this;
     }
     public void check_on_passenger(View view) {
         is_carrier=false;
@@ -51,6 +56,10 @@ public class auth_main extends AppCompatActivity {
         carrier_text.setTextColor(Color.BLACK);
     }
     public void auth_onClick(View view) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Авторизация");
+        progressDialog.setMessage("Пожалуйста, подождите, пока мы проверяем.");
+        progressDialog.show();
         String field = "is_passenger";
         if(is_carrier)
             field="is_carrier";
@@ -86,12 +95,25 @@ public class auth_main extends AppCompatActivity {
                                 my.status="Администратор";
                         }
                         System.out.println("NAME "+my.name);
+                        //my.download_my_avatar();
+                        progressDialog.cancel();
                         Intent intent = new Intent(auth_main.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     }
                     else {
-                        System.out.println("Неправильный логин или пароль");
+                        progressDialog.cancel();
+
+                        AlertDialog alertDialog = (new AlertDialog.Builder(auth_main.th)).create();
+                        alertDialog.setTitle("Ошибка");
+                        alertDialog.setMessage("Неправильный логин или пароль!");
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        alertDialog.dismiss();
+                                    }
+                                });
+                        alertDialog.show();
                     }
 
                 }
@@ -101,6 +123,7 @@ public class auth_main extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
     }
 
     public void back(View view) {

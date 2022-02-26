@@ -1,14 +1,23 @@
 package ru.db.app;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.LruCache;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -27,11 +36,16 @@ public class my {
     static Boolean auth_google=false;
     static Boolean auth_facebook=false;
     static Boolean auth_telegram=false;
+    static CropImage.ActivityResult result;
+    static Bitmap avatar;
 
     private static final String PREFS_FILE = "Account";
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference dborders = database.getReference("рейсы");
+    static FirebaseStorage fm = FirebaseStorage.getInstance();
+
+
     static HashMap<String, HashMap> Orders = new HashMap<String, HashMap>();
 
     private static String convertToHex(byte[] data) {
@@ -84,7 +98,7 @@ public class my {
             DocumentReference user = my.db.collection("users").document();
             user.set(new_user);
             my.id = user.getId();
-System.out.println(my.id+";"+user.getId());
+            System.out.println(my.id+";"+user.getId());
             if(is_carrier)
             {
                 my.status="Перевозчик";
@@ -134,6 +148,23 @@ static String[] get_week(){
         return new String[]{"января", "февраля", "марта", "апреля", "мая", "июня",
                 "июля", "августа", "сентября", "октября", "ноября", "декабря"};
     }
+ void download_my_avatar(){
+
+    final long ONE_MEGABYTE = 1024 * 1024;
+    my.fm.getReference().child("avatars/"+my.id+".jpg").getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+        @Override
+        public void onSuccess(byte[] bytes) {
+            my.avatar= BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+
+        }
+    }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception exception) {
+            // Handle any errors
+        }
+    });
+
+}
 
 
 }

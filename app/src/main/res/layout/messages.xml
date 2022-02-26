@@ -35,7 +35,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/border"
-        android:backgroundTint="#C8C4C4"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"

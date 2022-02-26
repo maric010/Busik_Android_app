@@ -72,7 +72,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/border"
-        android:backgroundTint="#C8C4C4"
         android:orientation="vertical"
         >
         <LinearLayout
@@ -262,7 +261,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:layout_marginTop="45dp"
-                    android:backgroundTint="#8f8c8c"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/border"
                     android:layout_gravity="end"

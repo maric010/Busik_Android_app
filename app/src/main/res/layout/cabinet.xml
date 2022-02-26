@@ -86,8 +86,7 @@
                     android:hint=" Станислав Павлович"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
             </FrameLayout>
 
             <FrameLayout
@@ -108,8 +107,7 @@
                     android:hint="Киев, Украина"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
             </FrameLayout>
 
             <FrameLayout
@@ -130,8 +128,7 @@
                     android:hint="pavlo.vich@gmail.com"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black" />
+                    android:textColor="@color/black"/>
             </FrameLayout>
 
             <FrameLayout
@@ -152,8 +149,7 @@
                     android:hint="+380501121149"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="#676767" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
 
@@ -171,7 +167,6 @@
                 android:layout_width="300dp"
                 android:layout_height="47dp"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/white"
                 android:background="@drawable/button_1"
                 android:textColor="@color/white"
                 android:text="Сохранить"
@@ -209,8 +204,7 @@
                     android:hint="Текущий пароль"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="#676767" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
             <FrameLayout
@@ -236,8 +230,7 @@
                     android:hint="Новый пароль"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="#676767" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
             <FrameLayout
@@ -263,8 +256,7 @@
                     android:hint="Повторите новый пароль"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"
-                    android:textColorHint="#676767" />
+                    android:textColor="@color/black"/>
 
             </FrameLayout>
 
@@ -306,9 +298,8 @@
                         android:layout_gravity="end"
                         android:layout_marginRight="30dp"
                         android:background="@drawable/border"
-                        android:backgroundTint="#f1632a"
                         android:text="    Привязать    "
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18dp" />
                 </FrameLayout>
                 </LinearLayout>
@@ -345,9 +336,8 @@
                             android:layout_gravity="end"
                             android:layout_marginRight="30dp"
                             android:background="@drawable/border"
-                            android:backgroundTint="#f1632a"
                             android:text="    Отвязать    "
-                            android:textColor="@color/white"
+                            android:textColor="@color/black"
                             android:textSize="18dp" />
                     </FrameLayout>
                 </LinearLayout>

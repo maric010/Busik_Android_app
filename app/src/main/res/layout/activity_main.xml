@@ -43,7 +43,6 @@
     <View
         android:layout_width="27dp"
         android:layout_height="27dp"
-        android:backgroundTint="#6A6A6A"
         android:layout_gravity="center"
         android:background="@drawable/ellipse_2"
         />
@@ -60,8 +59,8 @@
 <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
             android:layout_marginLeft="40dp"
     android:onClick="fragment_message_onClick"
             android:orientation="vertical">
@@ -69,7 +68,6 @@
                 android:layout_width="27dp"
                 android:layout_height="27dp"
                 android:layout_gravity="center"
-                android:backgroundTint="#9E9E9E"
                 android:background="@drawable/ellipse_2"
                 />
             <TextView
@@ -83,12 +81,12 @@
         </LinearLayout>
 <LinearLayout
             android:layout_width="wrap_content"
-    android:layout_weight="1"
+            android:layout_weight="1"
             android:layout_height="match_parent"
-    android:gravity="center"
-    android:onClick="cabinet_onClick"
+            android:gravity="center"
+            android:onClick="cabinet_onClick"
             android:layout_marginLeft="40dp"
-    android:layout_marginRight="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
             <View
                 android:layout_width="27dp"

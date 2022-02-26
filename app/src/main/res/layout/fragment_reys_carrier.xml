@@ -68,7 +68,6 @@
         android:layout_gravity="end"
         android:layout_weight="0"
         android:background="@drawable/border"
-        android:backgroundTint="#8f8c8c"
         android:gravity="center_horizontal|center"
         android:text="  В ожидании  "
         android:layout_marginTop="45dp"

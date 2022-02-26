@@ -64,7 +64,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/border"
-                android:backgroundTint="#C4C4C4"
+
                 android:text="    В ожидании    "
                 android:textColor="@color/black"
                 android:textSize="16dp" />

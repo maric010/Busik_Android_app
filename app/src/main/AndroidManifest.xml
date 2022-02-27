@@ -3,6 +3,7 @@
     package="ru.db.app">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <meta-data
         android:name="ru.db.app/com.facebook.sdk.ApplicationId"
         android:value="468922064606903" />
@@ -14,9 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-        <activity android:name=".add_order"></activity>
+        <activity android:name=".edit_order"></activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".add_order" />
         <activity
             android:name=".auth_main"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

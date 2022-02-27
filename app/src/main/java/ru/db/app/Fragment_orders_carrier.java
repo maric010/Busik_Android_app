@@ -44,18 +44,18 @@ public class Fragment_orders_carrier extends Fragment {
         odate="";
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
             HashMap h = entry.getValue();
-            System.out.println(h.get("owner")+"|"+my.id);
             if(!h.get("owner").toString().equalsIgnoreCase(my.id))
                 continue;
-            add_carrier_order(h);
+            add_carrier_order(entry);
         }
 
         return root;
     }
 
-    static void add_carrier_order(HashMap h){
+    static void add_carrier_order(Map.Entry<String, HashMap> entry){
         TextView summa;
         LinearLayout.LayoutParams summap;
+        HashMap h = entry.getValue();
         String order_date = h.get("start_date").toString();
 
 
@@ -63,7 +63,7 @@ public class Fragment_orders_carrier extends Fragment {
         String dateText = dateFormat.format(new Date());
         Calendar instance = Calendar.getInstance();
         instance.setTime(new Date()); //устанавливаем дату, с которой будет производить операции
-        instance.add(Calendar.DAY_OF_MONTH, -1);
+        instance.add(Calendar.DAY_OF_MONTH, 1);
         Date newDate = instance.getTime();
         String newdateText = dateFormat.format(newDate);
         Calendar c = Calendar.getInstance();
@@ -90,11 +90,22 @@ public class Fragment_orders_carrier extends Fragment {
             order_date="Сегодня";
         }
         else if(newdateText.equalsIgnoreCase(order_date.split(" ")[0])){
-            order_date="Вчера";
+            order_date="Завтра";
         }
 
 
-
+        if(!order_date.equals(odate)){
+            odate=order_date;
+            summa = new TextView(root.getContext());
+            summap = new LinearLayout.LayoutParams
+                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            summap.gravity = Gravity.CENTER;
+            summap.setMargins(0,10,0,10);
+            summa.setText(order_date);
+            summa.setTextSize(20);
+            summa.setLayoutParams(summap);
+            scrollView.addView(summa);
+        }
 
         LinearLayout gl = new LinearLayout(root.getContext());
         gl.setOrientation(LinearLayout.VERTICAL);
@@ -246,22 +257,11 @@ public class Fragment_orders_carrier extends Fragment {
         gl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                my.current_order = h;
+                my.current_order = entry;
                 MainActivity.th.switch_fragment(new Fragment_reys_carrier());
             }
         });
-        scrollView.addView(gl,0);
-        if(!order_date.equals(odate)){
-            odate=order_date;
-            summa = new TextView(root.getContext());
-            summap = new LinearLayout.LayoutParams
-                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            summap.gravity = Gravity.CENTER;
-            summap.setMargins(0,10,0,10);
-            summa.setText(order_date);
-            summa.setTextSize(20);
-            summa.setLayoutParams(summap);
-            scrollView.addView(summa,0);
-        }
+        scrollView.addView(gl);
+
     }
 }

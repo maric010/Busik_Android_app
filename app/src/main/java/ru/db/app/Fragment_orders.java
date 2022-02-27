@@ -35,6 +35,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Fragment_orders extends Fragment {
     static View root;
     static LinearLayout scrollView;
@@ -55,22 +57,28 @@ odate="";
         }
 
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
-            HashMap h = entry.getValue();
-            add_order(h);
+            add_order(entry);
         }
         return root;
     }
-    static void add_order(HashMap h){
+    static boolean x=false;
+    static void add_order(Map.Entry<String, HashMap> entry){
 
+
+
+        HashMap h = entry.getValue();
         TextView summa;
         LinearLayout.LayoutParams summap;
 
         String order_date = h.get("start_date").toString();
+
+
+
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
         String dateText = dateFormat.format(new Date());
         Calendar instance = Calendar.getInstance();
         instance.setTime(new Date()); //устанавливаем дату, с которой будет производить операции
-        instance.add(Calendar.DAY_OF_MONTH, -1);
+        instance.add(Calendar.DAY_OF_MONTH, 1);
         Date newDate = instance.getTime();
         String newdateText = dateFormat.format(newDate);
         Calendar c = Calendar.getInstance();
@@ -100,8 +108,21 @@ odate="";
             order_date="Сегодня";
         }
         else if(newdateText.equalsIgnoreCase(order_date.split(" ")[0])){
-            order_date="Вчера";
+            order_date="Завтра";
         }
+
+        if(!order_date.equals(odate)){
+            odate=order_date;
+            summa = new TextView(root.getContext());
+            summap = new LinearLayout.LayoutParams
+                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            summap.gravity = Gravity.CENTER;
+            summap.setMargins(0,10,0,10);
+            summa.setText(order_date);
+            summa.setTextSize(20);
+            summa.setLayoutParams(summap);
+            scrollView.addView(summa);
+         }
 
         LinearLayout gl = new LinearLayout(root.getContext());
         gl.setOrientation(LinearLayout.VERTICAL);
@@ -236,16 +257,19 @@ odate="";
 
         gl.addView(linearLayout1);
 
-        arrow = new ImageView(root.getContext());
+        CircleImageView avatar = new CircleImageView(root.getContext());
         arrowp = new LinearLayout.LayoutParams
                 (80, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(20,0,10,0);
-        Glide.with(root.getContext())
-                .load(my.gen_avatar(h.get("owner_avatar").toString()))
-                .placeholder(R.drawable.ellipse_2)
-                .into(arrow);
-        arrow.setLayoutParams(arrowp);
-        linearLayout1.addView(arrow);
+        avatar.setLayoutParams(arrowp);
+        linearLayout1.addView(avatar);
+        if(h.get("owner_avatar")!=null){
+            Glide.with(root.getContext())
+                    .load(my.gen_avatar(h.get("owner_avatar").toString()))
+                    .placeholder(R.drawable.ellipse_2)
+                    .into(avatar);
+        }
+
 
         linearLayout2 = new LinearLayout(root.getContext());
         linearLayout2.setOrientation(LinearLayout.VERTICAL);
@@ -308,23 +332,13 @@ odate="";
             @Override
             public void onClick(View view) {
                 MainActivity.th.switch_fragment(new Fragment_reys());
-                my.current_order = h;
+                my.current_order = entry;
             }
         });
-        scrollView.addView(gl,0);
+        scrollView.addView(gl);
 
-        if(!order_date.equals(odate)){
-            odate=order_date;
-            summa = new TextView(root.getContext());
-            summap = new LinearLayout.LayoutParams
-                    (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            summap.gravity = Gravity.CENTER;
-            summap.setMargins(0,10,0,10);
-            summa.setText(order_date);
-            summa.setTextSize(20);
-            summa.setLayoutParams(summap);
-            scrollView.addView(summa,0);
-        }
+
+
     }
 
 }

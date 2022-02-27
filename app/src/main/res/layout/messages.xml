@@ -66,7 +66,8 @@
                     android:id="@+id/stopDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  На рейсе Киев -> Харьков 13.12 (Пн)"
+                    android:layout_marginLeft="5dp"
+                    android:text="На рейсе Киев -> Харьков 13.12 (Пн)"
                     android:textColor="#4D4D4D"
                     android:textSize="18dp" />
 

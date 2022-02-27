@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Fragment_reys_request extends Fragment {
     View root;
     TextView people_count;
@@ -26,6 +29,13 @@ public class Fragment_reys_request extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_reys_apply, container, false);
 
+        LinearLayout linearLayout = root.findViewById(R.id.linearLayout6);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("linearr");
+            }
+        });
 
         TextView reys_day_month = root.findViewById(R.id.reys_day_month);
 
@@ -63,7 +73,7 @@ public class Fragment_reys_request extends Fragment {
 
 
         String month = my.getMonths()[Integer.valueOf(my.current_order.getValue().get("start_date").toString().split("\\.")[1])-1];
-        week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)]+c.get(Calendar.DAY_OF_MONTH)+" "+month);
+        week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+c.get(Calendar.DAY_OF_MONTH-1)+" "+month);
 
 
         int people_cost = Integer.parseInt(my.current_order.getValue().get("passenger_cost").toString());
@@ -76,11 +86,12 @@ public class Fragment_reys_request extends Fragment {
         TextView gruz = root.findViewById(R.id.gruz);
 
         people_count = root.findViewById(R.id.people);
-
+        System.out.println("a1a1a1");
         Button people_up = root.findViewById(R.id.people_up);
         people_up.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                System.out.println("xxa"+people_count.getText().toString());
                 if(!people_count.getText().toString().equals("0")){
                     people_count.setText((Integer.parseInt(people_count.getText().toString()) + 1) +"");
                     int a = Integer.parseInt(people_count.getText().toString());
@@ -91,6 +102,7 @@ public class Fragment_reys_request extends Fragment {
                 }
             }
         });
+        System.out.println("a2a2a2");
 
         Button gruz_up = root.findViewById(R.id.gruz_up);
         gruz_up.setOnClickListener(new View.OnClickListener() {
@@ -166,18 +178,21 @@ public class Fragment_reys_request extends Fragment {
                 user.put("avatar",my.avatar);
                 user.put("phone",my.phone);
                 user.put("peoples",people_count.getText().toString());
-                user.put("gruz",gruz.getText().toString();
+                user.put("gruz",gruz.getText().toString());
                 my.dborders.child(my.current_order.getKey()).child("passengers_request").child(my.id).setValue(user);
 
                 MainActivity.th.switch_fragment(new Fragment_zapros_ready());
 
             }
         });
-        Glide.with(root.getContext())
-                .load(my.gen_avatar(my.current_order.getValue().get("owner_avatar").toString()))
-                .error(R.drawable.ellipse_1)
-                .placeholder(R.drawable.ellipse_1)
-                .into((CircleImageView)root.findViewById(R.id.avatar));
+                if(my.current_order.getValue().get("owner_avatar")!=null){
+                    Glide.with(root.getContext())
+                            .load(my.gen_avatar(my.current_order.getValue().get("owner_avatar").toString()))
+                            .error(R.drawable.ellipse_1)
+                            .placeholder(R.drawable.ellipse_1)
+                            .into((CircleImageView)root.findViewById(R.id.avatar));
+
+                }
 
         return root;
     }

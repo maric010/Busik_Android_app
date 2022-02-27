@@ -192,7 +192,7 @@ static void fill_fragment(View root){
     TextView week_day_month = root.findViewById(R.id.week_day_month);
     System.out.println(my.current_order.getValue().get("stop_date").toString());
     String month = my.getMonths()[Integer.valueOf(my.current_order.getValue().get("start_date").toString().split("\\.")[1])-1];
-    week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)]+c.get(Calendar.DAY_OF_MONTH)+" "+month);
+    week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+c.get(Calendar.DAY_OF_MONTH-1)+" "+month);
     TextView description = root.findViewById(R.id.description);
     description.setText(my.current_order.getValue().get("description").toString());
     TextView start_country_city = root.findViewById(R.id.start_country_city);

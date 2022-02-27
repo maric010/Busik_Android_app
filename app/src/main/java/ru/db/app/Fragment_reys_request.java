@@ -29,13 +29,7 @@ public class Fragment_reys_request extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_reys_apply, container, false);
 
-        LinearLayout linearLayout = root.findViewById(R.id.linearLayout6);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                System.out.println("linearr");
-            }
-        });
+
 
         TextView reys_day_month = root.findViewById(R.id.reys_day_month);
 
@@ -91,15 +85,12 @@ public class Fragment_reys_request extends Fragment {
         people_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("xxa"+people_count.getText().toString());
-                if(!people_count.getText().toString().equals("0")){
                     people_count.setText((Integer.parseInt(people_count.getText().toString()) + 1) +"");
                     int a = Integer.parseInt(people_count.getText().toString());
                     people_itog.setText(a+" человека "+a*people_cost+" €");
                     int b = Integer.parseInt(gruz.getText().toString());
                     itog.setText("Итого: €"+((b*gruz_cost) + a*people_cost));
 
-                }
             }
         });
         System.out.println("a2a2a2");
@@ -108,13 +99,11 @@ public class Fragment_reys_request extends Fragment {
         gruz_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!gruz.getText().toString().equals("0")){
-                    gruz.setText((Integer.parseInt(gruz.getText().toString()) + 1) +"");
+                gruz.setText((Integer.parseInt(gruz.getText().toString()) + 1) +"");
                     int a = Integer.parseInt(people_count.getText().toString());
                     int b = Integer.parseInt(gruz.getText().toString());
                     itog.setText("Итого: €"+((b*gruz_cost) + a*people_cost));
 
-                }
             }
         });
 

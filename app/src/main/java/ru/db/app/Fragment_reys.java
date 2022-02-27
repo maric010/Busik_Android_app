@@ -35,17 +35,20 @@ public class Fragment_reys extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_reys, container, false);
         CircleImageView circleImageView = root.findViewById(R.id.avatar);
-        Glide.with(root.getContext())
-                .load(my.gen_avatar(my.current_order.get("owner_avatar").toString()))
-                .placeholder(R.drawable.ellipse_1)
-                .into(circleImageView);
+        if(my.current_order.getValue().get("owner_avatar")!=null){
+            Glide.with(root.getContext())
+                    .load(my.gen_avatar(my.current_order.getValue().get("owner_avatar").toString()))
+                    .placeholder(R.drawable.ellipse_1)
+                    .into(circleImageView);
+        }
 
-
+        my.fill_fragment(root);
+/*
         Calendar c = Calendar.getInstance();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            Date date = sdf.parse(my.current_order.get("start_date").toString().split(" ")[0]);
+            Date date = sdf.parse(my.current_order.getValue().get("start_date").toString().split(" ")[0]);
             c.setTime(date);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -55,34 +58,34 @@ public class Fragment_reys extends Fragment {
 
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            Date date = sdf2.parse(my.current_order.get("stop_date").toString().split(" ")[0]);
+            Date date = sdf2.parse(my.current_order.getValue().get("stop_date").toString().split(" ")[0]);
             c2.setTime(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         TextView week_day_month = root.findViewById(R.id.week_day_month);
-        String month = my.getMonths()[Integer.valueOf(my.current_order.get("start_date").toString().split("\\.")[1])-1];
+        String month = my.getMonths()[Integer.valueOf(my.current_order.getValue().get("start_date").toString().split("\\.")[1])-1];
         week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)]+c.get(Calendar.DAY_OF_MONTH)+" "+month);
         TextView description = root.findViewById(R.id.description);
-        description.setText(my.current_order.get("description").toString());
+        description.setText(my.current_order.getValue().get("description").toString());
         TextView start_country_city = root.findViewById(R.id.start_country_city);
-        start_country_city.setText(my.current_order.get("otkuda").toString());
+        start_country_city.setText(my.current_order.getValue().get("otkuda").toString());
         TextView stop_country_city  = root.findViewById(R.id.stop_country_city);
-        stop_country_city.setText(my.current_order.get("kuda").toString());
+        stop_country_city.setText(my.current_order.getValue().get("kuda").toString());
         TextView start_week_hour = root.findViewById(R.id.start_week_hour);
 
-        start_week_hour.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+" "+my.current_order.get("start_date").toString().split(" ")[1]);
+        start_week_hour.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+" "+my.current_order.getValue().get("start_date").toString().split(" ")[1]);
 
         TextView stop_week_hour = root.findViewById(R.id.stop_week_hour);
-        stop_week_hour.setText(my.get_week()[c2.get(Calendar.DAY_OF_WEEK)-1]+" "+my.current_order.get("stop_date").toString().split(" ")[1]);
+        stop_week_hour.setText(my.get_week()[c2.get(Calendar.DAY_OF_WEEK)-1]+" "+my.current_order.getValue().get("stop_date").toString().split(" ")[1]);
 
         TextView passenger_cost = root.findViewById(R.id.passenger_cost);
-        passenger_cost.setText(my.current_order.get("passenger_cost").toString());
+        passenger_cost.setText(my.current_order.getValue().get("passenger_cost").toString());
 
         TextView gruz_cost = root.findViewById(R.id.gruz_cost);
-        gruz_cost.setText(my.current_order.get("gruz_cost").toString());
-
+        gruz_cost.setText(my.current_order.getValue().get("gruz_cost").toString());
+*/
         return root;
     }
 }

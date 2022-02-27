@@ -1,35 +1,30 @@
 package ru.db.app;
 
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.LruCache;
+import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
-
-import static android.content.Context.MODE_PRIVATE;
-
-import androidx.annotation.NonNull;
+import java.util.Map;
 
 public class my {
-    public static HashMap current_order;
+    public static Map.Entry<String, HashMap> current_order;
     static SharedPreferences settings;
     static String name="",phone,email="",id,city,status,google_id,telegram_id,facebook_id;
     static float rate=0.0f;
@@ -43,6 +38,8 @@ public class my {
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
     static FirebaseDatabase database = FirebaseDatabase.getInstance();
     static DatabaseReference dborders = database.getReference("рейсы");
+
+    static DatabaseReference dbmessages = database.getReference("сообщения");
     static FirebaseStorage fm = FirebaseStorage.getInstance();
 
 
@@ -142,6 +139,25 @@ public class my {
 
         dborders.push().setValue(new_order);
     }
+    static void change_order(String otkuda,String kuda,String start_date,String stop_date,String description,
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
+        HashMap<String,Object> new_order=new HashMap<>();
+        new_order.put("otkuda",otkuda);
+        new_order.put("kuda",kuda);
+        new_order.put("start_date",start_date);
+        new_order.put("stop_date",stop_date);
+        new_order.put("description",description);
+        new_order.put("is_passenger",is_passenger);
+        new_order.put("passenger_cost",passenger_cost);
+        new_order.put("gruz_cost",gruz_cost);
+        new_order.put("is_gruz",is_gruz);
+        new_order.put("owner",my.id);
+        new_order.put("owner_rate",my.rate);
+        new_order.put("owner_name",my.name);
+        new_order.put("owner_avatar",my.avatar);
+        new_order.put("status","В ожидании");
+        dborders.child(current_order.getKey()).setValue(new_order);
+    }
 static String[] get_week(){
     return new String[]{"Вс.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.","Сб."};
 }
@@ -155,7 +171,43 @@ static String[] get_week(){
         return  "https://firebasestorage.googleapis.com/v0/b/test-535c2.appspot.com/o/avatars%2F"+iid+".jpg?alt=media";
     }
 
+static void fill_fragment(View root){
+    Calendar c = Calendar.getInstance();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+    try {
+        Date date = sdf.parse(my.current_order.getValue().get("start_date").toString().split(" ")[0]);
+        c.setTime(date);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    Calendar c2 = Calendar.getInstance();
+    SimpleDateFormat sdf2 = new SimpleDateFormat("dd.MM.yyyy");
+    try {
+        Date date = sdf2.parse(my.current_order.getValue().get("stop_date").toString().split(" ")[0]);
+        c2.setTime(date);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
 
+    TextView week_day_month = root.findViewById(R.id.week_day_month);
+    System.out.println(my.current_order.getValue().get("stop_date").toString());
+    String month = my.getMonths()[Integer.valueOf(my.current_order.getValue().get("start_date").toString().split("\\.")[1])-1];
+    week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)]+c.get(Calendar.DAY_OF_MONTH)+" "+month);
+    TextView description = root.findViewById(R.id.description);
+    description.setText(my.current_order.getValue().get("description").toString());
+    TextView start_country_city = root.findViewById(R.id.start_country_city);
+    start_country_city.setText(my.current_order.getValue().get("otkuda").toString());
+    TextView stop_country_city  = root.findViewById(R.id.stop_country_city);
+    stop_country_city.setText(my.current_order.getValue().get("kuda").toString());
+    TextView start_week_hour = root.findViewById(R.id.start_week_hour);
+    start_week_hour.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+" "+my.current_order.getValue().get("start_date").toString().split(" ")[1]);
+    TextView stop_week_hour = root.findViewById(R.id.stop_week_hour);
+    stop_week_hour.setText(my.get_week()[c2.get(Calendar.DAY_OF_WEEK)-1]+" "+my.current_order.getValue().get("stop_date").toString().split(" ")[1]);
+    TextView passenger_cost = root.findViewById(R.id.passenger_cost);
+    passenger_cost.setText(my.current_order.getValue().get("passenger_cost").toString());
+    TextView gruz_cost = root.findViewById(R.id.gruz_cost);
+    gruz_cost.setText(my.current_order.getValue().get("gruz_cost").toString());
+}
 
 }
 

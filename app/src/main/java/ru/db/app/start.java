@@ -55,13 +55,32 @@ public class start extends AppCompatActivity {
 
                 HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
                 my.Orders.put(dataSnapshot.getKey(),h);
+
+                Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
+                    @Override
+                    public String getKey() {
+                        return dataSnapshot.getKey();
+                    }
+
+                    @Override
+                    public HashMap getValue() {
+                        return h;
+                    }
+
+                    @Override
+                    public HashMap setValue(HashMap hashMap) {
+                        return null;
+                    }
+                };
+
                 if(Fragment_orders.root!=null){
-                    Fragment_orders.add_order(h);
+                    Fragment_orders.add_order(entry);
                 }
                 else if(Fragment_orders_carrier.root!=null){
                     if(h.get("owner").toString().equalsIgnoreCase(my.id))
-                        Fragment_orders_carrier.add_carrier_order(h);
+                        Fragment_orders_carrier.add_carrier_order(entry);
                 }
+
             }
 
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -92,6 +111,10 @@ public class start extends AppCompatActivity {
         my.dborders.addChildEventListener(childEventListener);
 
 
+
+
+
+
         //id = "gqxbnYBJI9mijfK1yOpA";
 
         if(!id.equalsIgnoreCase("")){
@@ -104,11 +127,13 @@ public class start extends AppCompatActivity {
                         if (document.exists()) {
                             Map<String, Object> doc = document.getData();
                             my.id = document.getId();
+
                             my.name = (String) doc.get("name");
                             my.city=(String)doc.get("city");
                             my.email= (String)doc.get("e-mail");
                             my.phone=(String)doc.get("phone");
-                            my.avatar=(String)doc.get("avatar");
+                            if(doc.get("avatar")!=null)
+                                my.avatar=doc.get("avatar").toString();
                             if(doc.get("is_carrier")!=null)
                             {
                                 if(((Boolean) doc.get("is_carrier")))

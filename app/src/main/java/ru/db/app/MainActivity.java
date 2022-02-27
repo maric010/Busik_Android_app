@@ -2,6 +2,7 @@ package ru.db.app;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -11,6 +12,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.LruCache;
@@ -61,6 +63,33 @@ public class MainActivity extends AppCompatActivity {
         else
             switch_fragment(new Fragment_orders_carrier());
 
+
+        ChildEventListener childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        my.dbmessages.child(my.id).addChildEventListener(childEventListener);
 
     }
     void switch_fragment(Fragment fragment){
@@ -119,8 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
-            HashMap h = entry.getValue();
-            Fragment_orders.add_order(h);
+            Fragment_orders.add_order(entry);
         }
     }
 
@@ -134,6 +162,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void change_order_onClick(View view) {
 
+        Intent intent = new Intent(MainActivity.this, edit_order.class);
+        startActivity(intent);
     }
 
     public void profile_edit(View view) {
@@ -146,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void set_image_onClick(View view) {
-        System.out.println("xxx");
         CropImage.activity().setAspectRatio(1,1).start(this);
     }
 
@@ -170,5 +199,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void back_to_cabinet(View view) {
         switch_fragment(new Fragment_cabinet());
+    }
+
+    public void apply(View view) {
+
     }
 }

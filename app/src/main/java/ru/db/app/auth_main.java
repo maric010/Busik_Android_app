@@ -81,6 +81,8 @@ my.id=user.getId();
                         my.name=user.get("name").toString();
                         my.phone=user.get("phone").toString();
                         my.city=user.get("city").toString();
+                        if(user.get("avatar")!=null)
+                            my.avatar=user.get("avatar").toString();
                         if(user.get("is_carrier")!=null)
                         {
                             if(((Boolean) user.get("is_carrier")))

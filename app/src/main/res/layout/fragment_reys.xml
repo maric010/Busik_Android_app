@@ -214,6 +214,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/button_1"
         android:textColor="@color/white"
+        android:onClick="apply"
         android:text="Подать заявку"
         android:textSize="16sp"
         android:textStyle="bold"

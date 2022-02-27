@@ -58,38 +58,40 @@ public class MainActivity extends AppCompatActivity {
 
 
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-        if(my.status.equalsIgnoreCase("Пасажир"))
-            switch_fragment(new Fragment_orders());
-        else
+        if(my.status.equalsIgnoreCase("Перевозчик"))
             switch_fragment(new Fragment_orders_carrier());
+        else if(my.status.equalsIgnoreCase("Пасажир") || my.status.equalsIgnoreCase("Гость"))
+            switch_fragment(new Fragment_orders());
 
+        if(my.status.equals("Перевозчик") || my.status.equals("Пасажир")){
+            ChildEventListener childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
 
-        ChildEventListener childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                }
 
-            }
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                }
 
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-            }
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            };
+            my.dbmessages.child(my.id).addChildEventListener(childEventListener);
 
-            }
-        };
-        my.dbmessages.child(my.id).addChildEventListener(childEventListener);
+        }
 
     }
     void switch_fragment(Fragment fragment){
@@ -99,11 +101,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragment_message_onClick(View view) {
-        switch_fragment(new Fragment_message());
+        if(my.status.equals("Гость"))
+            switch_fragment(new Fragment_messages_guest());
+        else
+            switch_fragment(new Fragment_message());
     }
 
     public void fragment_orders_onClick(View view) {
-        if(my.status.equalsIgnoreCase("Пасажир"))
+        if(my.status.equalsIgnoreCase("Пасажир") || my.status.equals("Гость"))
             switch_fragment(new Fragment_orders());
         else
             switch_fragment(new Fragment_orders_carrier());
@@ -131,7 +136,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cabinet_onClick(View view) {
-        switch_fragment(new Fragment_cabinet());
+        if(my.status.equals("Гость"))
+            switch_fragment(new Fragment_cabinet_guest());
+        else
+            switch_fragment(new Fragment_cabinet());
     }
 
     public void my(View view) {
@@ -206,5 +214,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void finish(View view) {
+        finish();
+    }
+
+    public void back_to_order(View view) {
+        switch_fragment(new Fragment_reys());
     }
 }

@@ -250,5 +250,10 @@ void fb(){
     }
 
 
+    public void guest(View view) {
+        my.status="Гость";
+        Intent intent = new Intent(auth.this, MainActivity.class);
+        startActivity(intent);
 
+    }
 }

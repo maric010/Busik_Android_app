@@ -202,6 +202,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void apply(View view) {
+        switch_fragment(new Fragment_reys_request());
+
+
 
     }
 }

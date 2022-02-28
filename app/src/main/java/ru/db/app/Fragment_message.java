@@ -32,12 +32,12 @@ public class Fragment_message extends Fragment {
         root = inflater.inflate(R.layout.fragment_message, container, false);
         scrollView = root.findViewById(R.id.scrollView);
         for(Map.Entry<String, HashMap> entry : my.Messages.entrySet()) {
-            add_order(entry);
+            new_passenger(entry);
         }
 
         return root;
     }
-    static void add_order(Map.Entry<String, HashMap> entry){
+    static void new_passenger(Map.Entry<String, HashMap> entry){
 
 
 
@@ -50,11 +50,37 @@ public class Fragment_message extends Fragment {
         gl.setLayoutParams(gllayoutParams);
 
         gl.setBackgroundResource(R.drawable.border);
-  /*
-        gl.setOnClickListener(new View.OnClickListener() {
+        TextView title = new TextView(root.getContext());
+        LinearLayout.LayoutParams titlep = new LinearLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        titlep.setMargins(30,20,30,0);
+        title.setText(h.get("title").toString());
+        title.setTextSize(18);
+        title.setTextColor(Color.BLACK);
+        title.setTypeface(null, Typeface.BOLD);
+        title.setLayoutParams(titlep);
+        gl.addView(title);
+
+        title = new TextView(root.getContext());
+        title.setText(h.get("text").toString());
+        title.setTextSize(18);
+        title.setTextColor(Color.DKGRAY);
+        title.setLayoutParams(titlep);
+        gl.addView(title);
+
+        Button button = new Button(root.getContext());
+        LinearLayout.LayoutParams buttonp = new LinearLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        buttonp.setMargins(30,20,30,20);
+        button.setTextSize(15f);
+        button.setText("К рейсу");
+        button.setLayoutParams(buttonp);
+        button.setAllCaps(false);
+        button.setBackgroundResource(R.drawable.button_1);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.th.switch_fragment(new Fragment_reys());
+                MainActivity.th.switch_fragment(new Fragment_reys_carrier());
 
                 Map.Entry<String, HashMap> entry2 = new Map.Entry<String, HashMap>() {
                     @Override
@@ -77,39 +103,7 @@ public class Fragment_message extends Fragment {
 
             }
         });
-*/
-
-
-
-
-
-        TextView title = new TextView(root.getContext());
-        LinearLayout.LayoutParams titlep = new LinearLayout.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        titlep.setMargins(20,20,20,0);
-        title.setText(h.get("title").toString());
-        title.setTextSize(18);
-        title.setTextColor(Color.BLACK);
-        title.setTypeface(null, Typeface.BOLD);
-        title.setLayoutParams(titlep);
-        gl.addView(title);
-
-        title = new TextView(root.getContext());
-        title.setText(h.get("text").toString());
-        title.setTextSize(18);
-        title.setTextColor(Color.DKGRAY);
-        title.setLayoutParams(titlep);
-        gl.addView(title);
-
-        Button button = new Button(root.getContext());
-        LinearLayout.LayoutParams buttonp = new LinearLayout.LayoutParams
-                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        buttonp.setMargins(20,20,20,20);
-
-        button.setText("К рейсу");
-
-        button.setBackgroundResource(R.drawable.button_1);
-
+        gl.addView(button);
         scrollView.addView(gl);
 
 

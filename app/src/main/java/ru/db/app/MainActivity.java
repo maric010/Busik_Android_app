@@ -226,6 +226,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void back_to_order(View view) {
-        switch_fragment(new Fragment_reys());
+        if(my.status.equals("Пасажир"))
+            switch_fragment(new Fragment_reys());
+        if(my.status.equals("Перевозчик"))
+            switch_fragment(new Fragment_reys_carrier());
+    }
+
+    public void reys_passengers_onClick(View view) {
+        switch_fragment(new Fragment_reys_passengers());
     }
 }

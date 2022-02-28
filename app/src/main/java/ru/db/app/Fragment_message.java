@@ -2,6 +2,7 @@ package ru.db.app;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,22 +36,27 @@ public class Fragment_message extends Fragment {
         for(Map.Entry<String, HashMap> entry : my.Messages.entrySet()) {
             new_passenger(entry);
         }
-
         return root;
     }
     static void new_passenger(Map.Entry<String, HashMap> entry){
-
-
-
         HashMap h = entry.getValue();
         LinearLayout gl = new LinearLayout(root.getContext());
         gl.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams gllayoutParams = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        gllayoutParams.setMargins(30,15,30,15);
+        gllayoutParams.setMargins(30,35,30,15);
         gl.setLayoutParams(gllayoutParams);
 
         gl.setBackgroundResource(R.drawable.border);
+
+        LinearLayout tx = new LinearLayout(root.getContext());
+        tx.setOrientation(LinearLayout.HORIZONTAL);
+        LinearLayout.LayoutParams txp = new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        txp.setMargins(0,0,0,0);
+        tx.setLayoutParams(txp);
+
+
         TextView title = new TextView(root.getContext());
         LinearLayout.LayoutParams titlep = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -59,7 +66,31 @@ public class Fragment_message extends Fragment {
         title.setTextColor(Color.BLACK);
         title.setTypeface(null, Typeface.BOLD);
         title.setLayoutParams(titlep);
-        gl.addView(title);
+        tx.addView(title);
+
+        LinearLayout lx = new LinearLayout(root.getContext());
+        lx.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams lxp = new LinearLayout.LayoutParams
+                (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        lx.setLayoutParams(lxp);
+
+        ImageView x = new ImageView(root.getContext());
+        LinearLayout.LayoutParams xp = new LinearLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        xp.gravity = Gravity.RIGHT;
+        xp.setMargins(0,0,20,0);
+        x.setLayoutParams(xp);
+        x.setImageResource(R.drawable.ic_vector_12);
+        x.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scrollView.removeView(gl);
+            }
+        });
+        lx.addView(x);
+
+tx.addView(lx);
+gl.addView(tx);
 
         title = new TextView(root.getContext());
         title.setText(h.get("text").toString());
@@ -74,6 +105,7 @@ public class Fragment_message extends Fragment {
         buttonp.setMargins(30,20,30,20);
         button.setTextSize(15f);
         button.setText("К рейсу");
+        button.setTextColor(Color.WHITE);
         button.setLayoutParams(buttonp);
         button.setAllCaps(false);
         button.setBackgroundResource(R.drawable.button_1);
@@ -105,9 +137,5 @@ public class Fragment_message extends Fragment {
         });
         gl.addView(button);
         scrollView.addView(gl);
-
-
-
-
     }
 }

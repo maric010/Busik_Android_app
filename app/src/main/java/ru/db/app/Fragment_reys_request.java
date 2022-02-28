@@ -164,10 +164,10 @@ public class Fragment_reys_request extends Fragment {
                 HashMap<String,Object> user=new HashMap<>();
 
                 user.put("name",my.name);
-                user.put("avatar",my.avatar);
                 user.put("phone",my.phone);
                 user.put("peoples",people_count.getText().toString());
                 user.put("gruz",gruz.getText().toString());
+                user.put("avatar",my.avatar);
                 my.dborders.child(my.current_order.getKey()).child("passengers_request").child(my.id).setValue(user);
 
                 MainActivity.th.switch_fragment(new Fragment_zapros_ready());

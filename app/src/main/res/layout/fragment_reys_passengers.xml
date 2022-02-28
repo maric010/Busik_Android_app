@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/vector_3"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:onClick="back_to_order"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@color/white"
+        android:text="  К рейсу"
+        android:textAppearance="@style/some_id"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/some_id" >
+
+
+
+        <TextView
+            android:id="@+id/week_day_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Пн 13 декабря"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="end">
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
+        android:background="@drawable/border"
+        android:text="    В ожидании    "
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+</LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+
+        <TextView
+            android:id="@+id/accepted_passengers_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Подтверждено мест: 3 человека"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/accepted_gruz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Подтверждено груза: 5 кг"
+            android:textColor="#000000"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/request_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Запросы (1)"
+                android:layout_gravity="center"
+                android:textColor="#000000"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/scrollView_request"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/accepted_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:text="Подтвержденные (1)"
+                android:textColor="#000000"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:id="@+id/scrollView_accept"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

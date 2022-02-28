@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             };
-            my.dbmessages.child(my.id).addChildEventListener(childEventListener);
+            //my.dbmessages.child(my.id).addChildEventListener(childEventListener);
 
         }
 

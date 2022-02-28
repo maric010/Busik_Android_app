@@ -84,7 +84,9 @@ public class Fragment_message extends Fragment {
         x.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                my.dbmessages.child(my.id).child(entry.getKey()).removeValue();
                 scrollView.removeView(gl);
+
             }
         });
         lx.addView(x);

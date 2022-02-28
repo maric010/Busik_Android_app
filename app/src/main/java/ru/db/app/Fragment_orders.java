@@ -3,6 +3,9 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -150,6 +153,7 @@ odate="";
 
         start_date_textview.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+" "+h.get("start_date").toString().split(" ")[1]);
         start_date_textview.setTextSize(18);
+        start_date_textview.setTextColor(Color.WHITE);
         start_date_textview.setLayoutParams(starttextviewparams);
         linearLayout2.addView(start_date_textview);
 
@@ -158,6 +162,7 @@ odate="";
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         stop_date_textview.setText(my.get_week()[c2.get(Calendar.DAY_OF_WEEK)-1]+" "+h.get("stop_date").toString().split(" ")[1]);
         stop_date_textview.setTextSize(18);
+        stop_date_textview.setTextColor(Color.WHITE);
         stop_date_textview.setLayoutParams(stoptextviewparams);
         linearLayout2.addView(stop_date_textview);
 
@@ -182,6 +187,7 @@ odate="";
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         starttextviewparams.setMargins(0,0,0,3);
         start_adress_textview.setText(h.get("otkuda").toString());
+        start_adress_textview.setTextColor(Color.WHITE);
         start_adress_textview.setTextSize(18);
         start_adress_textview.setLayoutParams(startparams);
         linearLayout3.addView(start_adress_textview);
@@ -191,6 +197,7 @@ odate="";
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         stop_adress_textview.setText(h.get("kuda").toString());
         stop_adress_textview.setTextSize(18);
+        stop_adress_textview.setTextColor(Color.WHITE);
         stop_adress_textview.setLayoutParams(stopparams);
         linearLayout3.addView(stop_adress_textview);
 
@@ -207,7 +214,7 @@ odate="";
         arrowp = new LinearLayout.LayoutParams
                 (50, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(20,0,5,0);
-        arrow.setImageResource(R.drawable.people);
+        arrow.setImageResource(R.drawable.ic_user_svgrepo_com);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
 
@@ -216,6 +223,7 @@ odate="";
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         summa.setText("€ "+h.get("passenger_cost").toString()+" ");
         summa.setTextSize(24);
+        summa.setTextColor(Color.WHITE);
         summa.setTypeface(null, Typeface.BOLD);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
@@ -223,24 +231,27 @@ odate="";
         summa = new TextView(root.getContext());
         summa.setText("/ чел");
         summa.setTextSize(22);
+        summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
 
         arrow = new ImageView(root.getContext());
         arrowp.setMargins(25,0,5,0);
-        arrow.setImageResource(R.drawable.suitcase);
+        arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
 
         summa = new TextView(root.getContext());
         summa.setText("€ "+h.get("gruz_cost").toString()+" ");
         summa.setTextSize(24);
+        summa.setTextColor(Color.WHITE);
         summa.setTypeface(null, Typeface.BOLD);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
 
         summa = new TextView(root.getContext());
         summa.setText("/ кг");
+        summa.setTextColor(Color.WHITE);
         summa.setTextSize(22);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
@@ -262,13 +273,24 @@ odate="";
                 (80, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(20,0,10,0);
         avatar.setLayoutParams(arrowp);
+
+        avatar.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         linearLayout1.addView(avatar);
+
+
+        Drawable color = new ColorDrawable(Color.WHITE);
+        Drawable image = MainActivity.th.getResources().getDrawable(R.drawable.ic_user_121);
+
+        LayerDrawable ld = new LayerDrawable(new Drawable[]{color, image});
+
+
         if(h.get("owner_avatar")!=null){
             Glide.with(root.getContext())
                     .load(my.gen_avatar(h.get("owner_avatar").toString()))
-                    .placeholder(R.drawable.ellipse_2)
+                    .placeholder(R.drawable.ic_user_121)
                     .into(avatar);
-        }
+        }else avatar.setImageDrawable(ld);
+
 
 
         linearLayout2 = new LinearLayout(root.getContext());
@@ -280,6 +302,7 @@ odate="";
         summa = new TextView(root.getContext());
         summa.setText(h.get("owner_name").toString());
         summa.setTextSize(22);
+        summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout2.addView(summa);
 
@@ -292,13 +315,14 @@ odate="";
         arrowp = new LinearLayout.LayoutParams
                 (20, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(0,0,5,0);
-        arrow.setImageResource(R.drawable.star);
+        arrow.setImageResource(R.drawable.ic_star_svgrepo_com__1_);
         arrow.setLayoutParams(arrowp);
         linearLayout3.addView(arrow);
 
         summa = new TextView(root.getContext());
         summa.setText(h.get("owner_rate").toString());
         summa.setTextSize(20);
+        summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout3.addView(summa);
 
@@ -316,7 +340,8 @@ odate="";
         summa = new TextView(root.getContext());
         summa.setText("   "+h.get("status").toString()+"   ");
         summa.setTextSize(18);
-        summa.setBackgroundResource(R.drawable.border2);
+        summa.setTextColor(Color.BLACK);
+        summa.setBackgroundResource(R.drawable.status_border);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         summap.setMargins(0,45,40,10);
         summap.gravity = Gravity.END;
@@ -327,7 +352,7 @@ odate="";
         linearLayout1.addView(linearLayout3);
 
 
-        gl.setBackgroundResource(R.drawable.border);
+        gl.setBackgroundResource(R.drawable.border_for_reys);
         gl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

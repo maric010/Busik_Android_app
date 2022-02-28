@@ -343,7 +343,13 @@ public class Fragment_reys_passengers extends Fragment {
         button.setAllCaps(false);
         button.setTextSize(15f);
         button.setLayoutParams(buttonp);
-
+button.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        my.dborders.child(my.current_order.getKey()).child("passengers_accepted").child(entry.getKey()).removeValue();
+        scrollView_accept.removeView(gl);
+    }
+});
         v.addView(button);
 
 

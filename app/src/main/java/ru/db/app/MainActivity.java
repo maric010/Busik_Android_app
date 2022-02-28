@@ -67,7 +67,12 @@ public class MainActivity extends AppCompatActivity {
             ChildEventListener childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
-
+                    HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
+                    System.out.println(doc.get("title"));
+                    System.out.println(doc.get("text"));
+                    System.out.println(doc.get("order"));
+                    System.out.println(dataSnapshot.getKey());
+                    my.Messages.put(dataSnapshot.getKey(),doc);
                 }
 
                 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -89,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             };
-            //my.dbmessages.child(my.id).addChildEventListener(childEventListener);
+            my.dbmessages.child(my.id).addChildEventListener(childEventListener);
 
         }
 

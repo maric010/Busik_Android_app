@@ -44,6 +44,7 @@ public class my {
 
 
     static HashMap<String, HashMap> Orders = new HashMap<String, HashMap>();
+    static HashMap<String, HashMap> Messages = new HashMap<String, HashMap>();
 
     private static String convertToHex(byte[] data) {
         StringBuilder buf = new StringBuilder();

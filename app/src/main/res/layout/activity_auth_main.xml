@@ -285,37 +285,46 @@
             android:background="@drawable/rectangle_4" />
     </LinearLayout>
 
-    <View
+    <TextView
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="12dp"
-        android:background="#c4c4c4"
+        android:background="@drawable/social"
+        android:text="F"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal|center_vertical"
         app:layout_constraintEnd_toStartOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.793"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"></View>
+        app:layout_constraintTop_toBottomOf="@+id/textView3"></TextView>
 
-    <View
+    <TextView
         android:id="@+id/view"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="12dp"
-        android:background="#c4c4c4"
+        android:text="TG"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/social"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.667"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"></View>
+        app:layout_constraintTop_toBottomOf="@+id/textView3"></TextView>
 
-    <View
+    <TextView
         android:id="@+id/view2"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="12dp"
-        android:background="#c4c4c4"
+        android:text="G"
+        android:textColor="@color/white"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/social"
         app:layout_constraintEnd_toStartOf="@+id/view"
         app:layout_constraintHorizontal_bias="0.879"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"></View>
+        app:layout_constraintTop_toBottomOf="@+id/textView3"></TextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

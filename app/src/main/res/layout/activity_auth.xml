@@ -6,24 +6,38 @@
     android:layout_height="match_parent"
     android:background="#E5E5E5"
     tools:context=".auth">
-<View
-    android:id="@+id/ellipse_7"
-    android:layout_width="80dp"
-    android:layout_height="80dp"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginTop="120dp"
-    android:background="@drawable/ic_logo"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.382"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/ellipse_7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/main_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/ellipse_7"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/ic_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 <TextView
     android:id="@+id/busik"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="145dp"
+    android:layout_marginLeft="10dp"
     android:textSize="26dp"
     android:gravity="top"
     android:text="@string/busik"
@@ -113,9 +127,9 @@
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/border_2"
         android:onClick="auth_google_onClick"
-        android:text="G"
+        android:text="Google"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"

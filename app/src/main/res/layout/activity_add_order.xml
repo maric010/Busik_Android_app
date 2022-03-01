@@ -113,7 +113,7 @@
                 android:background="@drawable/rectangle_3">
                 <TextView
                     android:id="@+id/new_order_start_date"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -152,7 +152,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/border2">
+                android:background="@drawable/rectangle_3">
 
                 <EditText
                     android:id="@+id/new_order_description"
@@ -239,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/button_1"
+                android:background="@drawable/button_2"
                 android:text="Создать"
                 android:onClick="create_order"
                 android:layout_marginBottom="40dp"

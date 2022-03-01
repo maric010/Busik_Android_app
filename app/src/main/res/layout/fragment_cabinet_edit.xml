@@ -68,7 +68,7 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:onClick="set_image_onClick"
-                android:src="@drawable/ellipse_1"
+                android:src="@drawable/main_logo"
                 android:layout_marginTop="5dp" />
 
             <FrameLayout
@@ -175,7 +175,7 @@
                 android:layout_width="300dp"
                 android:layout_height="47dp"
                 android:layout_gravity="center"
-                android:background="@drawable/button_1"
+                android:background="@drawable/button_2"
                 android:textColor="@color/white"
                 android:text="Сохранить"
                 android:textAllCaps="false"
@@ -307,7 +307,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginRight="30dp"
-                            android:background="@drawable/border"
+                            android:background="@drawable/border_2"
                             android:text="    Привязать    "
                             android:textColor="@color/black"
                             android:textSize="18dp" />
@@ -346,7 +346,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="end"
                             android:layout_marginRight="30dp"
-                            android:background="@drawable/border"
+                            android:background="@drawable/border_2"
                             android:text="    Отвязать    "
                             android:textColor="@color/black"
                             android:textSize="18dp" />

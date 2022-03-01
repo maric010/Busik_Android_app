@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/border"
+        android:background="@drawable/button_2"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +74,7 @@
                     android:layout_marginBottom="20dp"
                     android:onClick="change_order_onClick"
                     android:text="К рейсу"
-                    android:background="@drawable/button_1"
+                    android:background="@drawable/border_2"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="15sp" />

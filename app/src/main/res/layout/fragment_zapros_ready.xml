@@ -45,7 +45,7 @@
             android:layout_width="96dp"
             android:layout_height="84dp"
             android:layout_gravity="center"
-            android:src="@drawable/ellipse_3" />
+            android:src="@drawable/main_logo" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/button_1"
+                android:background="@drawable/button_2"
                 android:text="На главную"
                 android:onClick="back_to_order"
                 android:textColor="@color/white"

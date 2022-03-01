@@ -212,7 +212,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/button_1"
+        android:background="@drawable/button_2"
         android:textColor="@color/white"
         android:onClick="apply"
         android:text="Подать заявку"
@@ -249,7 +249,7 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ellipse_3"
+            android:src="@drawable/main_logo"
             tools:ignore="VectorDrawableCompat" />
 
         <LinearLayout

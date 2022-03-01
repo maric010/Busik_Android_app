@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
@@ -134,7 +133,7 @@ public class Fragment_reys_passengers extends Fragment {
         LinearLayout.LayoutParams buttonp = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonp.gravity = Gravity.RIGHT;
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("\uD83D\uDCDE");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);
@@ -179,7 +178,7 @@ public class Fragment_reys_passengers extends Fragment {
         buttonp = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonp.setMargins(0,10,0,0);
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("Принять");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);
@@ -222,7 +221,7 @@ public class Fragment_reys_passengers extends Fragment {
         buttonp = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonp.setMargins(15,10,0,0);
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("Отклонить");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);
@@ -238,7 +237,7 @@ public class Fragment_reys_passengers extends Fragment {
         v.addView(button);
 
         button = new Button(root.getContext());
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("Отзывы");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);
@@ -315,7 +314,7 @@ public class Fragment_reys_passengers extends Fragment {
         LinearLayout.LayoutParams buttonp = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonp.gravity = Gravity.RIGHT;
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("\uD83D\uDCDE");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);
@@ -360,7 +359,7 @@ public class Fragment_reys_passengers extends Fragment {
         buttonp = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonp.setMargins(0,10,20,0);
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("Удалить");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);
@@ -377,7 +376,7 @@ button.setOnClickListener(new View.OnClickListener() {
 
 
         button = new Button(root.getContext());
-        button.setBackgroundResource(R.drawable.button_1);
+        button.setBackgroundResource(R.drawable.button_2);
         button.setText("Отзывы");
         button.setTextColor(Color.WHITE);
         button.setAllCaps(false);

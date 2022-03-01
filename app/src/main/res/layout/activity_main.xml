@@ -28,95 +28,101 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/menu_color"
         android:layout_gravity="center"
+        android:background="@drawable/down"
         android:gravity="center"
         android:orientation="horizontal">
-<LinearLayout
-    android:onClick="fragment_orders_onClick"
-    android:layout_width="wrap_content"
-    android:layout_weight="1"
-    android:layout_marginLeft="20dp"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
-    <FrameLayout
-        android:layout_width="35dp"
-        android:background="@drawable/border3"
-        android:layout_height="35dp">
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_list_svgrepo_com"
-        />
-    </FrameLayout>
-    <TextView
-        android:id="@+id/some_id"
-        android:layout_width="36dp"
-        android:layout_height="14dp"
-        android:textColor="@color/white"
-        android:text="@string/some_id"
-        android:textAppearance="@style/some_id"
-        android:gravity="top"
-        />
-</LinearLayout>
-<LinearLayout
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_marginLeft="40dp"
-    android:onClick="fragment_message_onClick"
+            android:onClick="fragment_orders_onClick"
             android:orientation="vertical">
-    <FrameLayout
-        android:layout_width="35dp"
-        android:background="@drawable/border3"
-        android:layout_height="35dp">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_message_svgrepo_com"
-            />
-    </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/border3">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_list_svgrepo_com" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/some_id"
+                android:layout_width="36dp"
+                android:layout_height="14dp"
+                android:gravity="top"
+                android:text="@string/some_id"
+                android:textAppearance="@style/some_id"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="fragment_message_onClick"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/border3">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_message_svgrepo_com" />
+            </FrameLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
-                android:textColor="@color/white"
+                android:gravity="top"
                 android:text="сообщения"
                 android:textAppearance="@style/some_id"
-                android:gravity="top"
-                />
+                android:textColor="@color/white" />
         </LinearLayout>
-<LinearLayout
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:onClick="cabinet_onClick"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:onClick="cabinet_onClick"
             android:orientation="vertical">
-    <FrameLayout
-        android:layout_width="35dp"
-        android:background="@drawable/border3"
-        android:layout_height="35dp">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_user"
-            />
-    </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/border3">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_user" />
+            </FrameLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="14dp"
-                android:textColor="@color/white"
+                android:gravity="top"
                 android:text="кабинет"
                 android:textAppearance="@style/some_id"
-                android:gravity="top"
-                />
+                android:textColor="@color/white" />
         </LinearLayout>
 
 

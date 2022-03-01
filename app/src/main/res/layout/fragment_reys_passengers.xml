@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_gravity="right"
-        android:background="@drawable/border"
+        android:background="@drawable/border_2"
         android:text="    В ожидании    "
         android:textColor="@color/black"
         android:textSize="16dp" />

@@ -56,6 +56,10 @@ public class start extends AppCompatActivity {
                 HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
                 my.Orders.put(dataSnapshot.getKey(),h);
 
+
+
+
+
                 Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
                     @Override
                     public String getKey() {
@@ -72,7 +76,7 @@ public class start extends AppCompatActivity {
                         return null;
                     }
                 };
-
+                my.sort_orders();
                 if(Fragment_orders.root!=null){
                     Fragment_orders.add_order(entry);
                 }

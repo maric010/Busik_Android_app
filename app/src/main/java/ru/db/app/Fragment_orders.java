@@ -143,7 +143,7 @@ odate="";
         linearLayout2.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams l2params = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        l2params.setMargins(20,15,0,0);
+        l2params.setMargins(50,35,0,40);
         linearLayout2.setLayoutParams(l2params);
 
         TextView start_date_textview = new TextView(root.getContext());
@@ -170,8 +170,9 @@ odate="";
 
         ImageView arrow = new ImageView(root.getContext());
         LinearLayout.LayoutParams arrowp = new LinearLayout.LayoutParams
-                (80, 120);
-        arrow.setImageResource(R.drawable.strelka2);
+                (90, 160);
+        arrowp.setMargins(0,0,0,0);
+        arrow.setImageResource(R.drawable.ic_strelka);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
 
@@ -179,7 +180,7 @@ odate="";
         linearLayout3.setOrientation(LinearLayout.VERTICAL);
         LinearLayout.LayoutParams l3params = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        l3params.setMargins(5,15,0,0);
+        l3params.setMargins(5,35,0,0);
         linearLayout3.setLayoutParams(l3params);
 
         TextView start_adress_textview = new TextView(root.getContext());
@@ -208,6 +209,7 @@ odate="";
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
         l1params = new LinearLayout.LayoutParams
                 (LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        l1params.setMargins(20,0,0,0);
         linearLayout1.setLayoutParams(l1params);
 
         arrow = new ImageView(root.getContext());
@@ -263,7 +265,7 @@ odate="";
         linearLayout1 = new LinearLayout(root.getContext());
         linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
         l1params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
+        l1params.setMargins(20,30,0,30);
         linearLayout1.setLayoutParams(l1params);
 
         gl.addView(linearLayout1);
@@ -340,7 +342,7 @@ odate="";
         summa = new TextView(root.getContext());
         summa.setText("   "+h.get("status").toString()+"   ");
         summa.setTextSize(18);
-        summa.setTextColor(Color.BLACK);
+        summa.setTextColor(Color.WHITE);
         summa.setBackgroundResource(R.drawable.status_border);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         summap.setMargins(0,45,40,10);

@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class my {
@@ -43,7 +44,7 @@ public class my {
     static FirebaseStorage fm = FirebaseStorage.getInstance();
 
 
-    static HashMap<String, HashMap> Orders = new HashMap<String, HashMap>();
+    static LinkedHashMap<String, HashMap> Orders = new LinkedHashMap<String, HashMap>();
     static HashMap<String, HashMap> Messages = new HashMap<String, HashMap>();
 
     private static String convertToHex(byte[] data) {
@@ -209,6 +210,40 @@ static void fill_fragment(View root){
     TextView gruz_cost = root.findViewById(R.id.gruz_cost);
     gruz_cost.setText(my.current_order.getValue().get("gruz_cost").toString());
 }
+static void sort_orders(){
+        LinkedHashMap<String, HashMap> sorted_Orders = new LinkedHashMap<>();
+        int a = my.Orders.keySet().size();
+        System.out.println("sizze "+a);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        for(int i=0;i<a;i++) {
+            Date max_date = null;
+            String max_date_key=null;
+            HashMap max_date_value = null;
+            for (Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+                try {
+                    Date date = sdf.parse(entry.getValue().get("start_date").toString().split(" ")[0]);
+                    if (max_date == null)
+                    {
+                        max_date = date;
+                        max_date_key=entry.getKey();
+                        max_date_value=entry.getValue();
+                    }
+                    else if (max_date.getTime() > date.getTime())
+                    {
+                        max_date = date;
+                        max_date_key=entry.getKey();
+                        max_date_value=entry.getValue();
+                    }
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            sorted_Orders.put(max_date_key,max_date_value);
+            my.Orders.remove(max_date_key);
+        }
+        my.Orders=sorted_Orders;
+    }
 
 }
 

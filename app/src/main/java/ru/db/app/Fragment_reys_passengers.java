@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -186,10 +188,31 @@ public class Fragment_reys_passengers extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                my.dborders.child(my.current_order.getKey()).child("passengers_accepted").child(entry.getKey()).setValue(entry.getValue());
+                DatabaseReference field1 = my.dborders.child(my.current_order.getKey()).child("passengers_accepted");
+                DatabaseReference field2 = field1.child(entry.getKey());
+                field2.setValue(entry.getValue());
                 my.dborders.child(my.current_order.getKey()).child("passengers_request").child(entry.getKey()).removeValue();
                 scrollView_request.removeView(gl);
                 add_accepted(entry);
+
+                String start_date = my.current_order.getValue().get("start_date").toString().split(" ")[0];
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+                try {
+                    Date date = sdf.parse(start_date);
+                    c.setTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                String[] split = start_date.split("\\.");
+                HashMap<String,Object> new_message=new HashMap<>();
+                new_message.put("title","Вы приняты");
+                new_message.put("text","На рейсе "+my.current_order.getValue().get("otkuda")+" -> "
+                        +my.current_order.getValue().get("kuda")+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
+                new_message.put("order",my.current_order.getKey());
+                my.dbmessages.child(entry.getKey()).push().setValue(new_message);
+
             }
         });
 

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -160,7 +161,6 @@ public class Fragment_reys_request extends Fragment {
                 my.dbmessages.child(my.current_order.getValue().get("owner").toString()).push().setValue(new_message);
                 //Сообщение end
 
-
                 HashMap<String,Object> user=new HashMap<>();
 
                 user.put("name",my.name);
@@ -168,8 +168,9 @@ public class Fragment_reys_request extends Fragment {
                 user.put("peoples",people_count.getText().toString());
                 user.put("gruz",gruz.getText().toString());
                 user.put("avatar",my.avatar);
-                my.dborders.child(my.current_order.getKey()).child("passengers_request").child(my.id).setValue(user);
-
+                DatabaseReference field = my.dborders.child(my.current_order.getKey()).child("passengers_request");
+                DatabaseReference field2 = field.child(my.id);
+                field2.setValue(user);
                 MainActivity.th.switch_fragment(new Fragment_zapros_ready());
 
             }

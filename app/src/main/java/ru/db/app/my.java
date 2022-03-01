@@ -4,8 +4,8 @@ import android.content.SharedPreferences;
 import android.widget.TextView;
 
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class my {
+    static ChildEventListener Messages_Listener;
     public static Map.Entry<String, HashMap> current_order;
     static SharedPreferences settings;
     static String name="",phone,email="",id,city,status,google_id,telegram_id,facebook_id;
@@ -118,6 +119,40 @@ public class my {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+    }
+    static void finish_order(){
+        DocumentReference order = my.db.collection("orders").document(current_order.getKey());
+        order.set(current_order.getValue());
+        my.dborders.child(current_order.getKey()).removeValue();
+
+        String start_date = my.current_order.getValue().get("start_date").toString().split(" ")[0];
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf.parse(start_date);
+            c.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String[] split = start_date.split("\\.");
+        HashMap<String,Object> new_message=new HashMap<>();
+        new_message.put("title","Рейс завершен");
+        new_message.put("text","Поставьте оценку вашему недавнему рейсу\n"+my.current_order.getValue().get("otkuda")+" -> "
+                +my.current_order.getValue().get("kuda")+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
+        new_message.put("rate",my.current_order.getValue().get("owner"));
+
+        if(my.current_order.getValue().get("passengers_accepted")!=null){
+            HashMap<String, Object> v = (HashMap<String, Object>) (my.current_order.getValue().get("passengers_accepted"));
+
+            for(String k : v.keySet()) {
+                my.dbmessages.child(k).push().setValue(new_message);
+            }
+        }
+
+
+
+
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
                           String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
@@ -244,6 +279,22 @@ static void sort_orders(){
         }
         my.Orders=sorted_Orders;
     }
+    static void logout(){
+        DatabaseReference field = my.dbmessages.child(my.id);
+        field.removeEventListener(my.Messages_Listener);
+        Messages.clear();
+        final String PREF_id = "id";
+        SharedPreferences.Editor prefEditor = settings.edit();
+        prefEditor.putString(PREF_id,"");
+        prefEditor.apply();
+        my.id="";
+        my.name="";
+        my.phone="";
+        my.city="";
+        my.status="";
+
+    }
+
 
 }
 

@@ -168,11 +168,8 @@ public class Fragment_reys_request extends Fragment {
                 user.put("peoples",people_count.getText().toString());
                 user.put("gruz",gruz.getText().toString());
                 user.put("avatar",my.avatar);
-                DatabaseReference field = my.dborders.child(my.current_order.getKey()).child("passengers_request");
-                DatabaseReference field2 = field.child(my.id);
-                field2.setValue(user);
+                my.dborders.child(my.current_order.getKey()).child("passengers_request").child(my.id).setValue(user);
                 MainActivity.th.switch_fragment(new Fragment_zapros_ready());
-
             }
         });
                 if(my.current_order.getValue().get("owner_avatar")!=null){

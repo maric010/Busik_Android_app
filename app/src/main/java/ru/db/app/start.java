@@ -56,10 +56,6 @@ public class start extends AppCompatActivity {
                 HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
                 my.Orders.put(dataSnapshot.getKey(),h);
 
-
-
-
-
                 Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
                     @Override
                     public String getKey() {
@@ -91,14 +87,11 @@ public class start extends AppCompatActivity {
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
                 HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
-                System.out.println(doc.get("description"));
                 my.Orders.replace(dataSnapshot.getKey(),doc);
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
-                System.out.println(doc.get("description"));
                 my.Orders.remove(dataSnapshot.getKey());
             }
 

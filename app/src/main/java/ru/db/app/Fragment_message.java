@@ -77,7 +77,6 @@ public class Fragment_message extends Fragment {
             public void onClick(View view) {
                 my.dbmessages.child(my.id).child(entry.getKey()).removeValue();
                 scrollView.removeView(gl);
-
             }
         });
         lx.addView(x);
@@ -105,7 +104,11 @@ gl.addView(tx);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.th.switch_fragment(new Fragment_reys_carrier());
+                if(my.status.equals("Пасажир"))
+                    MainActivity.th.switch_fragment(new Fragment_reys());
+                else if(my.status.equals("Перевозчик"))
+                    MainActivity.th.switch_fragment(new Fragment_reys_carrier());
+
 
                 Map.Entry<String, HashMap> entry2 = new Map.Entry<String, HashMap>() {
                     @Override

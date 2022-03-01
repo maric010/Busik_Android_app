@@ -113,6 +113,7 @@ odate="";
         else if(newdateText.equalsIgnoreCase(order_date.split(" ")[0])){
             order_date="Завтра";
         }
+        order_date = order_date.split(" ")[0];
 
         if(!order_date.equals(odate)){
             odate=order_date;
@@ -152,7 +153,7 @@ odate="";
         starttextviewparams.setMargins(0,0,0,3);
 
         start_date_textview.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+" "+h.get("start_date").toString().split(" ")[1]);
-        start_date_textview.setTextSize(18);
+        start_date_textview.setTextSize(15);
         start_date_textview.setTextColor(Color.WHITE);
         start_date_textview.setLayoutParams(starttextviewparams);
         linearLayout2.addView(start_date_textview);
@@ -161,7 +162,7 @@ odate="";
         LinearLayout.LayoutParams stoptextviewparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         stop_date_textview.setText(my.get_week()[c2.get(Calendar.DAY_OF_WEEK)-1]+" "+h.get("stop_date").toString().split(" ")[1]);
-        stop_date_textview.setTextSize(18);
+        stop_date_textview.setTextSize(15);
         stop_date_textview.setTextColor(Color.WHITE);
         stop_date_textview.setLayoutParams(stoptextviewparams);
         linearLayout2.addView(stop_date_textview);
@@ -170,8 +171,8 @@ odate="";
 
         ImageView arrow = new ImageView(root.getContext());
         LinearLayout.LayoutParams arrowp = new LinearLayout.LayoutParams
-                (90, 160);
-        arrowp.setMargins(0,0,0,0);
+                (70, 160);
+        arrowp.setMargins(0,-10,0,0);
         arrow.setImageResource(R.drawable.ic_strelka);
         arrow.setLayoutParams(arrowp);
         linearLayout1.addView(arrow);
@@ -189,7 +190,7 @@ odate="";
         starttextviewparams.setMargins(0,0,0,3);
         start_adress_textview.setText(h.get("otkuda").toString());
         start_adress_textview.setTextColor(Color.WHITE);
-        start_adress_textview.setTextSize(18);
+        start_adress_textview.setTextSize(15);
         start_adress_textview.setLayoutParams(startparams);
         linearLayout3.addView(start_adress_textview);
 
@@ -197,7 +198,7 @@ odate="";
         LinearLayout.LayoutParams stopparams = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         stop_adress_textview.setText(h.get("kuda").toString());
-        stop_adress_textview.setTextSize(18);
+        stop_adress_textview.setTextSize(15);
         stop_adress_textview.setTextColor(Color.WHITE);
         stop_adress_textview.setLayoutParams(stopparams);
         linearLayout3.addView(stop_adress_textview);
@@ -224,7 +225,7 @@ odate="";
         summap = new LinearLayout.LayoutParams
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         summa.setText("€ "+h.get("passenger_cost").toString()+" ");
-        summa.setTextSize(24);
+        summa.setTextSize(15);
         summa.setTextColor(Color.WHITE);
         summa.setTypeface(null, Typeface.BOLD);
         summa.setLayoutParams(summap);
@@ -232,7 +233,7 @@ odate="";
 
         summa = new TextView(root.getContext());
         summa.setText("/ чел");
-        summa.setTextSize(22);
+        summa.setTextSize(15);
         summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
@@ -245,7 +246,7 @@ odate="";
 
         summa = new TextView(root.getContext());
         summa.setText("€ "+h.get("gruz_cost").toString()+" ");
-        summa.setTextSize(24);
+        summa.setTextSize(15);
         summa.setTextColor(Color.WHITE);
         summa.setTypeface(null, Typeface.BOLD);
         summa.setLayoutParams(summap);
@@ -254,7 +255,7 @@ odate="";
         summa = new TextView(root.getContext());
         summa.setText("/ кг");
         summa.setTextColor(Color.WHITE);
-        summa.setTextSize(22);
+        summa.setTextSize(15);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
 
@@ -272,7 +273,7 @@ odate="";
 
         CircleImageView avatar = new CircleImageView(root.getContext());
         arrowp = new LinearLayout.LayoutParams
-                (80, ViewGroup.LayoutParams.MATCH_PARENT);
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         arrowp.setMargins(20,0,10,0);
         avatar.setLayoutParams(arrowp);
 
@@ -323,7 +324,7 @@ odate="";
 
         summa = new TextView(root.getContext());
         summa.setText(h.get("owner_rate").toString());
-        summa.setTextSize(20);
+        summa.setTextSize(15);
         summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout3.addView(summa);
@@ -345,7 +346,7 @@ odate="";
         summa.setTextColor(Color.WHITE);
         summa.setBackgroundResource(R.drawable.status_border);
         summap = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        summap.setMargins(0,45,40,10);
+        summap.setMargins(0,45,40,0);
         summap.gravity = Gravity.END;
         summa.setLayoutParams(summap);
         linearLayout3.addView(summa);

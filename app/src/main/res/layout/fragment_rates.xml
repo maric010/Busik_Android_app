@@ -142,7 +142,7 @@
                         android:layout_marginLeft="100dp"
                         android:text="5"
                         android:textColor="@color/black"
-                        android:textSize="26dp" />
+                        android:textSize="22dp" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -153,13 +153,15 @@
                         android:src="@drawable/star" />
                 </LinearLayout>
 
-                <TextView
+                <EditText
+                    android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/rectangle_3"
                     android:textColor="@color/black"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:textSize="20dp"
+                    android:textSize="18dp"
                     android:text="Выехали вовремя, Водитель уверенный, предупредительный, машина внутри в хорошем состоянии"
                     />
 

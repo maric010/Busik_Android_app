@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".search">
+
+    <ImageView
+        android:id="@+id/vector_3"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:onClick="back"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal|top"
+        android:text="Поиск"
+        android:textAppearance="@style/some_id"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:id="@+id/city1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rectangle_3">
+
+                <EditText
+                    android:id="@+id/start_country_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Откуда"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/city2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rectangle_3">
+                <EditText
+                    android:id="@+id/stop_country_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:hint="Куда"
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textColor="@color/black"/>
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/date_s"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rectangle_3">
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Сегодня"
+                    android:textSize="18dp"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
+            <TextView
+                android:id="@+id/carrier_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:text="Цена за пасажира"
+                android:textColor="#000000"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_3">
+
+                    <EditText
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/rectangle_3"
+                        android:ems="10"
+                        android:hint="От"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textColor="@color/black" />
+                </FrameLayout>
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/rectangle_3">
+
+                    <EditText
+                        android:id="@+id/city4"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangle_3"
+                        android:ems="10"
+                        android:hint="  До"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textColor="@color/black" />
+                </FrameLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/carrier_textview2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="20dp"
+                android:text="Цена за 1 кг груза"
+                android:textColor="#000000"
+                android:textSize="16dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_3">
+
+                    <EditText
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/rectangle_3"
+                        android:ems="10"
+                        android:hint="От"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textColor="@color/black" />
+                </FrameLayout>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:background="@drawable/rectangle_3">
+
+                    <EditText
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangle_3"
+                        android:ems="10"
+                        android:hint="  До"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textColor="@color/black" />
+                </FrameLayout>
+            </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/button_2"
+                android:onClick="search_onClick"
+                android:layout_marginTop="20dp"
+                android:text="Искать"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17dp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

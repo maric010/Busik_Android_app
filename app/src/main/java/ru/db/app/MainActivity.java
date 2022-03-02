@@ -270,4 +270,13 @@ public class MainActivity extends AppCompatActivity {
 
         switch_fragment(new Fragment_orders_carrier());
     }
+
+    public void fragment_rates_onClick(View view) {
+        switch_fragment(new Fragment_rates());
+    }
+
+    public void activity_search_onClick(View view) {
+        Intent intent = new Intent(MainActivity.this, search.class);
+        startActivity(intent);
+    }
 }

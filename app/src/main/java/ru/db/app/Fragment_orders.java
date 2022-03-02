@@ -304,7 +304,7 @@ System.out.println(order_date);
         linearLayout2.setLayoutParams(l2params);
 
         summa = new TextView(root.getContext());
-        summa.setText(h.get("owner_name").toString());
+        summa.setText(h.get("owner_name").toString().split(" ")[0]);
         summa.setTextSize(22);
         summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);

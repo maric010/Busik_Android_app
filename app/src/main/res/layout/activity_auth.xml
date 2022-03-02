@@ -20,7 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <View
-        android:id="@+id/ellipse_7"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
@@ -61,21 +60,21 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/ellipse_7" />
 
-<TextView
-    android:id="@+id/some_id2"
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginTop="28dp"
-    android:gravity="center_horizontal|top"
-    android:text="Войти через соц сети"
-    android:textAppearance="@style/some_id"
-    android:textSize="16dp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.503"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/button3" />
+    <TextView
+        android:id="@+id/some_id2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:gravity="center_horizontal|top"
+        android:text="Войти через соц сети"
+        android:textAppearance="@style/some_id"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
 <TextView
     android:id="@+id/some_id3"
@@ -123,18 +122,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
-    <Button
-        android:id="@+id/button7"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_2"
-        android:onClick="auth_google_onClick"
-        android:text="Google"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/black"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_id2" />
+        app:layout_constraintTop_toBottomOf="@+id/some_id2">
 
+        <ImageView
+            android:id="@+id/google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="auth_google_onClick"
+            android:src="@drawable/ic_google_svgrepo_com"
+            app:layout_constraintEnd_toStartOf="@+id/facebook" />
+
+        <ImageView
+            android:id="@+id/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:onClick="auth_facebook_onClick"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_facebook_svgrepo_com"
+            app:layout_constraintStart_toEndOf="@+id/google"
+            app:layout_constraintTop_toBottomOf="@+id/some_id2" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

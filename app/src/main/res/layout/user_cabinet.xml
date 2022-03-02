@@ -66,24 +66,21 @@
         android:textColor="@color/black"
         android:textSize="14dp"
         app:layout_constraintStart_toEndOf="@+id/ellipse_1"
-        app:layout_constraintTop_toBottomOf="@+id/name"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/name" />
 
     <Button
         android:id="@+id/button8"
         android:layout_width="310dp"
         android:layout_height="55dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/button_gradient_1"
-        android:ems="10"
-        android:gravity="center_horizontal|center"
-        android:inputType="textPersonName"
+        android:onClick="fragment_rates_onClick"
+        android:textAllCaps="false"
         android:text="Мои отзывы"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/city" />
 
 
     <Button
@@ -91,16 +88,12 @@
         android:layout_width="310dp"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/button_gradient_1"
-        android:ems="10"
         android:onClick="profile_edit"
-        android:gravity="center_horizontal|center"
-        android:inputType="textPersonName"
+        android:textAllCaps="false"
         android:text="Редактировать профиль"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button8" />
 
@@ -109,34 +102,25 @@
         android:layout_width="310dp"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
+        android:textAllCaps="false"
         android:background="@drawable/button_gradient_1"
-        android:ems="10"
-        android:gravity="center_horizontal|center"
-
-        android:inputType="textPersonName"
         android:text="Тех.поддержка"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/button9" />
 
     <Button
         android:layout_width="310dp"
         android:layout_height="55dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/button_gradient_1"
-        android:ems="10"
         android:layout_marginTop="20dp"
-        android:gravity="center_horizontal|center"
         android:onClick="logout_onClick"
-        android:inputType="textPersonName"
         android:text="Выйти"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button10"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/button10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

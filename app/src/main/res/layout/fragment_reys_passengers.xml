@@ -115,7 +115,7 @@
                 android:id="@+id/request_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Запросы (1)"
+                android:text="Запросы (0)"
                 android:layout_gravity="center"
                 android:textColor="#000000"
                 android:textSize="19dp"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
-                android:text="Подтвержденные (1)"
+                android:text="Подтвержденные (0)"
                 android:textColor="#000000"
                 android:textSize="19dp"
                 android:textStyle="bold" />

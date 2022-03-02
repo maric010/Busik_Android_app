@@ -56,14 +56,33 @@ public class Fragment_reys_passengers extends Fragment {
             }
         }
 
-
+        int gruz_count = 0;
         HashMap<String, HashMap> accepted = (HashMap<String, HashMap>) my.Orders.get(my.current_order.getKey()).get("passengers_accepted");
         if(accepted!=null){
             for(Map.Entry<String, HashMap> entry : (accepted).entrySet()) {
-                System.out.println(entry);
                 add_accepted(entry);
+                if(entry.getValue().get("gruz")!=null)
+                    gruz_count+=Integer.parseInt(entry.getValue().get("gruz").toString());
             }
         }
+        int accepted_count = 0;
+        if(accepted!=null)
+            accepted_count=accepted.size();
+
+        TextView accepted_gruz = root.findViewById(R.id.accepted_gruz);
+        accepted_gruz.setText("Подтверждено груза: "+gruz_count+" кг");
+        TextView accepted_count_t = root.findViewById(R.id.accepted_passengers_count);
+        accepted_count_t.setText("Подтверждено мест: "+accepted_count+" человека");
+        TextView status = root.findViewById(R.id.status);
+        status.setText("    "+my.current_order.getValue().get("status").toString()+"    ");
+
+        HashMap<String, HashMap> requested = (HashMap<String, HashMap>) my.Orders.get(my.current_order.getKey()).get("passengers_request");
+
+        TextView request_count = root.findViewById(R.id.request_count);
+        if(requested!=null)
+            request_count.setText("Запросы ("+requested.size()+")");
+        TextView accepted_count_a = root.findViewById(R.id.accepted_count);
+        accepted_count_a.setText("Подтвержденные ("+accepted_count+")");
 
         return root;
     }

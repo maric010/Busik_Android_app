@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     //region cache
 
     //region cache end
+
     SharedPreferences settings;
     static MainActivity th;
     private static final String PREFS_FILE = "Account";
@@ -56,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         th=this;
-
-
-
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         if(my.status.equalsIgnoreCase("Перевозчик"))
             switch_fragment(new Fragment_orders_carrier());
@@ -82,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
                     my.Messages.remove(dataSnapshot.getKey());
                 }
 
@@ -240,6 +237,28 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alertDialog = (new AlertDialog.Builder(MainActivity.th)).create();
         alertDialog.setTitle("Инфо");
         alertDialog.setMessage("Рейс успешно завершен.");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+        progressDialog.cancel();
+        alertDialog.show();
+
+        switch_fragment(new Fragment_orders_carrier());
+    }
+
+    public void cancel_order(View view) {
+        ProgressDialog progressDialog = new ProgressDialog(MainActivity.th);
+        progressDialog.setTitle("Отменение рейса");
+        progressDialog.setMessage("Пожалуйста, подождите.");
+        progressDialog.show();
+        my.cancel_order();
+
+        AlertDialog alertDialog = (new AlertDialog.Builder(MainActivity.th)).create();
+        alertDialog.setTitle("Инфо");
+        alertDialog.setMessage("Рейс успешно отменен.");
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

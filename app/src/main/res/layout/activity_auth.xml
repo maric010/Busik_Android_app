@@ -135,17 +135,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/some_id2" />
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/button_sign_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="F"
-        android:background="@color/white"
-        android:textColor="@color/black"
-        android:onClick="fbLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

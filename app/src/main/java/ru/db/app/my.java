@@ -1,18 +1,29 @@
 package ru.db.app;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.widget.TextView;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -25,6 +36,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class my {
+    public static Uri google_photo;
     static ChildEventListener Messages_Listener;
     public static Map.Entry<String, HashMap> current_order;
     static SharedPreferences settings;
@@ -73,7 +85,6 @@ public class my {
         try {
             HashMap<String,Object> new_user=new HashMap<>();
             new_user.put("name",name);
-
             new_user.put("phone",phone);
             new_user.put("city",city);
             if(is_admin)
@@ -114,6 +125,26 @@ public class my {
             SharedPreferences.Editor prefEditor = settings.edit();
             prefEditor.putString(PREF_id,my.id);
             prefEditor.apply();
+            /*
+            if(auth_google){
+                my.avatar=my.id+"_"+(System.currentTimeMillis());
+                StorageReference storageRef = my.fm.getReference();
+                StorageReference mountainsRef = storageRef.child("avatars/"+my.avatar+".jpg");
+                InputStream stream = new FileInputStream(new File(String.valueOf(my.google_photo)));
+                UploadTask uploadTask = mountainsRef.putFile(stream);
+                uploadTask.addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        user.update("avatar",my.avatar);
+                    }
+                });
+            }
+            */
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
@@ -153,6 +184,36 @@ public class my {
 
 
 
+    }
+    static void cancel_order(){
+        DocumentReference order = my.db.collection("orders").document(current_order.getKey());
+        order.set(current_order.getValue());
+        my.dborders.child(current_order.getKey()).removeValue();
+
+        String start_date = my.current_order.getValue().get("start_date").toString().split(" ")[0];
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        try {
+            Date date = sdf.parse(start_date);
+            c.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        String[] split = start_date.split("\\.");
+        HashMap<String,Object> new_message=new HashMap<>();
+        new_message.put("title","Рейс отменен");
+        new_message.put("text","Поставьте оценку вашему недавнему рейсу\n"+my.current_order.getValue().get("otkuda")+" -> "
+                +my.current_order.getValue().get("kuda")+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
+        new_message.put("rate",my.current_order.getValue().get("owner"));
+
+        if(my.current_order.getValue().get("passengers_accepted")!=null){
+            HashMap<String, Object> v = (HashMap<String, Object>) (my.current_order.getValue().get("passengers_accepted"));
+
+            for(String k : v.keySet()) {
+                my.dbmessages.child(k).push().setValue(new_message);
+            }
+        }
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
                           String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){

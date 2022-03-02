@@ -27,6 +27,17 @@ public class edit_order extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_order);
+
+        ((EditText)findViewById(R.id.new_order_otkuda)).setText(my.current_order.getValue().get("otkuda").toString());
+        ((EditText)findViewById(R.id.new_order_kuda)).setText(my.current_order.getValue().get("kuda").toString());
+        ((TextView)findViewById(R.id.new_order_start_date)).setText(my.current_order.getValue().get("start_date").toString());
+        ((TextView)findViewById(R.id.new_order_stop_date)).setText(my.current_order.getValue().get("stop_date").toString());
+        ((EditText)findViewById(R.id.new_order_description)).setText(my.current_order.getValue().get("description").toString());
+        ((CheckBox)findViewById(R.id.new_order_peoples)).setChecked(Boolean.parseBoolean(my.current_order.getValue().get("is_passenger").toString()));
+        ((EditText)findViewById(R.id.new_order_people_cost_text)).setText(my.current_order.getValue().get("passenger_cost").toString());
+        ((EditText)findViewById(R.id.new_order_gruz_cost)).setText(my.current_order.getValue().get("gruz_cost").toString());
+        ((CheckBox)findViewById(R.id.new_order_gruz)).setChecked(Boolean.parseBoolean(my.current_order.getValue().get("is_gruz").toString()));
+
     }
 
     public void change_order_onClick(View view) {

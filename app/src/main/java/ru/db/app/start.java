@@ -110,10 +110,6 @@ public class start extends AppCompatActivity {
 
 
 
-
-
-        //id = "gqxbnYBJI9mijfK1yOpA";
-
         if(!id.equalsIgnoreCase("")){
             DocumentReference docRef = my.db.collection("users").document(id);
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

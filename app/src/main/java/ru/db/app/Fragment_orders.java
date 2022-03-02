@@ -114,7 +114,7 @@ odate="";
             order_date="Завтра";
         }
         order_date = order_date.split(" ")[0];
-
+System.out.println(order_date);
         if(!order_date.equals(odate)){
             odate=order_date;
             summa = new TextView(root.getContext());
@@ -124,6 +124,7 @@ odate="";
             summap.setMargins(0,10,0,10);
             summa.setText(order_date);
             summa.setTextSize(20);
+            summa.setTextColor(Color.DKGRAY);
             summa.setLayoutParams(summap);
             scrollView.addView(summa);
          }

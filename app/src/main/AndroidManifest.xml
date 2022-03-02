@@ -15,16 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name=".edit_order"
-            android:screenOrientation="portrait"></activity>
+        <activity android:name=".MainActivity2"></activity>
+        <activity
+            android:name=".edit_order"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"
-            android:screenOrientation="portrait" />
-        <activity android:name=".add_order"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".add_order"
             android:screenOrientation="portrait" />
         <activity
-
             android:name=".auth_main"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

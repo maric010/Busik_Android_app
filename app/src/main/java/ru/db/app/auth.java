@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -63,7 +64,7 @@ public class auth extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-
+        my.effect((Button)findViewById(R.id.button4));
 
 
 
@@ -77,7 +78,6 @@ public class auth extends AppCompatActivity {
     }
 
     public void auth_onClick(View view) {
-        view.startAnimation(new AlphaAnimation(1F, 0.8F));
         Intent intent = new Intent(auth.this, auth_main.class);
         startActivity(intent);
 

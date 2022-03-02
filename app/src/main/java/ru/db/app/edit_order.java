@@ -62,6 +62,7 @@ public class edit_order extends AppCompatActivity {
         start=true;
         pic();
     }
+
     void pic(){
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -83,6 +84,7 @@ public class edit_order extends AppCompatActivity {
                 }
             }
         });
+
         timePicker = dialog.findViewById(R.id.timepicker);
         timePicker.setIs24HourView(true);
         Button button=dialog.findViewById(R.id.accept);
@@ -112,4 +114,5 @@ public class edit_order extends AppCompatActivity {
     public void back(View view) {
         finish();
     }
+
 }

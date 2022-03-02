@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -76,8 +77,10 @@ public class auth extends AppCompatActivity {
     }
 
     public void auth_onClick(View view) {
+        view.startAnimation(new AlphaAnimation(1F, 0.8F));
         Intent intent = new Intent(auth.this, auth_main.class);
         startActivity(intent);
+
     }
     private FirebaseAuth mAuth;
 

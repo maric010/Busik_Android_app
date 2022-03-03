@@ -129,8 +129,8 @@ public class start extends AppCompatActivity {
                                 if(((Boolean) doc.get("is_admin")))
                                     my.status="Администратор";
                             }
-
-                            //my.download_my_avatar();
+                            if(my.status.equals("Перевозчик"))
+                                my.get_arxiv_carrier();
                             Intent intent = new Intent(start.this, MainActivity.class);
                             new Handler().postDelayed(new Runnable(){
                                 @Override

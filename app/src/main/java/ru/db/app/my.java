@@ -8,11 +8,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -25,6 +29,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class my {
@@ -50,6 +55,7 @@ public class my {
 
 
     static LinkedHashMap<String, HashMap> Orders = new LinkedHashMap<String, HashMap>();
+    static LinkedHashMap<String, HashMap> Orders_arxiv = new LinkedHashMap<String, HashMap>();
     static HashMap<String, HashMap> Messages = new HashMap<String, HashMap>();
 
     private static String convertToHex(byte[] data) {
@@ -434,6 +440,21 @@ static void effect(View button){
         }
     });
 }
+   static void get_arxiv_carrier(){
+        Orders_arxiv.clear();
+        CollectionReference docRef = my.db.collection("orders");
+        docRef.whereEqualTo("owner",my.id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(queryDocumentSnapshots.getDocuments().size()>0){
+                    List<DocumentSnapshot> orders = queryDocumentSnapshots.getDocuments();
+                    for(int i=0;i<orders.size();i++){
+                        DocumentSnapshot order = orders.get(i);
+                        Orders_arxiv.put(order.getId(),(HashMap)order.getData());
+                    }
+                }
+            }});
+    }
 }
 
 

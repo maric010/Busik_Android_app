@@ -1,7 +1,5 @@
 package ru.db.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -12,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -100,8 +100,8 @@ my.id=user.getId();
                             if(((Boolean) user.get("is_admin")))
                                 my.status="Администратор";
                         }
-                        System.out.println("NAME "+my.name);
-                        //my.download_my_avatar();
+                        if(my.status.equals("Перевозчик"))
+                            my.get_arxiv_carrier();
                         progressDialog.cancel();
                         Intent intent = new Intent(auth_main.this, MainActivity.class);
                         startActivity(intent);

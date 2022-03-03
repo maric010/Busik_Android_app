@@ -120,6 +120,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cabinet_onClick(View view) {
+        if(my.status.equals("Перевозчик"))
+            fr=4;
+        else
+            fr=2;
         if(my.status.equals("Гость"))
             switch_fragment(new Fragment_cabinet_guest());
         else
@@ -171,7 +175,10 @@ public class MainActivity extends AppCompatActivity {
                 super.onBackPressed();
                 break;
             case 1:
-                fr=0;
+                if(my.status.equals("Перевозчик"))
+                    fr=4;
+                else
+                    fr=2;
                 switch_fragment(new Fragment_cabinet());
                 break;
             case 2:
@@ -189,11 +196,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void profile_edit_save_onClick(View view) {
-
-
-    }
-
     public void set_image_onClick(View view) {
         CropImage.activity().setAspectRatio(1,1).start(this);
     }
@@ -203,11 +205,6 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode==RESULT_OK && data!=null){
             my.result = CropImage.getActivityResult(data);
-            System.out.println("PPP1");
-            //Fragment_cabinet_edit.profileImageView.setImageURI(my.result.getUri());
-            System.out.println("PPP2");
-
-
             Glide.with(Fragment_cabinet_edit.root.getContext())
                     .load(my.result.getUri())
                     .error(R.drawable.ellipse_1)
@@ -221,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void apply(View view) {
-        MainActivity.fr = 3;
+        fr = 3;
         switch_fragment(new Fragment_reys_request());
     }
 
@@ -285,6 +282,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fragment_rates_onClick(View view) {
+
+        fr=1;
         switch_fragment(new Fragment_rates());
     }
 

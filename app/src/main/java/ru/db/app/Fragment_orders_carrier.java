@@ -30,6 +30,7 @@ public class Fragment_orders_carrier extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
+        
         odate="";
         //my.sort_orders();
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {

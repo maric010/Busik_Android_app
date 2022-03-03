@@ -20,6 +20,8 @@ Boolean is_carrier = false;
 
         Button reg_button = findViewById(R.id.reg_button);
         my.effect(reg_button);
+        Button outdown_button = findViewById(R.id.outdown_button);
+        my.effect(outdown_button);
 
         if(!my.name.equals("")){
             ((FrameLayout)findViewById(R.id.edit4)).setVisibility(View.GONE);

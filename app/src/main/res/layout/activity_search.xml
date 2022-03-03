@@ -31,19 +31,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <FrameLayout
                 android:id="@+id/city1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/rectangle_3">
 
@@ -51,59 +59,61 @@
                     android:id="@+id/start_country_city"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
+                    android:background="@null"
                     android:hint="Откуда"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
 
             </FrameLayout>
+
             <FrameLayout
-                android:id="@+id/city2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
                 android:background="@drawable/rectangle_3">
+
                 <EditText
                     android:id="@+id/stop_country_city"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:background="@null"
                     android:hint="Куда"
                     android:inputType="textPersonName"
                     android:text=""
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="17dp" />
             </FrameLayout>
+
             <FrameLayout
-                android:id="@+id/date_s"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
                 android:background="@drawable/rectangle_3">
+
                 <TextView
-                    android:id="@+id/date"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/date_search"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
                     android:hint="Сегодня"
-                    android:textSize="18dp"
                     android:text=""
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="17dp"/>
 
             </FrameLayout>
+
             <TextView
                 android:id="@+id/carrier_textview"
                 android:layout_width="wrap_content"
@@ -113,28 +123,33 @@
                 android:text="Цена за пасажира"
                 android:textColor="#000000"
                 android:textSize="16dp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:orientation="horizontal">
+
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rectangle_3">
 
                     <EditText
+                        android:id="@+id/total_count_1"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/rectangle_3"
-                        android:ems="10"
+                        android:background="@null"
+                        android:layout_gravity="center"
                         android:hint="От"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
                 </FrameLayout>
+
                 <FrameLayout
                     android:id="@+id/frameLayout"
                     android:layout_width="wrap_content"
@@ -143,17 +158,19 @@
                     android:background="@drawable/rectangle_3">
 
                     <EditText
-                        android:id="@+id/city4"
+                        android:id="@+id/total_count_2"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_3"
-                        android:ems="10"
+                        android:background="@null"
+                        android:layout_gravity="center"
                         android:hint="  До"
                         android:inputType="textPersonName"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
                 </FrameLayout>
             </LinearLayout>
+
             <TextView
                 android:id="@+id/carrier_textview2"
                 android:layout_width="wrap_content"
@@ -163,28 +180,33 @@
                 android:text="Цена за 1 кг груза"
                 android:textColor="#000000"
                 android:textSize="16dp" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
                 android:orientation="horizontal">
+
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rectangle_3">
 
                     <EditText
+                        android:id="@+id/total_cargo_1"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/rectangle_3"
-                        android:ems="10"
+                        android:background="@null"
+                        android:layout_gravity="center"
                         android:hint="От"
                         android:inputType="textPersonName"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
                 </FrameLayout>
+
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -192,24 +214,28 @@
                     android:background="@drawable/rectangle_3">
 
                     <EditText
+                        android:id="@+id/total_cargo_2"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/rectangle_3"
-                        android:ems="10"
+                        android:background="@null"
+                        android:layout_gravity="center"
                         android:hint="  До"
                         android:inputType="textPersonName"
                         android:text=""
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="17dp" />
                 </FrameLayout>
             </LinearLayout>
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_2"
                 android:onClick="search_onClick"
-                android:layout_marginTop="20dp"
                 android:text="Искать"
                 android:textAllCaps="false"
                 android:textColor="@color/white"

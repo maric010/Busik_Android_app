@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -16,6 +17,9 @@ Boolean is_carrier = false;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg);
+
+        Button reg_button = findViewById(R.id.reg_button);
+        my.effect(reg_button);
 
         if(!my.name.equals("")){
             ((FrameLayout)findViewById(R.id.edit4)).setVisibility(View.GONE);

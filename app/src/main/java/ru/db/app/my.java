@@ -418,7 +418,7 @@ static void effect(View button){
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
-                    v.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
+                    v.getBackground().setColorFilter(0xeffffff, PorterDuff.Mode.SRC_ATOP);
                     v.invalidate();
                     break;
                 }

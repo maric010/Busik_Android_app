@@ -22,6 +22,8 @@
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/rectangle_3.xml" value="0.382051282051282" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/rectangle_4.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/social.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/start.xml" value="0.225" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/drawable/test1.xml" value="0.225" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/active_owner.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/active_reysi.xml" value="0.5" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_add_order.xml" value="0.33" />
@@ -31,7 +33,8 @@
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_orders.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_reg.xml" value="0.371875" />
-        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_start.xml" value="0.67" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_search.xml" value="0.371875" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/auth_reg.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/cabinet.xml" value="0.67" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/calendar.xml" value="0.20520833333333333" />
@@ -41,11 +44,12 @@
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_messages_guest.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_orders.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_orders_carrier.xml" value="0.33" />
-        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_rates.xml" value="0.371875" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_rates.xml" value="0.5" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_reys.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_reys_apply.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_reys_carrier.xml" value="0.25" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_reys_passengers.xml" value="0.371875" />
+        <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_search.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/fragment_zapros_ready.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/messages.xml" value="0.371875" />
         <entry key="..\:/Users/Merkur1y/app/app/src/main/res/layout/no_auth.xml" value="0.371875" />

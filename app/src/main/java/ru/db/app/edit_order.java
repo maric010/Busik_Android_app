@@ -37,6 +37,9 @@ public class edit_order extends AppCompatActivity {
         ((EditText)findViewById(R.id.new_order_people_cost_text)).setText(my.current_order.getValue().get("passenger_cost").toString());
         ((EditText)findViewById(R.id.new_order_gruz_cost)).setText(my.current_order.getValue().get("gruz_cost").toString());
         ((CheckBox)findViewById(R.id.new_order_gruz)).setChecked(Boolean.parseBoolean(my.current_order.getValue().get("is_gruz").toString()));
+        ((EditText)findViewById(R.id.peoples_max)).setText(my.current_order.getValue().get("max_peoples").toString());
+        ((EditText)findViewById(R.id.gruz_max)).setText(my.current_order.getValue().get("max_gruz").toString());
+
 
     }
 

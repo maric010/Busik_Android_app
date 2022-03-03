@@ -3,6 +3,7 @@ package ru.db.app;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -173,10 +174,11 @@ public class my {
         }
 
 
-
-
     }
     static void cancel_order(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            my.current_order.getValue().replace("status","Отменен");
+        }
         DocumentReference order = my.db.collection("orders").document(current_order.getKey());
         order.set(current_order.getValue());
         my.dborders.child(current_order.getKey()).removeValue();

@@ -181,9 +181,11 @@ public class MainActivity extends AppCompatActivity {
             case 3:
                 fr=2;
                 switch_fragment(new Fragment_reys());
+                break;
             case 4:
-                fr=2;
-                switch_fragment(new Fragment_reys());
+                fr=0;
+                switch_fragment(new Fragment_orders_carrier());
+                break;
         }
     }
 

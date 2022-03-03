@@ -1,22 +1,17 @@
 package ru.db.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.google.type.DateTime;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,7 +43,9 @@ public class add_order extends AppCompatActivity {
                 ((CheckBox)findViewById(R.id.new_order_peoples)).isChecked()+"",
                 ((EditText)findViewById(R.id.new_order_people_cost_text)).getText().toString(),
                 ((EditText)findViewById(R.id.new_order_gruz_cost)).getText().toString(),
-                ((CheckBox)findViewById(R.id.new_order_gruz)).isChecked()+"");
+                ((CheckBox)findViewById(R.id.new_order_gruz)).isChecked()+"",
+                ((EditText)findViewById(R.id.peoples_max)).getText().toString(),
+                ((EditText)findViewById(R.id.gruz_max)).getText().toString());
         finish();
     }
 

@@ -18,8 +18,8 @@ Boolean is_carrier = false;
         setContentView(R.layout.activity_reg);
 
         if(!my.name.equals("")){
-            ((FrameLayout)findViewById(R.id.edit4)).setVisibility(View.INVISIBLE);
-            ((FrameLayout)findViewById(R.id.edit5)).setVisibility(View.INVISIBLE);
+            ((FrameLayout)findViewById(R.id.edit4)).setVisibility(View.GONE);
+            ((FrameLayout)findViewById(R.id.edit5)).setVisibility(View.GONE);
             ((EditText)findViewById(R.id.name)).setText(my.name);
         }
     }

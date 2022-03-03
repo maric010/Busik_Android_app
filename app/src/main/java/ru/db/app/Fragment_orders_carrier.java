@@ -259,7 +259,7 @@ public class Fragment_orders_carrier extends Fragment {
             @Override
             public void onClick(View view) {
                 my.current_order = entry;
-                MainActivity.fr=2;
+                MainActivity.fr=4;
                 MainActivity.th.switch_fragment(new Fragment_reys_carrier());
             }
         });

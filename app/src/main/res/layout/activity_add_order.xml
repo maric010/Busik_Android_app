@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".add_order">
 
 
@@ -70,8 +71,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:textSize="17dp"
                     android:hint="Откуда"
                     android:inputType="textPersonName"
                     android:text=""
@@ -92,9 +94,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
+                    android:background="@null"
+                    android:textSize="17dp"
                     android:hint="Куда"
                     android:inputType="textPersonName"
                     android:text=""
@@ -117,9 +120,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="18dp"
-                    android:layout_marginTop="5dp"
-                    android:background="@drawable/rectangle_3"
+                    android:layout_gravity="center"
+                    android:textSize="17dp"
+                    android:background="@null"
                     android:text="Сегодня"
                     android:textColor="@color/black"/>
 
@@ -139,8 +142,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:textSize="18dp"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:textSize="17dp"
                     android:text="Завтра"
                     android:textColor="@color/black"/>
 
@@ -160,10 +164,10 @@
                     android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
+                    android:background="@null"
                     android:gravity="start"
                     android:layout_marginRight="10dp"
                     android:maxLength="256"
-                    android:background="@drawable/rectangle_3"
                     android:hint="Описание"
                     android:text=""
                     android:textColor="@color/black"/>
@@ -177,7 +181,14 @@
                 android:layout_marginTop="10dp"
                 android:checked="true"
                 android:text="Принимаю людей"
-                android:textSize="16dp" />
+                android:textSize="17dp" />
+            <CheckBox
+                android:id="@+id/new_order_gruz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Принимаю груз"
+                android:textSize="17dp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -193,10 +204,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
+                    android:layout_gravity="center"
+                    android:background="@null"
+                    android:textSize="17dp"
                     android:hint="Цена за пассажира"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:text=""
                     android:textColor="@color/black"/>
 
@@ -215,24 +227,65 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
+                    android:background="@null"
                     android:hint="Цена за груз"
-                    android:inputType="textPersonName"
+                    android:textSize="16dp"
+                    android:inputType="number"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rectangle_3">
+
+                <EditText
+                    android:id="@+id/peoples_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:textSize="16dp"
+                    android:hint="Максимальное количество людей"
+                    android:inputType="number"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rectangle_3">
+
+                <EditText
+                    android:id="@+id/gruz_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:hint="Максимальное количество груза"
+                    android:inputType="number"
                     android:text=""
                     android:textColor="@color/black" />
 
             </FrameLayout>
 
 
-            <CheckBox
-                android:id="@+id/new_order_gruz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Принимаю груз"
-                android:textSize="14dp" />
 
             <Button
                 android:id="@+id/create"
@@ -240,10 +293,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_2"
                 android:text="Создать"
+                android:textColor="@color/white"
                 android:onClick="create_order"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="20dp"
                 android:textAllCaps="false"
                 android:textSize="17dp" />
         </LinearLayout>

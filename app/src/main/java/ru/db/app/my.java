@@ -207,7 +207,7 @@ public class my {
         }
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
-                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,String max_peoples,String max_gruz){
             HashMap<String,Object> new_order=new HashMap<>();
             new_order.put("otkuda",otkuda);
             new_order.put("kuda",kuda);
@@ -222,14 +222,15 @@ public class my {
             new_order.put("owner_rate",my.rate);
             new_order.put("owner_name",my.name);
             new_order.put("owner_avatar",my.avatar);
-
-        new_order.put("status","В ожидании");
+            new_order.put("max_peoples",max_peoples);
+            new_order.put("max_gruz",max_gruz);
+            new_order.put("status","В ожидании");
 
 
         dborders.push().setValue(new_order);
     }
     static void change_order(String otkuda,String kuda,String start_date,String stop_date,String description,
-                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz){
+                          String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,String max_peoples,String max_gruz){
         HashMap<String,Object> new_order=new HashMap<>();
         new_order.put("otkuda",otkuda);
         new_order.put("kuda",kuda);
@@ -244,6 +245,8 @@ public class my {
         new_order.put("owner_rate",my.rate);
         new_order.put("owner_name",my.name);
         new_order.put("owner_avatar",my.avatar);
+        new_order.put("max_peoples",max_peoples);
+        new_order.put("max_gruz",max_gruz);
         new_order.put("status","В ожидании");
         dborders.child(current_order.getKey()).setValue(new_order);
     }
@@ -324,44 +327,39 @@ static void fill_fragment(View root) {
         e.printStackTrace();
     }
     TextView v_puti = root.findViewById(R.id.textView8);
-    long different = date2.getTime()-date1.getTime();
-    long secondsInMilli = 1000;
-    long minutesInMilli = secondsInMilli * 60;
-    long hoursInMilli = minutesInMilli * 60;
-    long daysInMilli = hoursInMilli * 24;
-    long elapsedDays = different / daysInMilli;
-    different = different % daysInMilli;
+    if(v_puti!=null){
+        long different = date2.getTime()-date1.getTime();
+        long secondsInMilli = 1000;
+        long minutesInMilli = secondsInMilli * 60;
+        long hoursInMilli = minutesInMilli * 60;
+        long daysInMilli = hoursInMilli * 24;
+        long elapsedDays = different / daysInMilli;
+        different = different % daysInMilli;
 
-    long elapsedHours = different / hoursInMilli;
-    different = different % hoursInMilli;
+        long elapsedHours = different / hoursInMilli;
 
-    long elapsedMinutes = different / minutesInMilli;
-    different = different % minutesInMilli;
-
-    long elapsedSeconds = different / secondsInMilli;
-
-    System.out.printf("%d days, %d hours, %d minutes, %d seconds%n", elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
-
-String day_hour = "";
-    if(elapsedDays!=0){
-        day_hour+= elapsedDays;
-        if(elapsedDays>1 && elapsedDays<5)
-            day_hour+=" дня ";
-        if(elapsedDays>1 && elapsedDays<5)
-            day_hour+=" дней ";
-        else
-            day_hour+=" день ";
+        String day_hour = "";
+        if(elapsedDays!=0){
+            day_hour+= elapsedDays;
+            if(elapsedDays>1 && elapsedDays<5)
+                day_hour+=" дня ";
+            if(elapsedDays>1 && elapsedDays<5)
+                day_hour+=" дней ";
+            else
+                day_hour+=" день ";
+        }
+        if(elapsedHours!=0){
+            day_hour+= elapsedHours;
+            if((elapsedHours>1 && elapsedHours<5) || elapsedHours>20)
+                day_hour+=" часа";
+            else if (elapsedHours>4)
+                day_hour+=" часов";
+            else
+                day_hour+=" час";
+        }
+        v_puti.setText("В пути "+day_hour);
     }
-    if(elapsedHours!=0){
-        day_hour+= elapsedHours;
-        if((elapsedHours>1 && elapsedHours<5) || elapsedHours>20)
-            day_hour+=" часа";
-        else if (elapsedHours>4)
-            day_hour+=" часов";
-        else
-            day_hour+=" час";
-    }
-    v_puti.setText("В пути "+day_hour);
+
 
 
 }

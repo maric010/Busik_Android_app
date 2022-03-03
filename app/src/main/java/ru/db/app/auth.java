@@ -25,7 +25,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -78,7 +77,6 @@ public class auth extends AppCompatActivity {
         startActivity(intent);
 
     }
-    private FirebaseAuth mAuth;
 
 
     public void auth_google_onClick(View view) {
@@ -96,7 +94,6 @@ public class auth extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 my.google_id=account.getId();
-                System.out.println("GOOGLE ID "+account.getId());
                 my.name=account.getDisplayName();
                 my.phone="";
                 my.email=account.getEmail();
@@ -104,9 +101,10 @@ public class auth extends AppCompatActivity {
                 my.status="";
                 my.auth_google=true;
                 my.google_photo=account.getPhotoUrl();
-                CollectionReference docRef = my.db.collection("users");
 
-                    docRef.whereEqualTo("google_id",my.google_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+                CollectionReference docRef = my.db.collection("users");
+                docRef.whereEqualTo("google_id",my.google_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
                                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                     if(queryDocumentSnapshots.getDocuments().size()>0){
@@ -147,9 +145,6 @@ public class auth extends AppCompatActivity {
 
                                 }
                             });
-
-
-
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
@@ -168,11 +163,8 @@ public class auth extends AppCompatActivity {
     }
 
     public void auth_facebook_onClick(View view) {
-        System.out.println("asd1");
-        AccessToken.setCurrentAccessToken(null);
-        System.out.println("asd2");
+
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-        System.out.println("asd3");
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -262,5 +254,6 @@ public class auth extends AppCompatActivity {
 
             }
         });
+
     }
 }

@@ -70,8 +70,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@drawable/rectangle_3"
-                    android:ems="10"
+                    android:background="@null"
+                    android:layout_gravity="center"
+                    android:textSize="17dp"
                     android:hint="Откуда"
                     android:inputType="textPersonName"
                     android:text=""
@@ -178,6 +179,13 @@
                 android:checked="true"
                 android:text="Принимаю людей"
                 android:textSize="16dp" />
+            <CheckBox
+                android:id="@+id/new_order_gruz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Принимаю груз"
+                android:textSize="16dp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -196,7 +204,7 @@
                     android:background="@drawable/rectangle_3"
                     android:ems="10"
                     android:hint="Цена за пассажира"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:text=""
                     android:textColor="@color/black"/>
 
@@ -219,33 +227,73 @@
                     android:background="@drawable/rectangle_3"
                     android:ems="10"
                     android:hint="Цена за груз"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:text=""
                     android:textColor="@color/black" />
 
             </FrameLayout>
 
 
-            <CheckBox
-                android:id="@+id/new_order_gruz"
-                android:layout_width="wrap_content"
+
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:text="Принимаю груз"
-                android:textSize="14dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rectangle_3">
 
+                <EditText
+                    android:id="@+id/peoples_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Максимальное количество людей"
+                    android:inputType="number"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rectangle_3">
+
+                <EditText
+                    android:id="@+id/gruz_max"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rectangle_3"
+                    android:ems="10"
+                    android:hint="Максимальное количество груза"
+                    android:inputType="number"
+                    android:text=""
+                    android:textColor="@color/black" />
+
+            </FrameLayout>
             <Button
                 android:id="@+id/edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_2"
                 android:text="Сохранить"
                 android:onClick="change_order_onClick"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="20dp"
                 android:textAllCaps="false"
                 android:textSize="17dp" />
+
         </LinearLayout>
 
     </ScrollView>

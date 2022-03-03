@@ -28,6 +28,7 @@ public class Fragment_orders_carrier extends Fragment {
     static View root;
     static LinearLayout scrollView;
     static String odate="";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
@@ -37,16 +38,27 @@ public class Fragment_orders_carrier extends Fragment {
         arxiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                my.is_arxiv=true;
+                scrollView.removeAllViews();
+                odate="";
+                for(Map.Entry<String, HashMap> entry : my.Orders_arxiv.entrySet()) {
+                    add_carrier_order(entry);
+                }
             }
         });
 
-
-
         odate="";
-        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+        if(my.is_arxiv){
+            for(Map.Entry<String, HashMap> entry : my.Orders_arxiv.entrySet()) {
                 add_carrier_order(entry);
+            }
         }
+        else {
+            for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+                add_carrier_order(entry);
+            }
+        }
+
 
         return root;
     }

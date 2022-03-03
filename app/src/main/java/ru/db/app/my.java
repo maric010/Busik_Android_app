@@ -33,6 +33,7 @@ import java.util.List;
 import java.util.Map;
 
 public class my {
+    public static boolean is_arxiv=false;
     public static Uri google_photo;
     static ChildEventListener Messages_Listener;
     public static Map.Entry<String, HashMap> current_order;

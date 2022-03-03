@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +31,11 @@ public class Fragment_orders_carrier extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
-        
+        Button arxiv = root.findViewById(R.id.all_trips_layout);
+
+        my.effect(arxiv);
+
+
         odate="";
         //my.sort_orders();
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {

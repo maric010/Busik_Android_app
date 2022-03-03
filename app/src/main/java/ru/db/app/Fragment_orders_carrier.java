@@ -34,7 +34,20 @@ public class Fragment_orders_carrier extends Fragment {
         root = inflater.inflate(R.layout.fragment_orders_carrier, container, false);
         scrollView = root.findViewById(R.id.scroll_orders);
         Button arxiv = root.findViewById(R.id.all_trips_layout);
+        Button active = root.findViewById(R.id.my_trips_layout);
         my.effect(arxiv);
+        my.effect(active);
+        active.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                my.is_arxiv=false;
+                scrollView.removeAllViews();
+                odate="";
+                for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+                    add_carrier_order(entry);
+                }
+            }
+        });
         arxiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

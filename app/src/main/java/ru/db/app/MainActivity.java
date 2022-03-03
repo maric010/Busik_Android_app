@@ -1,46 +1,28 @@
 package ru.db.app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.JsonReader;
-import android.util.LruCache;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.bumptech.glide.Glide;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import org.json.JSONArray;
-
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //region cache
 
     //region cache end
-
+    static int fr;
     SharedPreferences settings;
     static MainActivity th;
     private static final String PREFS_FILE = "Account";
@@ -58,10 +40,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         th=this;
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-        if(my.status.equalsIgnoreCase("Перевозчик"))
+        if(my.status.equalsIgnoreCase("Перевозчик")){
+            fr=0;
             switch_fragment(new Fragment_orders_carrier());
+        }
+
         else if(my.status.equalsIgnoreCase("Пасажир") || my.status.equalsIgnoreCase("Гость"))
+        {
+            fr=0;
             switch_fragment(new Fragment_orders());
+        }
 
         if(my.status.equals("Перевозчик") || my.status.equals("Пасажир")){
             my.Messages_Listener = new ChildEventListener() {
@@ -157,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void back_to_orders(View view) {
+        fr=0;
         switch_fragment(new Fragment_orders());
     }
 
@@ -171,7 +160,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void profile_edit(View view) {
+        fr=1;
         switch_fragment(new Fragment_cabinet_edit());
+    }
+
+    @Override
+    public void onBackPressed() {
+        switch(fr) {
+            case 0:
+                super.onBackPressed();
+                break;
+            case 1:
+                fr=0;
+                switch_fragment(new Fragment_cabinet());
+                break;
+            case 2:
+                fr=0;
+                switch_fragment(new Fragment_orders());
+                break;
+            case 3:
+                fr=2;
+                switch_fragment(new Fragment_reys());
+            case 4:
+                fr=2;
+                switch_fragment(new Fragment_reys());
+        }
     }
 
     public void profile_edit_save_onClick(View view) {
@@ -206,10 +219,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void apply(View view) {
+        MainActivity.fr = 3;
         switch_fragment(new Fragment_reys_request());
-
-
-
     }
 
     public void finish(View view) {

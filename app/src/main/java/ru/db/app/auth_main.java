@@ -30,6 +30,10 @@ public class auth_main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth_main);
+
+        my.effect(findViewById(R.id.button5));
+        my.effect(findViewById(R.id.button2));
+
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         th=this;
     }
@@ -130,5 +134,10 @@ my.id=user.getId();
 
     public void back(View view) {
         finish();
+    }
+
+    public void reg_onclick(View view) {
+        Intent intent = new Intent(auth_main.this, reg.class);
+        startActivity(intent);
     }
 }

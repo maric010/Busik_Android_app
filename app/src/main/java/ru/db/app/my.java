@@ -1,33 +1,20 @@
 package ru.db.app;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.view.MotionEvent;
-import android.widget.Button;
+import android.view.View;
 import android.widget.TextView;
 
-import android.view.View;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -272,8 +259,17 @@ static String[] get_week(){
     public static String gen_avatar(String iid) {
         return  "https://firebasestorage.googleapis.com/v0/b/test-535c2.appspot.com/o/avatars%2F"+iid+".jpg?alt=media";
     }
+    public static String format (long ms) {// Преобразует количество миллисекунд в x дней x часов x минут x секунд x миллисекунд
+        int ss = 1000;
+        int mi = ss * 60;
+        int hh = mi * 60;
+        int dd = hh * 24;
+        long day = ms / dd;
+        String strDay = day < 10 ? "0" + day : "" + day;
+        return strDay ;
+    }
 
-static void fill_fragment(View root){
+static void fill_fragment(View root) {
     Calendar c = Calendar.getInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
     try {
@@ -292,9 +288,8 @@ static void fill_fragment(View root){
     }
 
     TextView week_day_month = root.findViewById(R.id.week_day_month);
-    System.out.println(my.current_order.getValue().get("stop_date").toString());
     String month = my.getMonths()[Integer.valueOf(my.current_order.getValue().get("start_date").toString().split("\\.")[1])-1];
-    week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+c.get(Calendar.DAY_OF_MONTH-1)+" "+month);
+    week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+c.get(Calendar.DAY_OF_MONTH)+" "+month);
     TextView description = root.findViewById(R.id.description);
     description.setText(my.current_order.getValue().get("description").toString());
     TextView start_country_city = root.findViewById(R.id.start_country_city);
@@ -308,7 +303,67 @@ static void fill_fragment(View root){
     TextView passenger_cost = root.findViewById(R.id.passenger_cost);
     passenger_cost.setText(my.current_order.getValue().get("passenger_cost").toString());
     TextView gruz_cost = root.findViewById(R.id.gruz_cost);
-    gruz_cost.setText(my.current_order.getValue().get("gruz_cost").toString());
+    gruz_cost.setText("€ "+my.current_order.getValue().get("gruz_cost").toString()+" ");
+    if(current_order.getValue().get("gruz_cost").toString().equals("0")){
+        gruz_cost.setVisibility(View.INVISIBLE);
+        root.findViewById(R.id.imageView3).setVisibility(View.INVISIBLE);
+        root.findViewById(R.id.gruz_cost_2).setVisibility(View.INVISIBLE);
+    }
+
+    SimpleDateFormat sm=new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    Date date1 = null;
+    try {
+        date1 = sm.parse(my.current_order.getValue().get("start_date").toString());
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    Date date2 = null;
+    try {
+        date2 = sm.parse(my.current_order.getValue().get("stop_date").toString());
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+    TextView v_puti = root.findViewById(R.id.textView8);
+    long different = date2.getTime()-date1.getTime();
+    long secondsInMilli = 1000;
+    long minutesInMilli = secondsInMilli * 60;
+    long hoursInMilli = minutesInMilli * 60;
+    long daysInMilli = hoursInMilli * 24;
+    long elapsedDays = different / daysInMilli;
+    different = different % daysInMilli;
+
+    long elapsedHours = different / hoursInMilli;
+    different = different % hoursInMilli;
+
+    long elapsedMinutes = different / minutesInMilli;
+    different = different % minutesInMilli;
+
+    long elapsedSeconds = different / secondsInMilli;
+
+    System.out.printf("%d days, %d hours, %d minutes, %d seconds%n", elapsedDays, elapsedHours, elapsedMinutes, elapsedSeconds);
+
+String day_hour = "";
+    if(elapsedDays!=0){
+        day_hour+= elapsedDays;
+        if(elapsedDays>1 && elapsedDays<5)
+            day_hour+=" дня ";
+        if(elapsedDays>1 && elapsedDays<5)
+            day_hour+=" дней ";
+        else
+            day_hour+=" день ";
+    }
+    if(elapsedHours!=0){
+        day_hour+= elapsedHours;
+        if((elapsedHours>1 && elapsedHours<5) || elapsedHours>20)
+            day_hour+=" часа";
+        else if (elapsedHours>4)
+            day_hour+=" часов";
+        else
+            day_hour+=" час";
+    }
+    v_puti.setText("В пути "+day_hour);
+
+
 }
 static void sort_orders(){
         LinkedHashMap<String, HashMap> sorted_Orders = new LinkedHashMap<>();
@@ -360,7 +415,7 @@ static void sort_orders(){
 
     }
 
-static void effect(Button button){
+static void effect(View button){
     button.setOnTouchListener(new View.OnTouchListener() {
         public boolean onTouch(View v, MotionEvent event) {
             switch (event.getAction()) {

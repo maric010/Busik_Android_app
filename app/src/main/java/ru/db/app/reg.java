@@ -1,7 +1,5 @@
 package ru.db.app;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class reg extends AppCompatActivity {
 Boolean is_carrier = false;
@@ -53,7 +53,7 @@ Boolean is_carrier = false;
 
     public void reg_onclick(View view) {
         String name = ((EditText)findViewById(R.id.name)).getText().toString();
-        String phone = ((EditText)findViewById(R.id.phone)).getText().toString();
+        String phone = ((EditText)findViewById(R.id.phone)).getText().toString().replace("+","");
         String city = ((EditText)findViewById(R.id.city)).getText().toString();
         String password = ((EditText)findViewById(R.id.password)).getText().toString();
         my.reg(name,password,phone,city,false,is_carrier,!is_carrier);

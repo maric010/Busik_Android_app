@@ -96,7 +96,10 @@ gl.addView(tx);
                 (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         buttonp.setMargins(30,20,30,20);
         button.setTextSize(15f);
-        button.setText("К рейсу");
+        if(h.get("order")!=null)
+            button.setText("К рейсу");
+        else if (h.get("rate")!=null)
+            button.setText("Поставить отзыв");
         button.setTextColor(Color.WHITE);
         button.setLayoutParams(buttonp);
         button.setAllCaps(false);

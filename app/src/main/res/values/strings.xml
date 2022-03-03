@@ -2,5 +2,8 @@
     <string name="app_name">Busik</string>
     <string name="busik">Busik</string>
     <string name="some_id">рейсы</string>
-    <string name="facebook_app_id">468922064606903</string> <string name="fb_login_protocol_scheme">fb468922064606903</string>
+    <string name="facebook_app_id">468922064606903</string>
+    <string name="fb_login_protocol_scheme">fb468922064606903</string>
+
+    <string name="facebook_application_id">468922064606903</string>
 </resources>

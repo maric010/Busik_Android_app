@@ -1,35 +1,23 @@
 package ru.db.app;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.LruCache;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.annotations.Nullable;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,63 +37,64 @@ public class start extends AppCompatActivity {
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         String id = settings.getString(PREF_id,"");
 
-        ChildEventListener childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
 
-                HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
-                my.Orders.put(dataSnapshot.getKey(),h);
+                    ChildEventListener childEventListener = new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
 
-                Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
-                    @Override
-                    public String getKey() {
-                        return dataSnapshot.getKey();
-                    }
+                            HashMap<String, String> h = (HashMap<String, String>) dataSnapshot.getValue();
+                            my.Orders.put(dataSnapshot.getKey(),h);
 
-                    @Override
-                    public HashMap getValue() {
-                        return h;
-                    }
+                            Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
+                                @Override
+                                public String getKey() {
+                                    return dataSnapshot.getKey();
+                                }
 
-                    @Override
-                    public HashMap setValue(HashMap hashMap) {
-                        return null;
-                    }
-                };
-                my.sort_orders();
-                if(Fragment_orders.root!=null){
-                    Fragment_orders.add_order(entry);
-                }
-                else if(Fragment_orders_carrier.root!=null){
-                    if(h.get("owner").toString().equalsIgnoreCase(my.id))
-                        Fragment_orders_carrier.add_carrier_order(entry);
-                }
+                                @Override
+                                public HashMap getValue() {
+                                    return h;
+                                }
 
-            }
+                                @Override
+                                public HashMap setValue(HashMap hashMap) {
+                                    return null;
+                                }
+                            };
+                            my.sort_orders();
+                            if(Fragment_orders.root!=null){
+                                Fragment_orders.add_order(entry);
+                            }
+                            else if(Fragment_orders_carrier.root!=null){
+                                if(h.get("owner").toString().equalsIgnoreCase(my.id))
+                                    Fragment_orders_carrier.add_carrier_order(entry);
+                            }
 
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
-                HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
-                my.Orders.replace(dataSnapshot.getKey(),doc);
-            }
+                        }
 
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                my.Orders.remove(dataSnapshot.getKey());
-            }
+                        @RequiresApi(api = Build.VERSION_CODES.N)
+                        @Override
+                        public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                            HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
+                            my.Orders.replace(dataSnapshot.getKey(),doc);
+                        }
 
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                        @Override
+                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+                            my.Orders.remove(dataSnapshot.getKey());
+                        }
 
-            }
+                        @Override
+                        public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                        }
 
-            }
-        };
-        my.dborders.addChildEventListener(childEventListener);
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    };
+                    my.dborders.addChildEventListener(childEventListener);
 
 
 
@@ -143,15 +132,26 @@ public class start extends AppCompatActivity {
 
                             //my.download_my_avatar();
                             Intent intent = new Intent(start.this, MainActivity.class);
-                            startActivity(intent);
+                            new Handler().postDelayed(new Runnable(){
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 1000);
 
-                            finish();
                         }
                         else{
                           //auth
                             Intent intent = new Intent(start.this, auth.class);
-                            startActivity(intent);
-                            finish();
+                            new Handler().postDelayed(new Runnable(){
+                                @Override
+                                public void run() {
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }, 1000);
+
                         }
                     } else {
 
@@ -161,8 +161,14 @@ public class start extends AppCompatActivity {
         }
         else{
             Intent intent = new Intent(start.this, auth.class);
-            startActivity(intent);
-            finish();
+            new Handler().postDelayed(new Runnable(){
+                @Override
+                public void run() {
+                    startActivity(intent);
+                    finish();
+                }
+            }, 1000);
+
         }
 
 

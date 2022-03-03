@@ -80,11 +80,11 @@
                 android:layout_marginRight="30dp"
                 android:background="@drawable/button_2"
                 android:text="На главную"
-                android:onClick="back_to_order"
+                android:onClick="back_to_orders"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/city"></Button>
+                app:layout_constraintTop_toBottomOf="@+id/city" />
 
         </LinearLayout>
 

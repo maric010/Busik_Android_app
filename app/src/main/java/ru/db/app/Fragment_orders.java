@@ -1,32 +1,21 @@
 package ru.db.app;
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 
@@ -239,26 +228,32 @@ System.out.println(order_date);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
 
-        arrow = new ImageView(root.getContext());
-        arrowp.setMargins(25,0,5,0);
-        arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);
-        arrow.setLayoutParams(arrowp);
-        linearLayout1.addView(arrow);
 
-        summa = new TextView(root.getContext());
-        summa.setText("€ "+h.get("gruz_cost").toString()+" ");
-        summa.setTextSize(15);
-        summa.setTextColor(Color.WHITE);
-        summa.setTypeface(null, Typeface.BOLD);
-        summa.setLayoutParams(summap);
-        linearLayout1.addView(summa);
+        if(!h.get("gruz_cost").toString().equals("0")){
+            arrow = new ImageView(root.getContext());
+            arrowp.setMargins(25,0,5,0);
+            arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);
+            arrow.setLayoutParams(arrowp);
+            linearLayout1.addView(arrow);
 
-        summa = new TextView(root.getContext());
-        summa.setText("/ кг");
-        summa.setTextColor(Color.WHITE);
-        summa.setTextSize(15);
-        summa.setLayoutParams(summap);
-        linearLayout1.addView(summa);
+            summa = new TextView(root.getContext());
+            summa.setText("€ "+h.get("gruz_cost").toString()+" ");
+            summa.setTextSize(15);
+            summa.setTextColor(Color.WHITE);
+            summa.setTypeface(null, Typeface.BOLD);
+            summa.setLayoutParams(summap);
+            linearLayout1.addView(summa);
+
+            summa = new TextView(root.getContext());
+            summa.setText("/ кг");
+            summa.setTextColor(Color.WHITE);
+            summa.setTextSize(15);
+            summa.setLayoutParams(summap);
+            linearLayout1.addView(summa);
+        }
+
+
+
 
 
 
@@ -360,6 +355,7 @@ System.out.println(order_date);
         gl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.fr=2;
                 MainActivity.th.switch_fragment(new Fragment_reys());
                 my.current_order = entry;
             }

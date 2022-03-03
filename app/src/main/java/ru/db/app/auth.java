@@ -5,8 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,11 +12,12 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,8 +29,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -64,9 +61,8 @@ public class auth extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-        my.effect((Button)findViewById(R.id.button4));
-
-
+        my.effect(findViewById(R.id.button4));
+        my.effect(findViewById(R.id.button3));
 
     }
 
@@ -172,20 +168,25 @@ public class auth extends AppCompatActivity {
     }
 
     public void auth_facebook_onClick(View view) {
+        System.out.println("asd1");
+        AccessToken.setCurrentAccessToken(null);
+        System.out.println("asd2");
         LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        System.out.println("asd3");
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                System.out.println("asd4");
                 AccessToken accessToken = loginResult.getAccessToken();
                 boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+                System.out.println("asd5");
                 if(isLoggedIn){
                     System.out.println("Авторизация с фейсбук успешно");
+
                     GraphRequest request =GraphRequest.newMeRequest(accessToken, new GraphRequest.GraphJSONObjectCallback() {
                         @Override
                         public void onCompleted(JSONObject object, GraphResponse response) {
                             try {
-                                System.out.println();
-
                                 my.facebook_id=object.getString("id");
                                 my.name=object.getString("first_name")+object.getString("last_name");
                                 my.phone="";
@@ -245,6 +246,7 @@ public class auth extends AppCompatActivity {
                     parameters.putString("fields", "id,email,first_name,last_name");
                     request.setParameters(parameters);
                     request.executeAsync();
+
                 }
                 System.out.println(accessToken.getUserId());
 

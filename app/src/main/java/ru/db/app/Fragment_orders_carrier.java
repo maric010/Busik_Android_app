@@ -1,6 +1,5 @@
 package ru.db.app;
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,39 +7,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.google.type.DateTime;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-import java.util.SortedMap;
 
 public class Fragment_orders_carrier extends Fragment {
     static View root;
@@ -225,29 +205,29 @@ public class Fragment_orders_carrier extends Fragment {
         summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
+        if(!h.get("gruz_cost").toString().equals("0")) {
+            arrow = new ImageView(root.getContext());
+            arrowp.setMargins(25, 0, 5, 0);
+            arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);
+            arrow.setLayoutParams(arrowp);
+            linearLayout1.addView(arrow);
 
-        arrow = new ImageView(root.getContext());
-        arrowp.setMargins(25,0,5,0);
-        arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);
-        arrow.setLayoutParams(arrowp);
-        linearLayout1.addView(arrow);
+            summa = new TextView(root.getContext());
+            summa.setText("€ " + h.get("gruz_cost").toString() + " ");
+            summa.setTextSize(24);
+            summa.setTextColor(Color.WHITE);
+            summa.setTypeface(null, Typeface.BOLD);
+            summa.setLayoutParams(summap);
+            linearLayout1.addView(summa);
 
-        summa = new TextView(root.getContext());
-        summa.setText("€ "+h.get("gruz_cost").toString()+" ");
-        summa.setTextSize(24);
-        summa.setTextColor(Color.WHITE);
-        summa.setTypeface(null, Typeface.BOLD);
-        summa.setLayoutParams(summap);
-        linearLayout1.addView(summa);
+            summa = new TextView(root.getContext());
+            summa.setText("/ кг");
+            summa.setTextColor(Color.WHITE);
+            summa.setTextSize(22);
+            summa.setLayoutParams(summap);
+            linearLayout1.addView(summa);
 
-        summa = new TextView(root.getContext());
-        summa.setText("/ кг");
-        summa.setTextColor(Color.WHITE);
-        summa.setTextSize(22);
-        summa.setLayoutParams(summap);
-        linearLayout1.addView(summa);
-
-
+        }
 
         gl.addView(linearLayout1);
 
@@ -279,6 +259,7 @@ public class Fragment_orders_carrier extends Fragment {
             @Override
             public void onClick(View view) {
                 my.current_order = entry;
+                MainActivity.fr=2;
                 MainActivity.th.switch_fragment(new Fragment_reys_carrier());
             }
         });

@@ -27,7 +27,7 @@ public class edit_order extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_order);
-
+        my.effect(findViewById(R.id.edit));
         ((EditText)findViewById(R.id.new_order_otkuda)).setText(my.current_order.getValue().get("otkuda").toString());
         ((EditText)findViewById(R.id.new_order_kuda)).setText(my.current_order.getValue().get("kuda").toString());
         ((TextView)findViewById(R.id.new_order_start_date)).setText(my.current_order.getValue().get("start_date").toString());

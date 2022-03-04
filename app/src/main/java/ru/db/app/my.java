@@ -1,14 +1,17 @@
 package ru.db.app;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,7 +36,8 @@ import java.util.List;
 import java.util.Map;
 
 public class my {
-    public static boolean is_arxiv=false;
+
+    public static boolean is_arxiv=false,is_search=false;
     public static Uri google_photo;
     static ChildEventListener Messages_Listener;
     public static Map.Entry<String, HashMap> current_order;
@@ -45,6 +49,7 @@ public class my {
     static Boolean auth_telegram=false;
     static CropImage.ActivityResult result;
     static String avatar;
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private static final String PREFS_FILE = "Account";
     static FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -124,6 +129,9 @@ public class my {
             SharedPreferences.Editor prefEditor = settings.edit();
             prefEditor.putString(PREF_id,my.id);
             prefEditor.apply();
+
+            mAuth.createUserWithEmailAndPassword(my.email,"asd12345");
+
             /*
             if(auth_google){
                 my.avatar=my.id+"_"+(System.currentTimeMillis());
@@ -368,6 +376,18 @@ static void fill_fragment(View root) {
         }
         v_puti.setText("В пути "+day_hour);
     }
+if(current_order.getValue().get("status").toString().equals("Завершен") || current_order.getValue().get("status").toString().equals("Отменен")){
+    if(my.status.equals("Перевозчик")){
+        Button b1 = root.findViewById(R.id.button11);
+        b1.setEnabled(false);
+        b1.setBackgroundColor(Color.GRAY);
+        b1.setBackgroundColor(Color.GRAY);
+        root.findViewById(R.id.button12).setEnabled(false);
+        root.findViewById(R.id.editText2).setEnabled(false);
+    }
+}
+
+
 
 
 
@@ -455,6 +475,10 @@ static void effect(View button){
                     }
                 }
             }});
+    }
+
+    public static void search() {
+
     }
 }
 

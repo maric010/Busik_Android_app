@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,7 +33,15 @@ public class start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        my.mAuth.getCurrentUser().sendEmailVerification();
+//my.mAuth.sendPasswordResetEmail("smaricpb@gmail.com");
+//my.mAuth.confirmPasswordReset("","")
+my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    @Override
+    public void onComplete(@NonNull Task<AuthResult> task) {
+        System.out.println("ass"+task.getResult().getUser().getEmail());
+    }
+});
         my.settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         String id = settings.getString(PREF_id,"");
@@ -65,7 +74,8 @@ public class start extends AppCompatActivity {
                             if(Fragment_orders.root!=null){
                                 Fragment_orders.add_order(entry);
                             }
-                            else if(Fragment_orders_carrier.root!=null){
+                            else if(Fragment_orders_carrier.root!=null && !my.is_arxiv){
+
                                 if(h.get("owner").toString().equalsIgnoreCase(my.id))
                                     Fragment_orders_carrier.add_carrier_order(entry);
                             }

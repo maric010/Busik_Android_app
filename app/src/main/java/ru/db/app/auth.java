@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -91,7 +92,10 @@ public class auth extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
+
                 // Google Sign In was successful, authenticate with Firebase
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 my.google_id=account.getId();
                 my.name=account.getDisplayName();
@@ -103,6 +107,8 @@ public class auth extends AppCompatActivity {
                 my.google_photo=account.getPhotoUrl();
 
 
+
+                System.out.println(mAuth.getCurrentUser().getEmail());
                 CollectionReference docRef = my.db.collection("users");
                 docRef.whereEqualTo("google_id",my.google_id).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -133,7 +139,8 @@ public class auth extends AppCompatActivity {
                                             if(((Boolean) user.get("is_admin")))
                                                 my.status="Администратор";
                                         }
-                                        System.out.println("NAME "+my.name);
+                                        if(my.status.equals("Перевозчик"))
+                                            my.get_arxiv_carrier();
                                         Intent intent = new Intent(auth.this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
@@ -216,7 +223,8 @@ public class auth extends AppCompatActivity {
                                                 if(((Boolean) user.get("is_admin")))
                                                     my.status="Администратор";
                                             }
-                                            System.out.println("NAME "+my.name);
+                                            if(my.status.equals("Перевозчик"))
+                                                my.get_arxiv_carrier();
                                             Intent intent = new Intent(auth.this, MainActivity.class);
                                             startActivity(intent);
                                             finish();

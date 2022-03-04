@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void back_to_orders_carrier(View view) {
+        fr=0;
         switch_fragment(new Fragment_orders_carrier());
     }
 

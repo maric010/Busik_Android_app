@@ -11,15 +11,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 
 public class auth_main extends AppCompatActivity {
     SharedPreferences settings;
@@ -67,68 +68,70 @@ public class auth_main extends AppCompatActivity {
         String field = "is_passenger";
         if(is_carrier)
             field="is_carrier";
+
         CollectionReference docRef = my.db.collection("users");
-        try {
-            docRef.whereEqualTo("phone", ((EditText)findViewById(R.id.phone)).getText().toString())
-                    .whereEqualTo(field,true)
-                    .whereEqualTo("password",my.SHA1(my.SHA1(((EditText)findViewById(R.id.password)).getText().toString()))).get()
-                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    if(queryDocumentSnapshots.getDocuments().size()>0){
-                        DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
-                        final String PREF_id = "id";
-                        SharedPreferences.Editor prefEditor = settings.edit();
-                        prefEditor.putString(PREF_id,user.getId());
-                        prefEditor.apply();
-my.id=user.getId();
-                        my.name=user.get("name").toString();
-                        my.phone=user.get("phone").toString();
-                        my.city=user.get("city").toString();
-                        if(user.get("avatar")!=null)
-                            my.avatar=user.get("avatar").toString();
-                        if(user.get("is_carrier")!=null)
-                        {
-                            if(((Boolean) user.get("is_carrier")))
-                                my.status="Перевозчик";
-                        }
-                        else if(user.get("is_passenger")!=null){
-                            if(((Boolean) user.get("is_passenger")))
-                                my.status="Пасажир";
-                        }
-                        else if(user.get("is_admin")!=null){
-                            if(((Boolean) user.get("is_admin")))
-                                my.status="Администратор";
-                        }
-                        if(my.status.equals("Перевозчик"))
-                            my.get_arxiv_carrier();
-                        progressDialog.cancel();
-                        Intent intent = new Intent(auth_main.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else {
-                        progressDialog.cancel();
+        String finalField = field;
+        my.mAuth.signInWithEmailAndPassword(((EditText)findViewById(R.id.phone)).getText().toString(),((EditText)findViewById(R.id.password)).getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+              if(task.getResult().getUser()!=null ){
+                  docRef.whereEqualTo("e-mail", ((EditText)findViewById(R.id.phone)).getText().toString())
+                          .whereEqualTo(finalField,true).get()
+                          .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                              @Override
+                              public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                  if(queryDocumentSnapshots.getDocuments().size()>0){
+                                      DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
+                                      final String PREF_id = "id";
+                                      SharedPreferences.Editor prefEditor = settings.edit();
+                                      prefEditor.putString(PREF_id,user.getId());
+                                      prefEditor.apply();
+                                      my.id=user.getId();
+                                      my.name=user.get("name").toString();
+                                      my.phone=user.get("phone").toString();
+                                      my.city=user.get("city").toString();
+                                      if(user.get("avatar")!=null)
+                                          my.avatar=user.get("avatar").toString();
+                                      if(user.get("is_carrier")!=null)
+                                      {
+                                          if(((Boolean) user.get("is_carrier")))
+                                              my.status="Перевозчик";
+                                      }
+                                      else if(user.get("is_passenger")!=null){
+                                          if(((Boolean) user.get("is_passenger")))
+                                              my.status="Пасажир";
+                                      }
+                                      else if(user.get("is_admin")!=null){
+                                          if(((Boolean) user.get("is_admin")))
+                                              my.status="Администратор";
+                                      }
+                                      if(my.status.equals("Перевозчик"))
+                                          my.get_arxiv_carrier();
+                                      progressDialog.cancel();
+                                      Intent intent = new Intent(auth_main.this, MainActivity.class);
+                                      startActivity(intent);
+                                      finish();
+                                  }
 
-                        AlertDialog alertDialog = (new AlertDialog.Builder(auth_main.th)).create();
-                        alertDialog.setTitle("Ошибка");
-                        alertDialog.setMessage("Неправильный логин или пароль!");
-                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        alertDialog.dismiss();
-                                    }
-                                });
-                        alertDialog.show();
-                    }
 
-                }
-            });
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+                              }
+                          });
+              }
+              else {
+                  progressDialog.cancel();
+                  AlertDialog alertDialog = (new AlertDialog.Builder(auth_main.th)).create();
+                  alertDialog.setTitle("Ошибка");
+                  alertDialog.setMessage("Неправильный логин или пароль!");
+                  alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
+                          new DialogInterface.OnClickListener() {
+                              public void onClick(DialogInterface dialog, int which) {
+                                  alertDialog.dismiss();
+                              }
+                          });
+                  alertDialog.show();
+              }
+            }
+        });
 
     }
 

@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +32,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,7 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 public class my {
-
+    static HashMap<String, ArrayList<String>> countries = new HashMap<>();
     public static boolean is_arxiv=false,is_search=false;
     public static Uri google_photo;
     static ChildEventListener Messages_Listener;
@@ -84,79 +89,47 @@ public class my {
         return convertToHex(sha1hash);
     }
 
-    static void reg(String name,String password,String phone,String city,
-               boolean is_admin,boolean is_carrier,boolean is_passenger){
-        try {
-            HashMap<String,Object> new_user=new HashMap<>();
-            new_user.put("name",name);
-            new_user.put("phone",phone);
-            new_user.put("city",city);
-            if(is_admin)
-                new_user.put("is_admin",true);
-            if(is_carrier)
-                new_user.put("is_carrier",true);
-            if(is_passenger)
-                new_user.put("is_passenger",true);
+    static void reg(String name,String password,String phone,String city,boolean is_carrier,boolean is_passenger){
+        HashMap<String,Object> new_user=new HashMap<>();
+        new_user.put("name",name);
+        new_user.put("phone",phone);
+        new_user.put("city",city);
+        if(is_carrier)
+            new_user.put("is_carrier",true);
+        if(is_passenger)
+            new_user.put("is_passenger",true);
 
-            if(auth_google)
-            {
-                new_user.put("e-mail",email);
-                new_user.put("google_id",google_id);
-            }
-            else if(auth_facebook)
-                new_user.put("facebook_id",facebook_id);
-            else
-                new_user.put("password",SHA1(SHA1(password)));
-
-            if(auth_telegram)
-                new_user.put("telegram_id",telegram_id);
-            DocumentReference user = my.db.collection("users").document();
-            user.set(new_user);
-            my.id = user.getId();
-            System.out.println(my.id+";"+user.getId());
-            if(is_carrier)
-            {
-                my.status="Перевозчик";
-            }
-            else if(is_passenger){
-                my.status="Пасажир";
-            }
-            else if(is_admin){
-                my.status="Администратор";
-            }
-
-            final String PREF_id = "id";
-            SharedPreferences.Editor prefEditor = settings.edit();
-            prefEditor.putString(PREF_id,my.id);
-            prefEditor.apply();
-
-            mAuth.createUserWithEmailAndPassword(my.email,"asd12345");
-
-            /*
-            if(auth_google){
-                my.avatar=my.id+"_"+(System.currentTimeMillis());
-                StorageReference storageRef = my.fm.getReference();
-                StorageReference mountainsRef = storageRef.child("avatars/"+my.avatar+".jpg");
-                InputStream stream = new FileInputStream(new File(String.valueOf(my.google_photo)));
-                UploadTask uploadTask = mountainsRef.putFile(stream);
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        user.update("avatar",my.avatar);
-                    }
-                });
-            }
-            */
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        if(auth_google)
+        {
+            new_user.put("e-mail",email);
+            new_user.put("google_id",google_id);
         }
+        else if(auth_facebook)
+            new_user.put("facebook_id",facebook_id);
+
+        if(auth_telegram)
+            new_user.put("telegram_id",telegram_id);
+
+        DocumentReference user = my.db.collection("users").document(my.mAuth.getUid());
+        user.set(new_user);
+        my.id = user.getId();
+        System.out.println(my.id+";"+user.getId());
+        if(is_carrier)
+        {
+            my.status="Перевозчик";
+        }
+        else if(is_passenger){
+            my.status="Пасажир";
+        }
+
+
+/*
+        final String PREF_id = "id";
+        SharedPreferences.Editor prefEditor = settings.edit();
+        prefEditor.putString(PREF_id,my.id);
+        prefEditor.apply();
+ */
+
     }
     static void finish_order(){
         DocumentReference order = my.db.collection("orders").document(current_order.getKey());
@@ -430,15 +403,12 @@ static void sort_orders(){
         DatabaseReference field = my.dbmessages.child(my.id);
         field.removeEventListener(my.Messages_Listener);
         Messages.clear();
-        final String PREF_id = "id";
-        SharedPreferences.Editor prefEditor = settings.edit();
-        prefEditor.putString(PREF_id,"");
-        prefEditor.apply();
         my.id="";
         my.name="";
         my.phone="";
         my.city="";
         my.status="";
+        my.email="";
 
     }
 
@@ -479,6 +449,40 @@ static void effect(View button){
 
     public static void search() {
 
+    }
+    static void get_country(){
+
+        my.db.collection("country").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                System.out.println("zaebal");
+                if (task.isSuccessful()) {
+                    QuerySnapshot q = task.getResult();
+                    if (q.getDocuments().size()>0) {
+                        for(DocumentSnapshot d : q.getDocuments()){
+                            System.out.println(d.getId());
+                            String country = d.getId();
+                            ArrayList<String> cities = new ArrayList<>();
+                            db.collection("country").document(country).collection("city").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        for(DocumentSnapshot doc : task.getResult().getDocuments()){
+                                            cities.add(doc.getId());
+
+                                        }
+                                    }
+
+                                }
+                            });
+
+
+                            countries.put(country,cities);
+                        }
+                    }
+                }
+            }
+        });
     }
 }
 

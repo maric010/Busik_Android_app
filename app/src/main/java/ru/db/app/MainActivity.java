@@ -112,11 +112,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout_onClick(View view) {
+        my.mAuth.signOut();
         my.logout();
         Intent intent = new Intent(MainActivity.this, auth.class);
         startActivity(intent);
         finish();
-
     }
 
     public void cabinet_onClick(View view) {

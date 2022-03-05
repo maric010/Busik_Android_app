@@ -12,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.HashMap;
@@ -33,19 +31,6 @@ public class start extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        my.mAuth.getCurrentUser().sendEmailVerification();
-//my.mAuth.sendPasswordResetEmail("smaricpb@gmail.com");
-//my.mAuth.confirmPasswordReset("","")
-my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-    @Override
-    public void onComplete(@NonNull Task<AuthResult> task) {
-        System.out.println("ass"+task.getResult().getUser().getEmail());
-    }
-});
-        my.settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-        String id = settings.getString(PREF_id,"");
-
 
                     ChildEventListener childEventListener = new ChildEventListener() {
                         @Override
@@ -106,12 +91,8 @@ my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnComple
                     };
                     my.dborders.addChildEventListener(childEventListener);
 
-
-
-
-        if(!id.equalsIgnoreCase("")){
-            DocumentReference docRef = my.db.collection("users").document(id);
-            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        if(my.mAuth.getCurrentUser()!=null){
+            my.db.collection("users").document(my.mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
@@ -119,10 +100,10 @@ my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnComple
                         if (document.exists()) {
                             Map<String, Object> doc = document.getData();
                             my.id = document.getId();
-
                             my.name = (String) doc.get("name");
                             my.city=(String)doc.get("city");
                             my.email= (String)doc.get("e-mail");
+
                             my.phone=(String)doc.get("phone");
                             if(doc.get("avatar")!=null)
                                 my.avatar=doc.get("avatar").toString();
@@ -145,6 +126,7 @@ my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnComple
                             new Handler().postDelayed(new Runnable(){
                                 @Override
                                 public void run() {
+                                    my.get_country();
                                     startActivity(intent);
                                     finish();
                                 }
@@ -157,6 +139,7 @@ my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnComple
                             new Handler().postDelayed(new Runnable(){
                                 @Override
                                 public void run() {
+                                    my.get_country();
                                     startActivity(intent);
                                     finish();
                                 }
@@ -174,19 +157,13 @@ my.mAuth.signInWithEmailAndPassword("smaricpb@gmail.com","12345678").addOnComple
             new Handler().postDelayed(new Runnable(){
                 @Override
                 public void run() {
+                    my.get_country();
                     startActivity(intent);
                     finish();
                 }
             }, 1000);
 
         }
-
-
-
-
-
-
-
     }
 
 }

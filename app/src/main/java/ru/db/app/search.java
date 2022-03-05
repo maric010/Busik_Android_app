@@ -1,6 +1,7 @@
 package ru.db.app;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -17,7 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class search extends AppCompatActivity {
-EditText start_country_city,stop_country_city,total_count_1,total_count_2,total_cargo_1,total_cargo_2;
+TextView start_country_city,stop_country_city;
+        EditText total_count_1,total_count_2,total_cargo_1,total_cargo_2;
 TextView date_search;
 Dialog dialog;
 static String otkuda="",kuda="",kogda="",c1="",c2="",g1="",g2="";
@@ -103,5 +105,14 @@ static String otkuda="",kuda="",kogda="",c1="",c2="",g1="",g2="";
         });
     }
 
+
+    public void otkuda_onClick(View view) {
+        Intent intent = new Intent(search.this, country_city.class);
+        startActivity(intent);
+    }
+
+    public void kuda_onClick(View view) {
+
+    }
 
 }

@@ -1,5 +1,7 @@
 package ru.db.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -70,12 +72,26 @@ Boolean is_carrier = false;
         String phone = ((EditText)findViewById(R.id.phone)).getText().toString().replace("+","");
         String city = ((EditText)findViewById(R.id.city)).getText().toString();
         String password = ((EditText)findViewById(R.id.password)).getText().toString();
+        String password_again = ((EditText)findViewById(R.id.password)).getText().toString();
+        String email = ((EditText)findViewById(R.id.email)).getText().toString();
 
+        if(name.equals("") || password.equals("") || city.equals("") || phone.equals("")){
+            alert("Ошибка","Заполните все поля!");
+            return;
+        }
+        if(password.length()<8){
+            alert("Ошибка","Пароль должен быть минимум 8 символов");
+            return;
+        }
+        if(!password_again.equals(password)){
+            alert("Ошибка","Пароли не совпадают");
+            return;
+        }
         my.name=name;
         my.phone=phone;
         my.city=city;
         if(my.email.equals("")){
-            my.email=((EditText)findViewById(R.id.email)).getText().toString();
+            my.email=email;
             my.mAuth.createUserWithEmailAndPassword(my.email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -88,9 +104,11 @@ Boolean is_carrier = false;
                         finish();
                     }
                     else{
-
                         my.email="";
-                        System.out.println("УЖЕ ЕСТЬ ТАКОЙ С ТАКИМ МЫЛОМ");
+                        my.name="";
+                        my.phone="";
+                        my.city="";
+                        alert("Ошибка","Пользователь с таким e-mailом уже существует");
                     }
 
                 }
@@ -107,5 +125,18 @@ Boolean is_carrier = false;
 
 
 
+    }
+
+    void alert(String title,String text){
+        AlertDialog alertDialog = (new AlertDialog.Builder(reg.this)).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(text);
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

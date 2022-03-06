@@ -144,6 +144,7 @@ public class start extends AppCompatActivity {
                                 my.get_arxiv_carrier();
                             else if(my.status.equals("Пасажир"))
                                 my.get_arxiv();
+                            my.calculate_rate();
                             Intent intent = new Intent(start.this, MainActivity.class);
                             new Handler().postDelayed(new Runnable(){
                                 @Override

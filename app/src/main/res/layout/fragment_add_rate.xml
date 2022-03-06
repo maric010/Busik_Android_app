@@ -44,14 +44,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reys_day_month" />
+
     <TextView
         android:id="@+id/otkuda_kuda_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="22dp"
         android:background="@color/white"
         android:text="К поездке Киев -> Харьков 10.12 (Пт)"
-        android:layout_marginLeft="5dp"
         android:textAlignment="center"
         android:textAppearance="@style/some_id"
         android:textColor="#686767"
@@ -59,13 +60,62 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ost_otziv" />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/otkuda_kuda_date">
+    <CheckBox
+        android:id="@+id/check_1"
+        style="?android:attr/starStyle"
+        android:checked="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+    <CheckBox
+        android:id="@+id/check_2"
+        android:checked="true"
+        style="?android:attr/starStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+    <CheckBox
+        android:id="@+id/check_3"
+        android:checked="true"
+        style="?android:attr/starStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+    <CheckBox
+        android:id="@+id/check_4"
+        android:checked="true"
+        style="?android:attr/starStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+    <CheckBox
+        android:id="@+id/check_5"
+        android:checked="true"
+        style="?android:attr/starStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        />
+
+</LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout13"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/rectangle_3"
         app:layout_constraintEnd_toEndOf="parent"

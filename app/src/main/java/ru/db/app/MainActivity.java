@@ -26,12 +26,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    //region cache
-
-    //region cache end
     static int fr;
     static MainActivity th;
-    private static final String PREFS_FILE = "Account";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

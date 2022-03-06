@@ -189,6 +189,7 @@ public class auth extends AppCompatActivity {
                                         }
                                         if(my.status.equals("Перевозчик"))
                                             my.get_arxiv_carrier();
+                                        my.calculate_rate();
                                         Intent intent = new Intent(auth.this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
@@ -258,6 +259,7 @@ public class auth extends AppCompatActivity {
                                                     }
                                                     if(my.status.equals("Перевозчик"))
                                                         my.get_arxiv_carrier();
+                                                    my.calculate_rate();
                                                     Intent intent = new Intent(auth.this, MainActivity.class);
                                                     startActivity(intent);
                                                     finish();

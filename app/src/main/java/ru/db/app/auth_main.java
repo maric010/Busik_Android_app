@@ -103,7 +103,7 @@ public class auth_main extends AppCompatActivity {
                                       }
                                       if(my.status.equals("Перевозчик"))
                                           my.get_arxiv_carrier();
-
+                                      my.calculate_rate();
                                       progressDialog.cancel();
                                       Intent intent = new Intent(auth_main.this, MainActivity.class);
                                       startActivity(intent);

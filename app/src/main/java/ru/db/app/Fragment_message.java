@@ -138,6 +138,7 @@ gl.addView(tx);
                     my.current_rate_owner=h.get("rate").toString();
                     my.current_rate_reys=h.get("text").toString().split("\n")[1];
                     my.current_rate_owner_name=h.get("rate_owner").toString();
+                    my.current_rate_message = entry.getKey();
                     MainActivity.th.switch_fragment(new Fragment_add_rate());
                 }
 

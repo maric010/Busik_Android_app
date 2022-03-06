@@ -47,6 +47,7 @@
             android:textStyle="normal|bold" />
 
         <TextView
+            android:id="@+id/rate_count"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
@@ -57,10 +58,11 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/sredniy"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:text="Средний 5.0"
+            android:text="Средний 0.0"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
@@ -87,86 +89,19 @@
         app:layout_constraintTop_toBottomOf="parent">
 
         <LinearLayout
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_gravity="center"
-                        android:layout_weight="0"
-                        android:src="@drawable/main_logo" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Андрей"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:textColor="@color/black"
-                            android:textSize="20dp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="02.02.2022"
-                            android:layout_marginLeft="10dp"
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="100dp"
-                        android:text="5"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="0"
-                        android:src="@drawable/star" />
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:background="@drawable/rectangle_3"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    android:text="Выехали вовремя, Водитель уверенный, предупредительный, машина внутри в хорошем состоянии"
-                    />
 
             </LinearLayout>
-        </LinearLayout>
+
     </ScrollView>
 
 

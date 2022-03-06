@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 public class my {
+    public static String current_rate_message;
     static String current_rate_owner,current_rate_owner_name,current_rate_reys;
     public static boolean is_otkuda=false;
     public static String otkuda,kuda;
@@ -505,6 +506,24 @@ static void effect(View button){
                         }
                     }
                 }
+            }
+        });
+    }
+    static void calculate_rate(){
+        my.db.collection("users").document(my.id).collection("comments").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                List<DocumentSnapshot> docs = task.getResult().getDocuments();
+                float rate=0;
+                if(docs.size()>0){
+                    for(int i=0;i<docs.size();i++){
+                        DocumentSnapshot doc = docs.get(i);
+                        Map<String, Object> h = doc.getData();
+                        rate += Integer.parseInt(h.get("rate").toString());
+                    }
+
+                }
+                my.rate = rate/docs.size();
             }
         });
     }

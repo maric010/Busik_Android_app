@@ -289,95 +289,15 @@
                 android:layout_width="300dp"
                 android:layout_height="47dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
                 android:background="@drawable/button_2"
                 android:textColor="@color/white"
                 android:text="Изменить пароль"
                 android:textAllCaps="false"
                 android:textSize="17sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Привязка соц сетей"
-                android:layout_gravity="center"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="Facebook"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textAllCaps="false"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginRight="30dp"
-                            android:background="@drawable/border_2"
-                            android:text="    Привязать    "
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
-                    </FrameLayout>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="Google"
-                    android:textColor="@color/black"
-                    android:textSize="18dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="621dp" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:textAllCaps="false"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:layout_marginRight="30dp"
-                            android:background="@drawable/border_2"
-                            android:text="    Отвязать    "
-                            android:textColor="@color/black"
-                            android:textSize="18dp" />
-                    </FrameLayout>
-                </LinearLayout>
-            </LinearLayout>
 
 
         </LinearLayout>

@@ -33,6 +33,7 @@ public class Fragment_rates extends Fragment {
         scroll = root.findViewById(R.id.scrollView);
 
 
+
         my.db.collection("users").document(my.id).collection("comments").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -49,8 +50,13 @@ public class Fragment_rates extends Fragment {
                 }
                 TextView rate_count = root.findViewById(R.id.rate_count);
                 rate_count.setText("У вас "+docs.size()+" отзывов");
-                TextView sredniy = root.findViewById(R.id.sredniy);
-                sredniy.setText("Средний "+(rate/docs.size())+"");
+
+
+                if(docs.size()!=0){
+                    TextView sredniy = root.findViewById(R.id.sredniy);
+                    sredniy.setText("Средний "+(rate/docs.size())+"");
+                }
+
             }
         });
         return root;

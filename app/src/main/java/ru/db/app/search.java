@@ -107,12 +107,15 @@ static String otkuda="",kuda="",kogda="",c1="",c2="",g1="",g2="";
 
 
     public void otkuda_onClick(View view) {
+        my.is_otkuda=true;
         Intent intent = new Intent(search.this, country_city.class);
         startActivity(intent);
     }
 
     public void kuda_onClick(View view) {
-
+        my.is_otkuda=false;
+        Intent intent = new Intent(search.this, country_city.class);
+        startActivity(intent);
     }
 
 }

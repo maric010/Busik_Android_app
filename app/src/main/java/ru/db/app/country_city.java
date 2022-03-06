@@ -49,11 +49,15 @@ public class country_city extends AppCompatActivity {
             my.otkuda= textView.getText().toString()+", "+textView2.getText();
             if(add_order.otkuda!=null)
                 add_order.otkuda.setText(my.otkuda);
+            if(edit_order.otkuda!=null)
+                edit_order.otkuda.setText(my.otkuda);
         }
         else{
             my.kuda= textView.getText().toString()+", "+textView2.getText();
             if(add_order.kuda!=null)
                 add_order.kuda.setText(my.kuda);
+            if(edit_order.kuda!=null)
+                edit_order.kuda.setText(my.kuda);
         }
         finish();
 

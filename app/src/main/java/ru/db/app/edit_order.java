@@ -1,6 +1,7 @@
 package ru.db.app;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -23,13 +24,17 @@ public class edit_order extends AppCompatActivity {
     TimePicker timePicker;
     Boolean start=true;
     String start_date,stop_date;
+    static TextView otkuda,kuda;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_order);
         my.effect(findViewById(R.id.edit));
-        ((EditText)findViewById(R.id.new_order_otkuda)).setText(my.current_order.getValue().get("otkuda").toString());
-        ((EditText)findViewById(R.id.new_order_kuda)).setText(my.current_order.getValue().get("kuda").toString());
+        otkuda = findViewById(R.id.new_order_otkuda);
+        kuda = findViewById(R.id.new_order_kuda);
+
+        ((TextView)findViewById(R.id.new_order_otkuda)).setText(my.current_order.getValue().get("otkuda").toString());
+        ((TextView)findViewById(R.id.new_order_kuda)).setText(my.current_order.getValue().get("kuda").toString());
         ((TextView)findViewById(R.id.new_order_start_date)).setText(my.current_order.getValue().get("start_date").toString());
         ((TextView)findViewById(R.id.new_order_stop_date)).setText(my.current_order.getValue().get("stop_date").toString());
         ((EditText)findViewById(R.id.new_order_description)).setText(my.current_order.getValue().get("description").toString());
@@ -39,8 +44,6 @@ public class edit_order extends AppCompatActivity {
         ((CheckBox)findViewById(R.id.new_order_gruz)).setChecked(Boolean.parseBoolean(my.current_order.getValue().get("is_gruz").toString()));
         ((EditText)findViewById(R.id.peoples_max)).setText(my.current_order.getValue().get("max_peoples").toString());
         ((EditText)findViewById(R.id.gruz_max)).setText(my.current_order.getValue().get("max_gruz").toString());
-
-
     }
 
     public void change_order_onClick(View view) {
@@ -119,5 +122,15 @@ public class edit_order extends AppCompatActivity {
     public void back(View view) {
         finish();
     }
+    public void otkuda_onClick(View view) {
+        my.is_otkuda=true;
+        Intent intent = new Intent(edit_order.this, country_city.class);
+        startActivity(intent);
+    }
 
+    public void kuda_onClick(View view) {
+        my.is_otkuda=false;
+        Intent intent = new Intent(edit_order.this, country_city.class);
+        startActivity(intent);
+    }
 }

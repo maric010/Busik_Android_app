@@ -514,16 +514,17 @@ static void effect(View button){
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 List<DocumentSnapshot> docs = task.getResult().getDocuments();
-                float rate=0;
+                float frate=0;
                 if(docs.size()>0){
                     for(int i=0;i<docs.size();i++){
                         DocumentSnapshot doc = docs.get(i);
                         Map<String, Object> h = doc.getData();
-                        rate += Integer.parseInt(h.get("rate").toString());
-                    }
 
+                        frate += Integer.parseInt(h.get("rate").toString());
+                    }
                 }
-                my.rate = rate/docs.size();
+                if(docs.size()!=0)
+                    my.rate = frate/docs.size();
             }
         });
     }

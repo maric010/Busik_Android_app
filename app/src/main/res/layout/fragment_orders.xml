@@ -170,17 +170,27 @@
         android:orientation="vertical">
     </LinearLayout>
     </ScrollView>
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="15dp"
+    android:onClick="activity_search_onClick"
+    android:layout_marginRight="40dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_search"/>
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="80dp"
+        android:layout_gravity="center"
         android:text="Поиск"
-        android:onClick="activity_search_onClick"
         android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="15dp" />
+</LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

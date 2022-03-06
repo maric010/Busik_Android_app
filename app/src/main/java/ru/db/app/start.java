@@ -72,6 +72,26 @@ public class start extends AppCompatActivity {
                         public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
                             HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
                             my.Orders.replace(dataSnapshot.getKey(),doc);
+                            if(my.current_order.getKey().equals(dataSnapshot.getKey())){
+                                Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
+                                    @Override
+                                    public String getKey() {
+                                        return dataSnapshot.getKey();
+                                    }
+
+                                    @Override
+                                    public HashMap getValue() {
+                                        return (HashMap) dataSnapshot.getValue();
+                                    }
+
+                                    @Override
+                                    public HashMap setValue(HashMap hashMap) {
+                                        return null;
+                                    }
+                                };
+                                my.current_order=entry;
+                            }
+
                         }
 
                         @Override
@@ -122,6 +142,8 @@ public class start extends AppCompatActivity {
                             }
                             if(my.status.equals("Перевозчик"))
                                 my.get_arxiv_carrier();
+                            else if(my.status.equals("Пасажир"))
+                                my.get_arxiv();
                             Intent intent = new Intent(start.this, MainActivity.class);
                             new Handler().postDelayed(new Runnable(){
                                 @Override

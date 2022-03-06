@@ -99,7 +99,7 @@ gl.addView(tx);
         if(h.get("order")!=null)
             button.setText("К рейсу");
         else if (h.get("rate")!=null)
-            button.setText("Поставить отзыв");
+            button.setText("    Поставить отзыв    ");
         button.setTextColor(Color.WHITE);
         button.setLayoutParams(buttonp);
         button.setAllCaps(false);
@@ -107,30 +107,43 @@ gl.addView(tx);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(my.status.equals("Пасажир"))
-                    MainActivity.th.switch_fragment(new Fragment_reys());
-                else if(my.status.equals("Перевозчик"))
-                    MainActivity.th.switch_fragment(new Fragment_reys_carrier());
+                if(h.get("order")!=null){
+                    Map.Entry<String, HashMap> entry2 = new Map.Entry<String, HashMap>() {
+                        @Override
+                        public String getKey() {
+                            return h.get("order").toString();
+                        }
+
+                        @Override
+                        public HashMap getValue() {
+                            if(my.Orders.get(h.get("order"))!=null)
+                                return my.Orders.get(h.get("order").toString());
+                            else
+                                return my.Orders_arxiv.get(h.get("order").toString());
+                        }
+
+                        @Override
+                        public HashMap setValue(HashMap hashMap) {
+                            return null;
+                        }
+                    };
+
+                    my.current_order = entry2;
+                    if(my.status.equals("Пасажир"))
+                        MainActivity.th.switch_fragment(new Fragment_reys());
+                    else if(my.status.equals("Перевозчик"))
+                        MainActivity.th.switch_fragment(new Fragment_reys_carrier());
+                }
+                else if(h.get("rate")!=null){
+                    my.current_rate_owner=h.get("rate").toString();
+                    my.current_rate_reys=h.get("text").toString().split("\n")[1];
+                    my.current_rate_owner_name=h.get("rate_owner").toString();
+                    MainActivity.th.switch_fragment(new Fragment_add_rate());
+                }
 
 
-                Map.Entry<String, HashMap> entry2 = new Map.Entry<String, HashMap>() {
-                    @Override
-                    public String getKey() {
-                        return h.get("order").toString();
-                    }
 
-                    @Override
-                    public HashMap getValue() {
-                        return my.Orders.get(h.get("order").toString());
-                    }
 
-                    @Override
-                    public HashMap setValue(HashMap hashMap) {
-                        return null;
-                    }
-                };
-
-                my.current_order = entry2;
 
             }
         });

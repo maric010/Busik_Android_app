@@ -74,7 +74,7 @@ public class auth_main extends AppCompatActivity {
         my.mAuth.signInWithEmailAndPassword(((EditText)findViewById(R.id.phone)).getText().toString(),((EditText)findViewById(R.id.password)).getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-              if(task.getResult().getUser()!=null ){
+              if(task.isSuccessful()){
                   docRef.whereEqualTo("e-mail", ((EditText)findViewById(R.id.phone)).getText().toString())
                           .whereEqualTo(finalField,true).get()
                           .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -82,10 +82,6 @@ public class auth_main extends AppCompatActivity {
                               public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                                   if(queryDocumentSnapshots.getDocuments().size()>0){
                                       DocumentSnapshot user = queryDocumentSnapshots.getDocuments().get(0);
-                                      final String PREF_id = "id";
-                                      SharedPreferences.Editor prefEditor = settings.edit();
-                                      prefEditor.putString(PREF_id,user.getId());
-                                      prefEditor.apply();
                                       my.id=user.getId();
                                       my.name=user.get("name").toString();
                                       my.phone=user.get("phone").toString();
@@ -107,12 +103,25 @@ public class auth_main extends AppCompatActivity {
                                       }
                                       if(my.status.equals("Перевозчик"))
                                           my.get_arxiv_carrier();
+
                                       progressDialog.cancel();
                                       Intent intent = new Intent(auth_main.this, MainActivity.class);
                                       startActivity(intent);
                                       finish();
                                   }
-
+                                  else{
+                                      progressDialog.cancel();
+                                      AlertDialog alertDialog = (new AlertDialog.Builder(auth_main.th)).create();
+                                      alertDialog.setTitle("Ошибка");
+                                      alertDialog.setMessage("Неправильный логин или пароль!");
+                                      alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ок",
+                                              new DialogInterface.OnClickListener() {
+                                                  public void onClick(DialogInterface dialog, int which) {
+                                                      alertDialog.dismiss();
+                                                  }
+                                              });
+                                      alertDialog.show();
+                                  }
 
                               }
                           });
@@ -141,6 +150,11 @@ public class auth_main extends AppCompatActivity {
 
     public void reg_onclick(View view) {
         Intent intent = new Intent(auth_main.this, reg.class);
+        startActivity(intent);
+    }
+
+    public void reset_password_onClick(View view) {
+        Intent intent = new Intent(auth_main.this, reset_password.class);
         startActivity(intent);
     }
 }

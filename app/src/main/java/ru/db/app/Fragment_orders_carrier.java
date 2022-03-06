@@ -242,7 +242,7 @@ public class Fragment_orders_carrier extends Fragment {
         summa.setTextColor(Color.WHITE);
         summa.setLayoutParams(summap);
         linearLayout1.addView(summa);
-        if(!h.get("gruz_cost").toString().equals("0")) {
+        if(!h.get("gruz_cost").toString().equals("0") && !h.get("gruz_cost").toString().equals("")) {
             arrow = new ImageView(root.getContext());
             arrowp.setMargins(25, 0, 5, 0);
             arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);
@@ -263,7 +263,6 @@ public class Fragment_orders_carrier extends Fragment {
             summa.setTextSize(22);
             summa.setLayoutParams(summap);
             linearLayout1.addView(summa);
-
         }
 
         gl.addView(linearLayout1);

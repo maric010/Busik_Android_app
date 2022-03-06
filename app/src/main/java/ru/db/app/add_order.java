@@ -1,6 +1,7 @@
 package ru.db.app;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -22,11 +23,15 @@ public class add_order extends AppCompatActivity {
     CalendarView calendarView;
     TimePicker timePicker;
     Boolean start=true;
+    static TextView otkuda,kuda;
     String start_date,stop_date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_order);
+        otkuda = findViewById(R.id.new_order_otkuda);
+        kuda = findViewById(R.id.new_order_kuda);
+
         my.effect(findViewById(R.id.create));
     }
 
@@ -35,8 +40,7 @@ public class add_order extends AppCompatActivity {
     }
 
     public void create_order(View view) {
-        my.reg_order(((EditText)findViewById(R.id.new_order_otkuda)).getText().toString(),
-                ((EditText)findViewById(R.id.new_order_kuda)).getText().toString(),
+        my.reg_order(my.otkuda,my.kuda,
                 ((TextView)findViewById(R.id.new_order_start_date)).getText().toString(),
                 ((TextView)findViewById(R.id.new_order_stop_date)).getText().toString(),
                 ((EditText)findViewById(R.id.new_order_description)).getText().toString(),
@@ -103,5 +107,17 @@ public class add_order extends AppCompatActivity {
     public void pick_stop_date(View view) {
         start=false;
         pic();
+    }
+
+    public void otkuda_onClick(View view) {
+        my.is_otkuda=true;
+        Intent intent = new Intent(add_order.this, country_city.class);
+        startActivity(intent);
+    }
+
+    public void kuda_onClick(View view) {
+        my.is_otkuda=false;
+        Intent intent = new Intent(add_order.this, country_city.class);
+        startActivity(intent);
     }
 }

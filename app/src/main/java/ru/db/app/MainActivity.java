@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -31,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     //region cache end
     static int fr;
-    SharedPreferences settings;
     static MainActivity th;
     private static final String PREFS_FILE = "Account";
     @Override
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         th=this;
-        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
         if(my.status.equalsIgnoreCase("Перевозчик")){
             fr=0;
             switch_fragment(new Fragment_orders_carrier());
@@ -135,6 +132,21 @@ public class MainActivity extends AppCompatActivity {
         ((View)Fragment_orders.root.findViewById(R.id.all_trips)).setVisibility(View.INVISIBLE);
         ((TextView)Fragment_orders.root.findViewById(R.id.all_aviable_trips)).setVisibility(View.INVISIBLE);
         Fragment_orders.scrollView.removeAllViewsInLayout();
+        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+            Object accepted = entry.getValue().get("passengers_accepted");
+            if(accepted!=null){
+                if(((HashMap)accepted).containsKey(my.id))
+                    Fragment_orders.add_order(entry);
+            }
+
+        }
+        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+            Object accepted = entry.getValue().get("passengers_request");
+            if(accepted!=null)
+                if(((HashMap)accepted).containsKey(my.id))
+                    Fragment_orders.add_order(entry);
+        }
+
     }
 
     public void all(View view) {
@@ -291,5 +303,9 @@ public class MainActivity extends AppCompatActivity {
     public void activity_search_onClick(View view) {
         Intent intent = new Intent(MainActivity.this, search.class);
         startActivity(intent);
+    }
+
+    public void back_to_messages(View view) {
+        switch_fragment(new Fragment_message());
     }
 }

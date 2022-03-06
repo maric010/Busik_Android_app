@@ -5,15 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DatabaseReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -72,7 +69,9 @@ public class Fragment_reys_request extends Fragment {
 
 
         int people_cost = Integer.parseInt(my.current_order.getValue().get("passenger_cost").toString());
-        int gruz_cost = Integer.parseInt(my.current_order.getValue().get("gruz_cost").toString());
+        int gruz_cost = 0;
+        if(!my.current_order.getValue().get("gruz_cost").toString().equals(""))
+              gruz_cost =  Integer.parseInt(my.current_order.getValue().get("gruz_cost").toString());
         TextView rate_ratecount = root.findViewById(R.id.rate_ratecount);
         rate_ratecount.setText(my.current_order.getValue().get("owner_rate").toString());
         TextView people_itog = root.findViewById(R.id.calculated_people_cost);
@@ -83,6 +82,12 @@ public class Fragment_reys_request extends Fragment {
         people_count = root.findViewById(R.id.people);
         System.out.println("a1a1a1");
         Button people_up = root.findViewById(R.id.people_up);
+        int finalGruz_cost = gruz_cost;
+        int a = Integer.parseInt(people_count.getText().toString());
+        people_itog.setText(a+" человека "+a*people_cost+" €");
+        int b = Integer.parseInt(gruz.getText().toString());
+        itog.setText("Итого: €"+((b* finalGruz_cost) + a*people_cost));
+
         people_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,25 +95,27 @@ public class Fragment_reys_request extends Fragment {
                     int a = Integer.parseInt(people_count.getText().toString());
                     people_itog.setText(a+" человека "+a*people_cost+" €");
                     int b = Integer.parseInt(gruz.getText().toString());
-                    itog.setText("Итого: €"+((b*gruz_cost) + a*people_cost));
+                    itog.setText("Итого: €"+((b* finalGruz_cost) + a*people_cost));
 
             }
         });
         System.out.println("a2a2a2");
 
         Button gruz_up = root.findViewById(R.id.gruz_up);
+        int finalGruz_cost1 = gruz_cost;
         gruz_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 gruz.setText((Integer.parseInt(gruz.getText().toString()) + 1) +"");
                     int a = Integer.parseInt(people_count.getText().toString());
                     int b = Integer.parseInt(gruz.getText().toString());
-                    itog.setText("Итого: €"+((b*gruz_cost) + a*people_cost));
+                    itog.setText("Итого: €"+((b* finalGruz_cost1) + a*people_cost));
 
             }
         });
 
         Button people_down = root.findViewById(R.id.people_down);
+        int finalGruz_cost2 = gruz_cost;
         people_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,12 +124,13 @@ public class Fragment_reys_request extends Fragment {
                     int a = Integer.parseInt(people_count.getText().toString());
                     people_itog.setText(a+" человека "+a*people_cost+" €");
                     int b = Integer.parseInt(gruz.getText().toString());
-                    itog.setText("Итого: €"+((b*gruz_cost) + a*people_cost));
+                    itog.setText("Итого: €"+((b* finalGruz_cost2) + a*people_cost));
                 }
             }
         });
 
         Button gruz_down = root.findViewById(R.id.gruz_down);
+        int finalGruz_cost3 = gruz_cost;
         gruz_down.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,12 +138,17 @@ public class Fragment_reys_request extends Fragment {
                     gruz.setText((Integer.parseInt(gruz.getText().toString()) - 1) +"");
                     int a = Integer.parseInt(people_count.getText().toString());
                     int b = Integer.parseInt(gruz.getText().toString());
-                    itog.setText("Итого: €"+((b*gruz_cost) + a*people_cost));
+                    itog.setText("Итого: €"+((b* finalGruz_cost3) + a*people_cost));
 
                 }
             }
         });
-
+        if(gruz_cost==0){
+            gruz_up.setBackgroundResource(R.drawable.button_disabled);
+            gruz_down.setBackgroundResource(R.drawable.button_disabled);
+            gruz_up.setEnabled(false);
+            gruz_down.setEnabled(false);
+        }
 
 
         TextView name = root.findViewById(R.id.name);

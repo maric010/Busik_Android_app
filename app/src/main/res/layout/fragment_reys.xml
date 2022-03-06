@@ -10,8 +10,6 @@
         android:id="@+id/vector_3"
         android:layout_width="50dp"
         android:layout_height="30dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:onClick="back_to_orders"

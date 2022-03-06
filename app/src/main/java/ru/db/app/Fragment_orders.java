@@ -48,6 +48,8 @@ odate="";
             visitor.setVisibility(View.VISIBLE);
         }
 
+
+
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
             add_order(entry);
         }
@@ -229,7 +231,7 @@ System.out.println(order_date);
         linearLayout1.addView(summa);
 
 
-        if(!h.get("gruz_cost").toString().equals("0")){
+        if(!h.get("gruz_cost").toString().equals("0") && !h.get("gruz_cost").toString().equals("")){
             arrow = new ImageView(root.getContext());
             arrowp.setMargins(25,0,5,0);
             arrow.setImageResource(R.drawable.ic_luggage_svgrepo_com);

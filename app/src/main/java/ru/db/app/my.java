@@ -1,7 +1,5 @@
 package ru.db.app;
 
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
@@ -41,12 +39,14 @@ import java.util.List;
 import java.util.Map;
 
 public class my {
+    static String current_rate_owner,current_rate_owner_name,current_rate_reys;
+    public static boolean is_otkuda=false;
+    public static String otkuda,kuda;
     static HashMap<String, ArrayList<String>> countries = new HashMap<>();
     public static boolean is_arxiv=false,is_search=false;
     public static Uri google_photo;
     static ChildEventListener Messages_Listener;
     public static Map.Entry<String, HashMap> current_order;
-    static SharedPreferences settings;
     static String name="",phone,email="",id,city,status,google_id,telegram_id,facebook_id;
     static float rate=0.0f;
     static Boolean auth_google=false;
@@ -101,15 +101,16 @@ public class my {
 
         if(auth_google)
         {
-            new_user.put("e-mail",email);
             new_user.put("google_id",google_id);
         }
-        else if(auth_facebook)
+        else if(auth_facebook){
             new_user.put("facebook_id",facebook_id);
+        }
+
 
         if(auth_telegram)
             new_user.put("telegram_id",telegram_id);
-
+        new_user.put("e-mail",email);
         DocumentReference user = my.db.collection("users").document(my.mAuth.getUid());
         user.set(new_user);
         my.id = user.getId();
@@ -122,13 +123,6 @@ public class my {
             my.status="Пасажир";
         }
 
-
-/*
-        final String PREF_id = "id";
-        SharedPreferences.Editor prefEditor = settings.edit();
-        prefEditor.putString(PREF_id,my.id);
-        prefEditor.apply();
- */
 
     }
     static void finish_order(){
@@ -149,9 +143,10 @@ public class my {
         String[] split = start_date.split("\\.");
         HashMap<String,Object> new_message=new HashMap<>();
         new_message.put("title","Рейс завершен");
-        new_message.put("text","Поставьте оценку вашему недавнему рейсу\n"+my.current_order.getValue().get("otkuda")+" -> "
-                +my.current_order.getValue().get("kuda")+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
+        new_message.put("text","Поставьте оценку вашему недавнему рейсу\n"+my.current_order.getValue().get("otkuda").toString().split(" ")[1]+" -> "
+                +my.current_order.getValue().get("kuda").toString().split(" ")[1]+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
         new_message.put("rate",my.current_order.getValue().get("owner"));
+        new_message.put("rate_owner",my.current_order.getValue().get("owner_name"));
 
         if(my.current_order.getValue().get("passengers_accepted")!=null){
             HashMap<String, Object> v = (HashMap<String, Object>) (my.current_order.getValue().get("passengers_accepted"));
@@ -160,7 +155,7 @@ public class my {
                 my.dbmessages.child(k).push().setValue(new_message);
             }
         }
-
+        Orders_arxiv.put(current_order.getKey(),current_order.getValue());
 
     }
     static void cancel_order(){
@@ -184,10 +179,10 @@ public class my {
         String[] split = start_date.split("\\.");
         HashMap<String,Object> new_message=new HashMap<>();
         new_message.put("title","Рейс отменен");
-        new_message.put("text","Поставьте оценку вашему недавнему рейсу\n"+my.current_order.getValue().get("otkuda")+" -> "
-                +my.current_order.getValue().get("kuda")+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
+        new_message.put("text","Поставьте оценку вашему недавнему рейсу\n"+my.current_order.getValue().get("otkuda").toString().split(" ")[1]+" -> "
+                +my.current_order.getValue().get("kuda").toString().split(" ")[1]+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
         new_message.put("rate",my.current_order.getValue().get("owner"));
-
+        new_message.put("rate_owner",my.current_order.getValue().get("owner_name"));
         if(my.current_order.getValue().get("passengers_accepted")!=null){
             HashMap<String, Object> v = (HashMap<String, Object>) (my.current_order.getValue().get("passengers_accepted"));
 
@@ -195,6 +190,7 @@ public class my {
                 my.dbmessages.child(k).push().setValue(new_message);
             }
         }
+        Orders_arxiv.put(current_order.getKey(),current_order.getValue());
     }
     static void reg_order(String otkuda,String kuda,String start_date,String stop_date,String description,
                           String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,String max_peoples,String max_gruz){
@@ -218,6 +214,7 @@ public class my {
 
 
         dborders.push().setValue(new_order);
+
     }
     static void change_order(String otkuda,String kuda,String start_date,String stop_date,String description,
                           String is_passenger,String passenger_cost,String gruz_cost,String is_gruz,String max_peoples,String max_gruz){
@@ -297,7 +294,7 @@ static void fill_fragment(View root) {
     passenger_cost.setText(my.current_order.getValue().get("passenger_cost").toString());
     TextView gruz_cost = root.findViewById(R.id.gruz_cost);
     gruz_cost.setText("€ "+my.current_order.getValue().get("gruz_cost").toString()+" ");
-    if(current_order.getValue().get("gruz_cost").toString().equals("0")){
+    if(current_order.getValue().get("gruz_cost").toString().equals("0") || current_order.getValue().get("gruz_cost").toString().equals("")){
         gruz_cost.setVisibility(View.INVISIBLE);
         root.findViewById(R.id.imageView3).setVisibility(View.INVISIBLE);
         root.findViewById(R.id.gruz_cost_2).setVisibility(View.INVISIBLE);
@@ -352,11 +349,14 @@ static void fill_fragment(View root) {
 if(current_order.getValue().get("status").toString().equals("Завершен") || current_order.getValue().get("status").toString().equals("Отменен")){
     if(my.status.equals("Перевозчик")){
         Button b1 = root.findViewById(R.id.button11);
+        b1.setBackgroundResource(R.drawable.button_disabled);
         b1.setEnabled(false);
-        b1.setBackgroundColor(Color.GRAY);
-        b1.setBackgroundColor(Color.GRAY);
-        root.findViewById(R.id.button12).setEnabled(false);
-        root.findViewById(R.id.editText2).setEnabled(false);
+        Button b2 = root.findViewById(R.id.button12);
+        b2.setBackgroundResource(R.drawable.button_disabled);
+        b2.setEnabled(false);
+        Button b3 = root.findViewById(R.id.editText2);
+        b3.setBackgroundResource(R.drawable.button_disabled);
+        b3.setEnabled(false);
     }
 }
 
@@ -446,6 +446,30 @@ static void effect(View button){
                 }
             }});
     }
+    static void get_arxiv(){
+        Orders_arxiv.clear();
+        CollectionReference docRef = my.db.collection("orders");
+        docRef.whereEqualTo("phone",my.phone).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                if(queryDocumentSnapshots.getDocuments().size()>0){
+                    List<DocumentSnapshot> orders = queryDocumentSnapshots.getDocuments();
+                    for(int i=0;i<orders.size();i++){
+                        DocumentSnapshot order = orders.get(i);
+                        Object accepted = order.get("passengers_accepted");
+                        if(accepted!=null)
+                            if(((HashMap)accepted).containsKey(my.id))
+                                Orders_arxiv.put(order.getId(),(HashMap)order.getData());
+
+                        Object requested = order.get("passengers_request");
+                        if(accepted!=null)
+                            if(((HashMap)requested).containsKey(my.id))
+                                Orders_arxiv.put(order.getId(),(HashMap)order.getData());
+                    }
+                }
+            }});
+    }
+
 
     public static void search() {
 

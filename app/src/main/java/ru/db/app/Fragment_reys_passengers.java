@@ -46,25 +46,31 @@ public class Fragment_reys_passengers extends Fragment {
         }
 
         String month = my.getMonths()[Integer.valueOf(my.current_order.getValue().get("start_date").toString().split("\\.")[1])-1];
-        week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+c.get(Calendar.DAY_OF_MONTH-1)+" "+month);
+        week_day_month.setText(my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+c.get(Calendar.DAY_OF_MONTH)+" "+month);
 
-        HashMap<String, HashMap> request = (HashMap<String, HashMap>) my.Orders.get(my.current_order.getKey()).get("passengers_request");
-        if(request!=null){
-            for(Map.Entry<String, HashMap> entry : (request).entrySet()) {
-                System.out.println(entry);
-                add_request(entry);
-            }
+if(my.current_order.getValue().get("passengers_request")!=null){
+    HashMap<String, HashMap> request = (HashMap<String, HashMap>) my.current_order.getValue().get("passengers_request");
+    if(request!=null){
+        for(Map.Entry<String, HashMap> entry : (request).entrySet()) {
+            System.out.println(entry);
+            add_request(entry);
         }
-
+    }
+}
         int gruz_count = 0;
-        HashMap<String, HashMap> accepted = (HashMap<String, HashMap>) my.Orders.get(my.current_order.getKey()).get("passengers_accepted");
+        HashMap<String, HashMap> accepted=null;
+        if( my.current_order.getValue().get("passengers_accepted")!=null){
+        accepted = (HashMap<String, HashMap>) my.current_order.getValue().get("passengers_accepted");
         if(accepted!=null){
             for(Map.Entry<String, HashMap> entry : (accepted).entrySet()) {
                 add_accepted(entry);
                 if(entry.getValue().get("gruz")!=null)
                     gruz_count+=Integer.parseInt(entry.getValue().get("gruz").toString());
             }
-        }
+    }
+}
+
+
         int accepted_count = 0;
         if(accepted!=null)
             accepted_count=accepted.size();
@@ -76,7 +82,7 @@ public class Fragment_reys_passengers extends Fragment {
         TextView status = root.findViewById(R.id.status);
         status.setText("    "+my.current_order.getValue().get("status").toString()+"    ");
 
-        HashMap<String, HashMap> requested = (HashMap<String, HashMap>) my.Orders.get(my.current_order.getKey()).get("passengers_request");
+        HashMap<String, HashMap> requested = (HashMap<String, HashMap>) my.current_order.getValue().get("passengers_request");
 
         TextView request_count = root.findViewById(R.id.request_count);
         if(requested!=null)
@@ -226,8 +232,8 @@ public class Fragment_reys_passengers extends Fragment {
                 String[] split = start_date.split("\\.");
                 HashMap<String,Object> new_message=new HashMap<>();
                 new_message.put("title","Вы приняты");
-                new_message.put("text","На рейсе "+my.current_order.getValue().get("otkuda")+" -> "
-                        +my.current_order.getValue().get("kuda")+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
+                new_message.put("text","На рейсе "+my.current_order.getValue().get("otkuda").toString().split(" ")[1]+" -> "
+                        +my.current_order.getValue().get("kuda").toString().split(" ")[1]+" "+split[0]+"."+split[1]+"("+my.get_week()[c.get(Calendar.DAY_OF_WEEK)-1]+")");
                 new_message.put("order",my.current_order.getKey());
                 my.dbmessages.child(entry.getKey()).push().setValue(new_message);
 

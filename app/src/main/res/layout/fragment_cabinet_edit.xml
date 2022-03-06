@@ -182,6 +182,7 @@
                 android:id="@+id/edit_save"
                 android:layout_width="300dp"
                 android:layout_height="47dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:background="@drawable/button_2"
                 android:textColor="@color/white"
@@ -220,7 +221,7 @@
                     android:textColorHint="#7C7C7C"
                     android:textSize="17dp"
                     android:hint="Текущий пароль"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:text=""
                     android:textColor="@color/black"/>
 
@@ -249,7 +250,7 @@
                     android:textColorHint="#7C7C7C"
                     android:textSize="17dp"
                     android:hint="Новый пароль"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:text=""
                     android:textColor="@color/black" />
 
@@ -278,12 +279,22 @@
                     android:textColorHint="#7C7C7C"
                     android:textSize="17dp"
                     android:hint="Повторите новый пароль"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:text=""
                     android:textColor="@color/black"/>
 
             </FrameLayout>
-
+            <Button
+                android:id="@+id/change_password"
+                android:layout_width="300dp"
+                android:layout_height="47dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button_2"
+                android:textColor="@color/white"
+                android:text="Изменить пароль"
+                android:textAllCaps="false"
+                android:textSize="17sp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

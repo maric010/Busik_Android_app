@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/some_id"
+        android:id="@+id/title"
         android:layout_width="256dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -31,21 +31,74 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ru.db.app.country_edit
-        android:id="@+id/acType"
+    <FrameLayout
+        android:id="@+id/sm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="30dp"
-        android:maxLines="1"
-        android:layout_marginTop="50dp"
-        android:singleLine="true"
+        android:background="@drawable/rectangle_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ru.db.app.country_edit
+            android:id="@+id/acType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="17dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:hint="Выберите страну" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:onClick="city"
+        android:background="@drawable/rectangle_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sm">
+
+        <ru.db.app.country_edit
+            android:id="@+id/acType2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:hint="Выберите населенный пункт"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="17dp" />
+    </FrameLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_2"
+        android:onClick="otkuda_text"
+        android:layout_marginTop="20dp"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/some_id" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -51,6 +51,8 @@ public class country_city extends AppCompatActivity {
                 add_order.otkuda.setText(my.otkuda);
             if(edit_order.otkuda!=null)
                 edit_order.otkuda.setText(my.otkuda);
+            if(search.start_country_city!=null)
+                search.start_country_city.setText(my.otkuda);
         }
         else{
             my.kuda= textView.getText().toString()+", "+textView2.getText();
@@ -58,6 +60,8 @@ public class country_city extends AppCompatActivity {
                 add_order.kuda.setText(my.kuda);
             if(edit_order.kuda!=null)
                 edit_order.kuda.setText(my.kuda);
+            if(search.stop_country_city!=null)
+                search.stop_country_city.setText(my.kuda);
         }
         finish();
 

@@ -280,7 +280,7 @@
                     android:id="@+id/rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4,0 (320 отзывов)"
+                    android:text="0"
                     android:textSize="16dp" />
 
 

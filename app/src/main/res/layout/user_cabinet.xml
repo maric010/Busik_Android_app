@@ -105,6 +105,7 @@
         android:textAllCaps="false"
         android:background="@drawable/button_gradient_1"
         android:text="Тех.поддержка"
+        android:onClick="support_onClick"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

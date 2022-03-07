@@ -94,6 +94,21 @@ odate="";
         } catch (ParseException e) {
             e.printStackTrace();
         }
+if(my.is_search){
+    Calendar c3 = Calendar.getInstance();
+
+    SimpleDateFormat sdf3 = new SimpleDateFormat("dd.MM.yyyy");
+    try {
+        Date date = sdf3.parse(search.kogda.split(" ")[0]);
+        c3.setTime(date);
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+
+    if(c3.getTime().getTime() > c.getTime().getTime()){
+        return;
+    }
+}
 
 
 

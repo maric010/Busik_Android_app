@@ -47,8 +47,8 @@ public class edit_order extends AppCompatActivity {
     }
 
     public void change_order_onClick(View view) {
-        my.change_order(((EditText)findViewById(R.id.new_order_otkuda)).getText().toString(),
-                ((EditText)findViewById(R.id.new_order_kuda)).getText().toString(),
+        my.change_order(((TextView)findViewById(R.id.new_order_otkuda)).getText().toString(),
+                ((TextView)findViewById(R.id.new_order_kuda)).getText().toString(),
                 ((TextView)findViewById(R.id.new_order_start_date)).getText().toString(),
                 ((TextView)findViewById(R.id.new_order_stop_date)).getText().toString(),
                 ((EditText)findViewById(R.id.new_order_description)).getText().toString(),

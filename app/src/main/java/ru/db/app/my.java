@@ -47,6 +47,8 @@ public class my {
     public static boolean is_arxiv=false,is_search=false;
     public static Uri google_photo;
     static ChildEventListener Messages_Listener;
+    static ChildEventListener Messages_Listener2;
+
     public static Map.Entry<String, HashMap> current_order;
     static String name="",phone,email="",id,city,status,google_id,telegram_id,facebook_id;
     static float rate=0.0f;
@@ -63,12 +65,14 @@ public class my {
     static DatabaseReference dborders = database.getReference("рейсы");
 
     static DatabaseReference dbmessages = database.getReference("сообщения");
+    static DatabaseReference dbmessages2 = database.getReference("support");
     static FirebaseStorage fm = FirebaseStorage.getInstance();
 
 
     static LinkedHashMap<String, HashMap> Orders = new LinkedHashMap<String, HashMap>();
     static LinkedHashMap<String, HashMap> Orders_arxiv = new LinkedHashMap<String, HashMap>();
     static HashMap<String, HashMap> Messages = new HashMap<String, HashMap>();
+    static LinkedHashMap<String, HashMap> Messages2 = new LinkedHashMap<String, HashMap>();
 
     private static String convertToHex(byte[] data) {
         StringBuilder buf = new StringBuilder();
@@ -127,6 +131,9 @@ public class my {
 
     }
     static void finish_order(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            my.current_order.getValue().replace("status","Отменен");
+        }
         DocumentReference order = my.db.collection("orders").document(current_order.getKey());
         order.set(current_order.getValue());
         my.dborders.child(current_order.getKey()).removeValue();
@@ -346,6 +353,7 @@ static void fill_fragment(View root) {
                 day_hour+=" час";
         }
         v_puti.setText("В пути "+day_hour);
+
     }
 if(current_order.getValue().get("status").toString().equals("Завершен") || current_order.getValue().get("status").toString().equals("Отменен")){
     if(my.status.equals("Перевозчик")){
@@ -361,7 +369,17 @@ if(current_order.getValue().get("status").toString().equals("Завершен") 
     }
 }
 
-
+TextView rate = root.findViewById(R.id.rate);
+if(rate!=null){
+    rate.setText(current_order.getValue().get("owner_rate").toString());
+}
+Button button12 =root.findViewById(R.id.button12);
+if(button12!=null){
+    if(c2.getTime().getTime()>Calendar.getInstance().getTime().getTime()){
+        button12.setBackgroundResource(R.drawable.button_disabled);
+        button12.setEnabled(false);
+    }
+}
 
 
 

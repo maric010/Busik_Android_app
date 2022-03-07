@@ -16,13 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class search extends AppCompatActivity {
-TextView start_country_city,stop_country_city;
+static TextView start_country_city,stop_country_city;
         EditText total_count_1,total_count_2,total_cargo_1,total_cargo_2;
 TextView date_search;
 Dialog dialog;
 static String otkuda="",kuda="",kogda="",c1="",c2="",g1="",g2="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,6 @@ static String otkuda="",kuda="",kogda="",c1="",c2="",g1="",g2="";
         total_count_2.setText(c2);
         total_cargo_1.setText(g1);
         total_cargo_2.setText(g2);
-
-
     }
 
 
@@ -59,7 +60,17 @@ static String otkuda="",kuda="",kogda="",c1="",c2="",g1="",g2="";
         c2=total_count_2.getText().toString();
         g1=total_cargo_1.getText().toString();
         g2=total_cargo_2.getText().toString();
-        my.search();
+        my.is_search=true;
+        Fragment_orders.root.findViewById(R.id.search_layout).setVisibility(View.VISIBLE);
+        Fragment_orders.root.findViewById(R.id.all_trips_layout).setVisibility(View.INVISIBLE);
+        Fragment_orders.root.findViewById(R.id.my_trips_layout).setVisibility(View.INVISIBLE);
+        TextView textView = Fragment_orders.root.findViewById(R.id.search_text);
+        textView.setText(otkuda+" -> "+kuda+" "+kogda.split(" ")[0]+",мин за чел "+c1+", макс за чел "+c2);
+        Fragment_orders.scrollView.removeAllViews();
+        for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
+            Fragment_orders.add_order(entry);
+        }
+        finish();
     }
 
     public void search_kogda_onClick(View view) {

@@ -1,31 +1,18 @@
 package ru.db.app;
-import android.app.Dialog;
-import android.graphics.Color;
+
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -44,6 +31,22 @@ public class Fragment_reys extends Fragment {
         TextView owner_name = root.findViewById(R.id.owner_name);
         owner_name.setText(my.current_order.getValue().get("owner_name").toString());
         my.fill_fragment(root);
+        if(my.current_order.getValue().get("passengers_accepted")!=null){
+            HashMap<String, Object> v = (HashMap<String, Object>) (my.current_order.getValue().get("passengers_accepted"));
+            if(v.containsKey(my.id)){
+                Button b = root.findViewById(R.id.editText2);
+                b.setEnabled(false);
+                b.setBackgroundResource(R.drawable.button_disabled);
+            }
+        }
+        if(my.current_order.getValue().get("passengers_request")!=null){
+            HashMap<String, Object> v = (HashMap<String, Object>) (my.current_order.getValue().get("passengers_request"));
+            if(v.containsKey(my.id)){
+                Button b = root.findViewById(R.id.editText2);
+                b.setEnabled(false);
+                b.setBackgroundResource(R.drawable.button_disabled);
+            }
+        }
         return root;
     }
 }

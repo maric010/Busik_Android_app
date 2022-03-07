@@ -4,9 +4,13 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -76,6 +80,59 @@ public class MainActivity extends AppCompatActivity {
             };
             DatabaseReference field = my.dbmessages.child(my.id);
             field.addChildEventListener(my.Messages_Listener);
+
+            my.Messages_Listener2 = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                    HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
+                    my.Messages2.put(dataSnapshot.getKey(),doc);
+                    if(Fragment_support.scroll!=null){
+                        Map.Entry<String, HashMap> entry = new Map.Entry<String, HashMap>() {
+                            @Override
+                            public String getKey() {
+                                return dataSnapshot.getKey();
+                            }
+
+                            @Override
+                            public HashMap getValue() {
+                                return doc;
+                            }
+
+                            @Override
+                            public HashMap setValue(HashMap hashMap) {
+                                return null;
+                            }
+                        };
+                        Fragment_support.add_message(entry);
+                    }
+                }
+
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                    HashMap<String, String> doc = (HashMap<String, String>) dataSnapshot.getValue();
+                    my.Messages2.replace(dataSnapshot.getKey(),doc);
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    my.Messages2.remove(dataSnapshot.getKey());
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+
+            DatabaseReference field2 = my.dbmessages2.child(my.id);
+            field2.addChildEventListener(my.Messages_Listener2);
+
         }
 
     }
@@ -128,6 +185,17 @@ public class MainActivity extends AppCompatActivity {
         ((View)Fragment_orders.root.findViewById(R.id.all_trips)).setVisibility(View.INVISIBLE);
         ((TextView)Fragment_orders.root.findViewById(R.id.all_aviable_trips)).setVisibility(View.INVISIBLE);
         Fragment_orders.scrollView.removeAllViewsInLayout();
+        TextView summa = new TextView(Fragment_orders.root.getContext());
+        LinearLayout.LayoutParams summap = new LinearLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        summap.gravity = Gravity.CENTER;
+        summap.setMargins(0,10,0,10);
+        summa.setText("Активные поездки");
+        summa.setTextSize(22);
+        summa.setTextColor(Color.BLACK);
+        summa.setLayoutParams(summap);
+        Fragment_orders.scrollView.addView(summa);
+
         for(Map.Entry<String, HashMap> entry : my.Orders.entrySet()) {
             Object accepted = entry.getValue().get("passengers_accepted");
             if(accepted!=null){
@@ -142,10 +210,29 @@ public class MainActivity extends AppCompatActivity {
                 if(((HashMap)accepted).containsKey(my.id))
                     Fragment_orders.add_order(entry);
         }
+        summa = new TextView(Fragment_orders.root.getContext());
+        summap = new LinearLayout.LayoutParams
+                (ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        summap.gravity = Gravity.CENTER;
+        summap.setMargins(0,10,0,10);
+        summa.setText("Архивные поездки");
+        summa.setTextSize(22);
+        summa.setTextColor(Color.BLACK);
+        summa.setLayoutParams(summap);
+        Fragment_orders.scrollView.addView(summa);
+        for(Map.Entry<String, HashMap> entry : my.Orders_arxiv.entrySet()) {
+            Object accepted = entry.getValue().get("passengers_accepted");
+            if(accepted!=null)
+                if(((HashMap)accepted).containsKey(my.id))
+                    Fragment_orders.add_order(entry);
+        }
+        //arxiv
+
 
     }
 
     public void all(View view) {
+        Fragment_orders.scrollView.removeAllViews();
         ((View)Fragment_orders.root.findViewById(R.id.my_trips)).setVisibility(View.INVISIBLE);
         ((View)Fragment_orders.root.findViewById(R.id.all_trips)).setVisibility(View.VISIBLE);
         ((TextView)Fragment_orders.root.findViewById(R.id.all_aviable_trips)).setVisibility(View.VISIBLE);
@@ -286,12 +373,10 @@ public class MainActivity extends AppCompatActivity {
                 });
         progressDialog.cancel();
         alertDialog.show();
-
         switch_fragment(new Fragment_orders_carrier());
     }
 
     public void fragment_rates_onClick(View view) {
-
         fr=1;
         switch_fragment(new Fragment_rates());
     }
@@ -303,5 +388,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void back_to_messages(View view) {
         switch_fragment(new Fragment_message());
+    }
+
+    public void support_onClick(View view) {
+        fr=1;
+        switch_fragment(new Fragment_support());
+    }
+
+    public void search_disable(View view) {
+        my.is_search=false;
+        switch_fragment(new Fragment_orders());
+        Fragment_orders.root.findViewById(R.id.search_layout).setVisibility(View.INVISIBLE);
+        Fragment_orders.root.findViewById(R.id.all_trips_layout).setVisibility(View.VISIBLE);
+        Fragment_orders.root.findViewById(R.id.my_trips_layout).setVisibility(View.VISIBLE);
     }
 }
